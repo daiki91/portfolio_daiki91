@@ -11,6 +11,8 @@
       --primary: #07426a;
       --secondary: #4a88bd;
       --accent: #f7b32b;
+      --cyber: #1e293b;
+      --cyber-accent: #00e0c6;
       --bg: #f4f7fa;
       --white: #fff;
       --shadow: 0 4px 24px rgba(7,66,106,0.08);
@@ -23,9 +25,106 @@
       color: #222;
       min-height: 100vh;
     }
+    .navbar {
+      width: 100%;
+      background: linear-gradient(160deg, var(--primary) 60%, var(--secondary));
+      box-shadow: var(--shadow);
+      padding: 0;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      height: 48px;
+    }
+    .navbar-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      height: 48px;
+    }
+    .navbar-title {
+      font-size: 1.2em;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: 1px;
+    }
+    .navbar-links {
+      display: flex;
+      gap: 12px;
+    }
+    .nav-btn {
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1em;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-btn.active, .nav-btn:hover {
+      background: var(--accent);
+      color: var(--primary);
+    }
+    /* Sidebar retractable */
+    .sidebar {
+      transition: width 0.3s, min-width 0.3s, padding 0.3s;
+      position: relative;
+    }
+    .sidebar.collapsed {
+      width: 60px;
+      min-width: 60px;
+      padding: 18px 6px 18px 6px;
+      overflow: hidden;
+    }
+    .sidebar .toggle-btn {
+      position: absolute;
+      top: 12px;
+      right: -24px;
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      font-size: 1.2em;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sidebar.collapsed .sidebar-header,
+    .sidebar.collapsed .section,
+    .sidebar.collapsed footer {
+      display: none;
+    }
+    .sidebar.collapsed .toggle-btn {
+      right: -16px;
+    }
+    @media (max-width: 900px) {
+      .portfolio-container { flex-direction: column; }
+      .sidebar { width: 100%; min-width: 0; border-radius: 0 0 18px 18px; }
+      .sidebar.collapsed { width: 60px; min-width: 60px; }
+      .main { padding: 24px 6vw; }
+      .navbar-content { padding: 0 8px; }
+    }
+    @media (max-width: 600px) {
+      .sidebar { padding: 18px 8px; }
+      .main { padding: 8px 2vw; }
+      .page { padding: 12px 2vw; }
+      .navbar-title { font-size: 1em; }
+      .main-title { font-size: 1.1em; }
+      .navbar { height: 40px; }
+      .navbar-content { height: 40px; }
+    }
     .portfolio-container {
       display: flex;
-      min-height: 100vh;
+      min-height: calc(100vh - 68px);
     }
     .sidebar {
       background: linear-gradient(160deg, var(--primary) 60%, var(--secondary));
@@ -42,32 +141,27 @@
       text-align: center;
       margin-bottom: 32px;
     }
-    .sidebar-header h1 {
-      font-size: 2em;
-      font-weight: 700;
-      margin: 0 0 8px 0;
-      letter-spacing: 1px;
-    }
     .sidebar-header .subtitle {
-      font-size: 1.1em;
-      font-weight: 400;
-      opacity: 0.85;
+      font-size: 1.2em;
+      font-weight: 600;
+      opacity: 0.95;
       margin-bottom: 0;
+      color: var(--accent);
     }
     .sidebar .section {
-      margin-bottom: 24px;
+      margin-bottom: 28px;
     }
     .sidebar .section h2 {
-      font-size: 1.1em;
+      font-size: 1.15em;
       border-bottom: 1px solid rgba(255,255,255,0.2);
       padding-bottom: 4px;
-      margin-bottom: 8px;
-      font-weight: 600;
+      margin-bottom: 10px;
+      font-weight: 700;
       letter-spacing: 0.5px;
     }
     .info-item {
-      margin-bottom: 8px;
-      font-size: 1em;
+      margin-bottom: 10px;
+      font-size: 1.08em;
     }
     .sidebar a {
       color: var(--accent);
@@ -77,44 +171,122 @@
     .sidebar a:hover {
       text-decoration: underline;
     }
-    .nav {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin: 32px 0 0 0;
-    }
-    .nav-btn {
-      background: none;
-      border: none;
-      color: var(--white);
-      font-size: 1.1em;
-      font-weight: 600;
-      padding: 10px 0;
-      cursor: pointer;
-      text-align: left;
-      transition: color 0.2s;
-    }
-    .nav-btn.active, .nav-btn:hover {
-      color: var(--accent);
-    }
-    .sidebar .section:last-child {
-      margin-bottom: 0;
-    }
     .sidebar footer {
-      font-size: 0.95em;
+      font-size: 1em;
       text-align: center;
       margin-top: 24px;
       opacity: 0.8;
     }
     .main {
       flex: 1;
-      padding: 48px 40px 32px 40px;
+      padding: 56px 48px 32px 48px;
       background: var(--bg);
       overflow-y: auto;
       min-width: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
+    }
+    .main-title {
+      font-size: 2.5em;
+      font-weight: 900;
+      margin-bottom: 18px;
+      color: var(--primary);
+      letter-spacing: 1px;
+    }
+    .highlight {
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .highlight-cyber {
+      color: var(--cyber-accent);
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+    .intro-text {
+      font-size: 1.25em;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    .section-block {
+      margin-bottom: 36px;
+    }
+    h2 {
+      color: var(--primary);
+      font-size: 2em;
+      margin-top: 0;
+      margin-bottom: 18px;
+      font-weight: 800;
+    }
+    ul, ol {
+      margin: 0 0 0 24px;
+      padding: 0 0 0 18px;
+      font-size: 1.13em;
+      line-height: 1.7;
+    }
+    .formation-list, .exp-list {
+      margin-bottom: 0;
+    }
+    .cta-section {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 40px;
+      justify-content: flex-start;
+    }
+    .cta-btn {
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      font-size: 1.15em;
+      font-weight: 700;
+      padding: 16px 32px;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(7,66,106,0.08);
+    }
+    .cta-btn.cta-cyber {
+      background: var(--cyber);
+      color: var(--cyber-accent);
+      border: 2px solid var(--cyber-accent);
+    }
+    .cta-btn:hover {
+      background: var(--accent);
+      color: var(--primary);
+    }
+    .cta-btn.cta-cyber:hover {
+      background: var(--cyber-accent);
+      color: var(--cyber);
+    }
+    .cyber-page {
+      border: 3px solid var(--cyber-accent);
+      box-shadow: 0 0 24px 0 rgba(0,224,198,0.08);
+    }
+    .tag {
+      display: inline-block;
+      background: var(--secondary);
+      color: var(--white);
+      border-radius: 12px;
+      padding: 2px 12px;
+      font-size: 1em;
+      margin: 2px 6px 2px 0;
+    }
+    @media (max-width: 1100px) {
+      .navbar-content { padding: 0 8px; }
+      .main { padding: 32px 8vw; }
+    }
+    @media (max-width: 900px) {
+      .portfolio-container { flex-direction: column; }
+      .sidebar { width: 100%; min-width: 0; border-radius: 0 0 18px 18px; }
+      .main { padding: 24px 6vw; }
+    }
+    @media (max-width: 600px) {
+      .sidebar { padding: 18px 8px; }
+      .main { padding: 8px 2vw; }
+      .page { padding: 12px 2vw; }
+      .navbar-title { font-size: 1.2em; }
+      .main-title { font-size: 1.3em; }
     }
     .page {
       display: none;
@@ -123,7 +295,7 @@
       background: var(--white);
       border-radius: 18px;
       box-shadow: var(--shadow);
-      padding: 40px 36px 32px 36px;
+      padding: 48px 40px 36px 40px;
       margin-bottom: 32px;
       animation: fadeIn 0.7s;
     }
@@ -134,65 +306,31 @@
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: none; }
     }
-    h2 {
-      color: var(--primary);
-      font-size: 1.5em;
-      margin-top: 0;
-      margin-bottom: 18px;
-      font-weight: 700;
-    }
-    h3 {
-      color: var(--secondary);
-      font-size: 1.1em;
-      margin-bottom: 8px;
-      font-weight: 600;
-    }
-    ul, ol {
-      margin: 0 0 0 18px;
-      padding: 0 0 0 18px;
-    }
-    .tag {
-      display: inline-block;
-      background: var(--secondary);
-      color: var(--white);
-      border-radius: 12px;
-      padding: 2px 12px;
-      font-size: 0.95em;
-      margin: 2px 6px 2px 0;
-    }
-    .section-block {
-      margin-bottom: 28px;
-    }
-    .highlight {
-      color: var(--accent);
-      font-weight: 700;
-    }
-    @media (max-width: 900px) {
-      .portfolio-container { flex-direction: column; }
-      .sidebar { width: 100%; min-width: 0; border-radius: 0 0 18px 18px; }
-      .main { padding: 24px 6vw; }
-      .page { padding: 24px 4vw; }
-    }
-    @media (max-width: 600px) {
-      .sidebar { padding: 18px 8px; }
-      .main { padding: 8px 2vw; }
-      .page { padding: 12px 2vw; }
-    }
   </style>
 </head>
 <body>
+  <header class="navbar">
+    <div class="navbar-content">
+      <div class="navbar-title">BODIAN ARPHAN KABACK JUNIOR</div>
+      <nav class="navbar-links">
+        <button class="nav-btn active" onclick="showPage(0)">Accueil</button>
+        <button class="nav-btn" onclick="showPage(1)">Développement Fullstack</button>
+        <button class="nav-btn" onclick="showPage(2)">Cybersécurité & DevSecOps</button>
+      </nav>
+    </div>
+  </header>
   <div class="portfolio-container">
-    <div class="sidebar">
+    <aside class="sidebar" id="sidebar">
+      <button class="toggle-btn" id="sidebar-toggle" title="Réduire/agrandir">&#9776;</button>
       <div>
         <div class="sidebar-header">
-          <h1>BODIAN ARPHAN<br>KABACK JUNIOR</h1>
-          <div class="subtitle">Fullstack & DevSecOps Engineer</div>
+          <div class="subtitle">Développeur Fullstack & Ingénieur Cybersécurité</div>
         </div>
         <div class="section">
           <h2>Contact</h2>
-          <div class="info-item">📧 arphanbodian91@gmail.com</div>
-          <div class="info-item">📱 +221 77 136 49 68</div>
-          <div class="info-item">📍 Keur Massar, Dakar</div>
+          <div class="info-item">arphanbodian91@gmail.com</div>
+          <div class="info-item">+221 77 136 49 68</div>
+          <div class="info-item">Keur Massar, Dakar</div>
           <div class="info-item"><a href="https://github.com/daiki91">github.com/daiki91</a></div>
         </div>
         <div class="section">
@@ -203,52 +341,51 @@
           <h2>Centres d’intérêt</h2>
           <div class="info-item">Sport • Musique • Voyage • Lecture • Manga</div>
         </div>
-        <nav class="nav">
-          <button class="nav-btn active" onclick="showPage(0)">Accueil</button>
-          <button class="nav-btn" onclick="showPage(1)">Fullstack</button>
-          <button class="nav-btn" onclick="showPage(2)">DevSec & Cybersécurité</button>
-        </nav>
       </div>
       <footer>
         &copy; 2026 Bodian Arphan Kaback Junior
       </footer>
-    </div>
-    <div class="main">
+    </aside>
+    <main class="main">
       <!-- PAGE 1: ACCUEIL -->
-      <div class="page active">
-        <h2>👋 Welcome to My Portfolio</h2>
+      <section class="page active">
+        <h1 class="main-title">Bienvenue sur mon portfolio</h1>
         <div class="section-block">
-          Je suis <span class="highlight">BODIAN ARPHAN KABACK JUNIOR</span>, développeur <span class="highlight">Fullstack & DevSecOps</span> basé à Keur Massar, Dakar.<br><br>
-          Passionné par la conception de solutions numériques performantes, je développe des applications modernes, sécurisées et évolutives, en combinant expérience utilisateur, architecture backend robuste et bonnes pratiques de cybersécurité.<br><br>
-          <b>Mon objectif :</b> transformer des idées en produits numériques fiables, sécurisés et performants.
+          <p class="intro-text">
+            Je suis <span class="highlight">Bodian Arphan Kaback Junior</span>, développeur <span class="highlight">Fullstack</span> et <span class="highlight-cyber">Ingénieur Cybersécurité</span> basé à Keur Massar, Dakar.<br><br>
+            Passionné par la conception de solutions numériques performantes, je développe des applications modernes, sécurisées et évolutives, en combinant expérience utilisateur, architecture backend robuste et bonnes pratiques de cybersécurité.<br><br>
+            <b>Mon objectif :</b> transformer des idées en produits numériques fiables, sécurisés et performants.
+          </p>
         </div>
-        <div class="section-block">
-          <h3>📌 Informations personnelles</h3>
-          <ul>
-            <li>📧 arphanbodian91@gmail.com</li>
-            <li>📱 +221 77 136 49 68</li>
-            <li>📍 Keur Massar, Dakar</li>
-            <li>🔗 <a href="https://github.com/daiki91">github.com/daiki91</a></li>
-          </ul>
+        <div class="cta-section">
+          <button class="cta-btn" onclick="showPage(1)">Voir mes compétences Fullstack</button>
+          <button class="cta-btn cta-cyber" onclick="showPage(2)">Découvrir mon expertise Cybersécurité</button>
+          <button class="cta-btn" id="toggle-formation-btn" onclick="toggleFormation()">Afficher la formation & expérience</button>
         </div>
-        <div class="section-block">
-          <h3>🌍 Langues</h3>
-          <span class="tag">Français</span> <span class="tag">Anglais</span> <span class="tag">Wolof</span> <span class="tag">Diolla</span>
+        <div id="formation-experience" style="display:none">
+          <div class="section-block">
+            <h2>Formation</h2>
+            <ul class="formation-list">
+              <li>Technicien Supérieur – École Supérieure Polytechnique, Dakar (2021–2023)</li>
+              <li>Licence Génie Logiciel & Systèmes – ESP, Dakar (2023–2024)</li>
+              <li>Master 1 & 2 Sécurité Système Informatique – ESP, Dakar (2024 – présent)</li>
+            </ul>
+          </div>
+          <div class="section-block">
+            <h2>Expérience professionnelle</h2>
+            <ul class="exp-list">
+              <li><b>Stagiaire IT – PNUD, Dakar (2023)</b> : Développement Web (Power Apps), plateforme DPC-calculator, base de données & visualisation Power BI, configuration réseau Cisco / GNS3</li>
+              <li><b>Stagiaire IT – Sendigital Pulse (2024)</b> : Développement mobile React Native, application TAF-TAF (covoiturage urbain)</li>
+              <li><b>Développeur Fullstack – Rezilux (2024 – présent)</b> : Applications mobiles Flutter, API avec Django REST Framework, application desktop React, authentification Firebase, migration base vers MySQL</li>
+            </ul>
+          </div>
         </div>
-        <div class="section-block">
-          <h3>🎓 Formation</h3>
-          <ul>
-            <li>Technicien Supérieur – École Supérieure Polytechnique, Dakar (2021–2023)</li>
-            <li>Licence Génie Logiciel & Systèmes – ESP, Dakar (2023–2024)</li>
-            <li>Master 1 & 2 Sécurité Système Informatique – ESP, Dakar (2024 – présent)</li>
-          </ul>
-        </div>
-      </div>
+      </section>
       <!-- PAGE 2: FULLSTACK -->
-      <div class="page">
-        <h2>💻 Fullstack Development</h2>
+      <section class="page">
+        <h1 class="main-title">Développement Fullstack</h1>
         <div class="section-block">
-          <h3>Compétences Frontend</h3>
+          <h2>Compétences Frontend</h2>
           <ul>
             <li>HTML5 / CSS3</li>
             <li>JavaScript (ES6+), React.js, Tailwind CSS</li>
@@ -258,47 +395,39 @@
           </ul>
         </div>
         <div class="section-block">
-          <h3>Compétences Backend</h3>
+          <h2>Compétences Backend</h2>
           <ul>
             <li>Node.js / Express, Python, Django REST Framework</li>
             <li>MySQL, Oracle, Firebase (authentification & temps réel)</li>
-            <li>Conception d’API REST, Authentification & gestion des rôles</li>
+            <li>Conception d’API REST, authentification & gestion des rôles</li>
             <li>Migration et optimisation de base de données</li>
             <li>Programmation orientée objet (POO)</li>
           </ul>
         </div>
         <div class="section-block">
-          <h3>Data & Analyse</h3>
+          <h2>Data & Analyse</h2>
           <ul>
             <li>Python (Pandas, NumPy, Matplotlib, Seaborn)</li>
             <li>Power BI</li>
             <li>Visualisation et traitement de données</li>
           </ul>
         </div>
+      </section>
+      <!-- PAGE 3: CYBERSECURITE & DEVSECOPS -->
+      <section class="page cyber-page">
+        <h1 class="main-title highlight-cyber">Cybersécurité & DevSecOps</h1>
         <div class="section-block">
-          <h3>Expérience Professionnelle</h3>
+          <h2>Incident Response & Forensic</h2>
           <ul>
-            <li><b>IT Intern – PNUD, Dakar (2023)</b><br>Développement Web (Power Apps), Plateforme DPC-calculator, Base de données & visualisation Power BI, Configuration réseau Cisco / GNS3</li>
-            <li><b>IT Intern – Sendigital Pulse (2024)</b><br>Développement mobile React Native, Application TAF-TAF (covoiturage urbain)</li>
-            <li><b>Fullstack Developer – Rezilux (2024 – présent)</b><br>Applications mobiles Flutter, API avec Django REST Framework, Application desktop React, Authentification Firebase, Migration base vers MySQL</li>
-          </ul>
-        </div>
-      </div>
-      <!-- PAGE 3: DEVSECOPS & CYBERSECURITE -->
-      <div class="page">
-        <h2>🔐 DevSec & Cybersecurity Operations</h2>
-        <div class="section-block">
-          <h3>Incident Response & Digital Forensics</h3>
-          <ul>
-            <li>Expérience pratique en investigation de sécurité et analyse forensic (scénarios réalistes de compromission système et réseau)</li>
+            <li>Investigation de sécurité et analyse forensic (compromission système et réseau)</li>
             <li>Détection de ralentissements réseau, connexions suspectes, enquête forensic complète</li>
             <li>Identification de l’origine de l’attaque, actions réalisées, impact sur le système</li>
           </ul>
         </div>
         <div class="section-block">
-          <h3>Architecture de détection & d’analyse</h3>
+          <h2>Architecture de détection & d’analyse</h2>
           <ul>
-            <li>IDS réseau : Snort (déployé sur CSI Linux)</li>
+            <li>IDS réseau : Snort (CSI Linux)</li>
             <li>SIEM : ELK Stack (Elasticsearch, Logstash, Kibana)</li>
             <li>Forensic réseau : Wireshark</li>
             <li>Forensic disque : Autopsy</li>
@@ -306,7 +435,7 @@
           </ul>
         </div>
         <div class="section-block">
-          <h3>Détection & Analyse de l’attaque</h3>
+          <h2>Détection & Analyse de l’attaque</h2>
           <ol>
             <li><b>Détection IDS (Snort)</b> : scan réseau, tentatives SSH, alertes horodatées</li>
             <li><b>Centralisation & Corrélation (ELK)</b> : logs Snort vers ELK, analyse Kibana, identification IP attaquante</li>
@@ -315,7 +444,7 @@
           </ol>
         </div>
         <div class="section-block">
-          <h3>Corrélation & Reconstitution de l’attaque</h3>
+          <h2>Corrélation & Reconstitution de l’attaque</h2>
           <ul>
             <li>Corrélation des preuves : réseau (Snort, Wireshark), logs centralisés (ELK), système (Autopsy)</li>
             <li>Reconstitution complète de la chaîne d’attaque</li>
@@ -323,7 +452,7 @@
           </ul>
         </div>
         <div class="section-block">
-          <h3>Recommandations de sécurité</h3>
+          <h2>Recommandations de sécurité</h2>
           <ul>
             <li>Renforcement de l’authentification SSH</li>
             <li>Segmentation du réseau</li>
@@ -333,7 +462,7 @@
           </ul>
         </div>
         <div class="section-block">
-          <h3>Compétences clés</h3>
+          <h2>Compétences clés</h2>
           <span class="tag">Incident Response</span>
           <span class="tag">Digital Forensics</span>
           <span class="tag">SIEM & Corrélation</span>
@@ -342,17 +471,48 @@
           <span class="tag">Investigation post-compromission</span>
           <span class="tag">DevSecOps mindset</span>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   </div>
   <script>
     function showPage(idx) {
       const pages = document.querySelectorAll('.page');
       const navs = document.querySelectorAll('.nav-btn');
+      const sidebar = document.getElementById('sidebar');
       pages.forEach((p, i) => {
         p.classList.toggle('active', i === idx);
         navs[i].classList.toggle('active', i === idx);
       });
+      // Masquer la sidebar sur la page d'accueil (idx === 0)
+      if (sidebar) {
+        sidebar.style.display = idx === 0 ? 'none' : '';
+      }
+      window.scrollTo(0, 0);
+    }
+
+    // Sidebar retractable
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('collapsed');
+    }
+    document.getElementById('sidebar-toggle').addEventListener('click', toggleSidebar);
+
+    // Masquer la sidebar au chargement si accueil
+    window.addEventListener('DOMContentLoaded', function() {
+      showPage(0);
+    });
+
+    // Afficher/masquer la section formation/expérience
+    function toggleFormation() {
+      const fe = document.getElementById('formation-experience');
+      const btn = document.getElementById('toggle-formation-btn');
+      if (fe.style.display === 'none') {
+        fe.style.display = '';
+        btn.textContent = 'Masquer la formation & expérience';
+      } else {
+        fe.style.display = 'none';
+        btn.textContent = 'Afficher la formation & expérience';
+      }
     }
   </script>
 </body>
