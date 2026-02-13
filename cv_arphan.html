@@ -1,0 +1,359 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio – Bodian Arphan Kaback Junior</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #07426a;
+      --secondary: #4a88bd;
+      --accent: #f7b32b;
+      --bg: #f4f7fa;
+      --white: #fff;
+      --shadow: 0 4px 24px rgba(7,66,106,0.08);
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: var(--bg);
+      color: #222;
+      min-height: 100vh;
+    }
+    .portfolio-container {
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      background: linear-gradient(160deg, var(--primary) 60%, var(--secondary));
+      color: var(--white);
+      width: 320px;
+      min-width: 260px;
+      padding: 36px 28px 24px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow);
+    }
+    .sidebar-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .sidebar-header h1 {
+      font-size: 2em;
+      font-weight: 700;
+      margin: 0 0 8px 0;
+      letter-spacing: 1px;
+    }
+    .sidebar-header .subtitle {
+      font-size: 1.1em;
+      font-weight: 400;
+      opacity: 0.85;
+      margin-bottom: 0;
+    }
+    .sidebar .section {
+      margin-bottom: 24px;
+    }
+    .sidebar .section h2 {
+      font-size: 1.1em;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      padding-bottom: 4px;
+      margin-bottom: 8px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .info-item {
+      margin-bottom: 8px;
+      font-size: 1em;
+    }
+    .sidebar a {
+      color: var(--accent);
+      text-decoration: none;
+      word-break: break-all;
+    }
+    .sidebar a:hover {
+      text-decoration: underline;
+    }
+    .nav {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 32px 0 0 0;
+    }
+    .nav-btn {
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.1em;
+      font-weight: 600;
+      padding: 10px 0;
+      cursor: pointer;
+      text-align: left;
+      transition: color 0.2s;
+    }
+    .nav-btn.active, .nav-btn:hover {
+      color: var(--accent);
+    }
+    .sidebar .section:last-child {
+      margin-bottom: 0;
+    }
+    .sidebar footer {
+      font-size: 0.95em;
+      text-align: center;
+      margin-top: 24px;
+      opacity: 0.8;
+    }
+    .main {
+      flex: 1;
+      padding: 48px 40px 32px 40px;
+      background: var(--bg);
+      overflow-y: auto;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .page {
+      display: none;
+      width: 100%;
+      max-width: 900px;
+      background: var(--white);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 40px 36px 32px 36px;
+      margin-bottom: 32px;
+      animation: fadeIn 0.7s;
+    }
+    .page.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: none; }
+    }
+    h2 {
+      color: var(--primary);
+      font-size: 1.5em;
+      margin-top: 0;
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+    h3 {
+      color: var(--secondary);
+      font-size: 1.1em;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    ul, ol {
+      margin: 0 0 0 18px;
+      padding: 0 0 0 18px;
+    }
+    .tag {
+      display: inline-block;
+      background: var(--secondary);
+      color: var(--white);
+      border-radius: 12px;
+      padding: 2px 12px;
+      font-size: 0.95em;
+      margin: 2px 6px 2px 0;
+    }
+    .section-block {
+      margin-bottom: 28px;
+    }
+    .highlight {
+      color: var(--accent);
+      font-weight: 700;
+    }
+    @media (max-width: 900px) {
+      .portfolio-container { flex-direction: column; }
+      .sidebar { width: 100%; min-width: 0; border-radius: 0 0 18px 18px; }
+      .main { padding: 24px 6vw; }
+      .page { padding: 24px 4vw; }
+    }
+    @media (max-width: 600px) {
+      .sidebar { padding: 18px 8px; }
+      .main { padding: 8px 2vw; }
+      .page { padding: 12px 2vw; }
+    }
+  </style>
+</head>
+<body>
+  <div class="portfolio-container">
+    <div class="sidebar">
+      <div>
+        <div class="sidebar-header">
+          <h1>BODIAN ARPHAN<br>KABACK JUNIOR</h1>
+          <div class="subtitle">Fullstack & DevSecOps Engineer</div>
+        </div>
+        <div class="section">
+          <h2>Contact</h2>
+          <div class="info-item">📧 arphanbodian91@gmail.com</div>
+          <div class="info-item">📱 +221 77 136 49 68</div>
+          <div class="info-item">📍 Keur Massar, Dakar</div>
+          <div class="info-item"><a href="https://github.com/daiki91">github.com/daiki91</a></div>
+        </div>
+        <div class="section">
+          <h2>Langues</h2>
+          <div class="info-item">Français • Anglais • Wolof • Diolla</div>
+        </div>
+        <div class="section">
+          <h2>Centres d’intérêt</h2>
+          <div class="info-item">Sport • Musique • Voyage • Lecture • Manga</div>
+        </div>
+        <nav class="nav">
+          <button class="nav-btn active" onclick="showPage(0)">Accueil</button>
+          <button class="nav-btn" onclick="showPage(1)">Fullstack</button>
+          <button class="nav-btn" onclick="showPage(2)">DevSec & Cybersécurité</button>
+        </nav>
+      </div>
+      <footer>
+        &copy; 2026 Bodian Arphan Kaback Junior
+      </footer>
+    </div>
+    <div class="main">
+      <!-- PAGE 1: ACCUEIL -->
+      <div class="page active">
+        <h2>👋 Welcome to My Portfolio</h2>
+        <div class="section-block">
+          Je suis <span class="highlight">BODIAN ARPHAN KABACK JUNIOR</span>, développeur <span class="highlight">Fullstack & DevSecOps</span> basé à Keur Massar, Dakar.<br><br>
+          Passionné par la conception de solutions numériques performantes, je développe des applications modernes, sécurisées et évolutives, en combinant expérience utilisateur, architecture backend robuste et bonnes pratiques de cybersécurité.<br><br>
+          <b>Mon objectif :</b> transformer des idées en produits numériques fiables, sécurisés et performants.
+        </div>
+        <div class="section-block">
+          <h3>📌 Informations personnelles</h3>
+          <ul>
+            <li>📧 arphanbodian91@gmail.com</li>
+            <li>📱 +221 77 136 49 68</li>
+            <li>📍 Keur Massar, Dakar</li>
+            <li>🔗 <a href="https://github.com/daiki91">github.com/daiki91</a></li>
+          </ul>
+        </div>
+        <div class="section-block">
+          <h3>🌍 Langues</h3>
+          <span class="tag">Français</span> <span class="tag">Anglais</span> <span class="tag">Wolof</span> <span class="tag">Diolla</span>
+        </div>
+        <div class="section-block">
+          <h3>🎓 Formation</h3>
+          <ul>
+            <li>Technicien Supérieur – École Supérieure Polytechnique, Dakar (2021–2023)</li>
+            <li>Licence Génie Logiciel & Systèmes – ESP, Dakar (2023–2024)</li>
+            <li>Master 1 & 2 Sécurité Système Informatique – ESP, Dakar (2024 – présent)</li>
+          </ul>
+        </div>
+      </div>
+      <!-- PAGE 2: FULLSTACK -->
+      <div class="page">
+        <h2>💻 Fullstack Development</h2>
+        <div class="section-block">
+          <h3>Compétences Frontend</h3>
+          <ul>
+            <li>HTML5 / CSS3</li>
+            <li>JavaScript (ES6+), React.js, Tailwind CSS</li>
+            <li>React Native, Flutter, Expo Go</li>
+            <li>Applications web dynamiques, mobiles multiplateformes, interfaces responsives</li>
+            <li>Dashboards analytiques (Power BI)</li>
+          </ul>
+        </div>
+        <div class="section-block">
+          <h3>Compétences Backend</h3>
+          <ul>
+            <li>Node.js / Express, Python, Django REST Framework</li>
+            <li>MySQL, Oracle, Firebase (authentification & temps réel)</li>
+            <li>Conception d’API REST, Authentification & gestion des rôles</li>
+            <li>Migration et optimisation de base de données</li>
+            <li>Programmation orientée objet (POO)</li>
+          </ul>
+        </div>
+        <div class="section-block">
+          <h3>Data & Analyse</h3>
+          <ul>
+            <li>Python (Pandas, NumPy, Matplotlib, Seaborn)</li>
+            <li>Power BI</li>
+            <li>Visualisation et traitement de données</li>
+          </ul>
+        </div>
+        <div class="section-block">
+          <h3>Expérience Professionnelle</h3>
+          <ul>
+            <li><b>IT Intern – PNUD, Dakar (2023)</b><br>Développement Web (Power Apps), Plateforme DPC-calculator, Base de données & visualisation Power BI, Configuration réseau Cisco / GNS3</li>
+            <li><b>IT Intern – Sendigital Pulse (2024)</b><br>Développement mobile React Native, Application TAF-TAF (covoiturage urbain)</li>
+            <li><b>Fullstack Developer – Rezilux (2024 – présent)</b><br>Applications mobiles Flutter, API avec Django REST Framework, Application desktop React, Authentification Firebase, Migration base vers MySQL</li>
+          </ul>
+        </div>
+      </div>
+      <!-- PAGE 3: DEVSECOPS & CYBERSECURITE -->
+      <div class="page">
+        <h2>🔐 DevSec & Cybersecurity Operations</h2>
+        <div class="section-block">
+          <h3>Incident Response & Digital Forensics</h3>
+          <ul>
+            <li>Expérience pratique en investigation de sécurité et analyse forensic (scénarios réalistes de compromission système et réseau)</li>
+            <li>Détection de ralentissements réseau, connexions suspectes, enquête forensic complète</li>
+            <li>Identification de l’origine de l’attaque, actions réalisées, impact sur le système</li>
+          </ul>
+        </div>
+        <div class="section-block">
+          <h3>Architecture de détection & d’analyse</h3>
+          <ul>
+            <li>IDS réseau : Snort (déployé sur CSI Linux)</li>
+            <li>SIEM : ELK Stack (Elasticsearch, Logstash, Kibana)</li>
+            <li>Forensic réseau : Wireshark</li>
+            <li>Forensic disque : Autopsy</li>
+            <li>Environnement technique : Thonny, ESP32, phase de détection, centralisation & corrélation</li>
+          </ul>
+        </div>
+        <div class="section-block">
+          <h3>Détection & Analyse de l’attaque</h3>
+          <ol>
+            <li><b>Détection IDS (Snort)</b> : scan réseau, tentatives SSH, alertes horodatées</li>
+            <li><b>Centralisation & Corrélation (ELK)</b> : logs Snort vers ELK, analyse Kibana, identification IP attaquante</li>
+            <li><b>Analyse réseau avancée (Wireshark)</b> : analyse PCAP, reconstruction flux TCP, confirmation connexion SSH</li>
+            <li><b>Analyse forensic disque (Autopsy)</b> : analyse image disque, création fichiers malveillants, exécution scripts, traces attaquant</li>
+          </ol>
+        </div>
+        <div class="section-block">
+          <h3>Corrélation & Reconstitution de l’attaque</h3>
+          <ul>
+            <li>Corrélation des preuves : réseau (Snort, Wireshark), logs centralisés (ELK), système (Autopsy)</li>
+            <li>Reconstitution complète de la chaîne d’attaque</li>
+            <li>Production de preuves exploitables en contexte académique et professionnel</li>
+          </ul>
+        </div>
+        <div class="section-block">
+          <h3>Recommandations de sécurité</h3>
+          <ul>
+            <li>Renforcement de l’authentification SSH</li>
+            <li>Segmentation du réseau</li>
+            <li>Durcissement des règles Snort</li>
+            <li>Surveillance continue</li>
+            <li>Renforcement des politiques de journalisation</li>
+          </ul>
+        </div>
+        <div class="section-block">
+          <h3>Compétences clés</h3>
+          <span class="tag">Incident Response</span>
+          <span class="tag">Digital Forensics</span>
+          <span class="tag">SIEM & Corrélation</span>
+          <span class="tag">Analyse PCAP</span>
+          <span class="tag">Sécurité Linux</span>
+          <span class="tag">Investigation post-compromission</span>
+          <span class="tag">DevSecOps mindset</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function showPage(idx) {
+      const pages = document.querySelectorAll('.page');
+      const navs = document.querySelectorAll('.nav-btn');
+      pages.forEach((p, i) => {
+        p.classList.toggle('active', i === idx);
+        navs[i].classList.toggle('active', i === idx);
+      });
+    }
+  </script>
+</body>
+</html>
