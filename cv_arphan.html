@@ -17,6 +17,9 @@
       --white: #fff;
       --shadow: 0 4px 24px rgba(7,66,106,0.08);
     }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
     html, body {
       margin: 0;
       padding: 0;
@@ -33,7 +36,7 @@
       position: sticky;
       top: 0;
       z-index: 10;
-      height: 48px;
+      min-height: 48px;
     }
     .navbar-content {
       max-width: 1200px;
@@ -42,7 +45,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 16px;
-      height: 48px;
+      min-height: 48px;
     }
     .navbar-title {
       font-size: 1.2em;
@@ -64,10 +67,106 @@
       border-radius: 8px;
       cursor: pointer;
       transition: background 0.2s, color 0.2s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
     }
     .nav-btn.active, .nav-btn:hover {
       background: var(--accent);
       color: var(--primary);
+    }
+
+    /* Navigation SANS JavaScript (utile sur mobile si le viewer bloque le JS) */
+    .page-toggle {
+      position: fixed;
+      left: -9999px;
+      top: -9999px;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      overflow: hidden;
+    }
+    /* style du bouton quand le "tab" correspondant est sélectionné */
+    #page-accueil:checked ~ header .navbar-links label[for="page-accueil"],
+    #page-fullstack:checked ~ header .navbar-links label[for="page-fullstack"],
+    #page-cyber:checked ~ header .navbar-links label[for="page-cyber"] {
+      background: var(--accent);
+      color: var(--primary);
+    }
+    /* pages affichées selon le radio sélectionné */
+    #page-accueil:checked ~ .portfolio-container .main .page-accueil { display: block; }
+    #page-fullstack:checked ~ .portfolio-container .main .page-fullstack { display: block; }
+    #page-cyber:checked ~ .portfolio-container .main .page-cyber { display: block; }
+
+    /* sidebar seulement sur desktop et seulement pour pages 2/3 */
+    @media (min-width: 901px) {
+      #page-accueil:checked ~ .portfolio-container #sidebar { display: none; }
+      #page-fullstack:checked ~ .portfolio-container #sidebar,
+      #page-cyber:checked ~ .portfolio-container #sidebar { display: flex; }
+    }
+
+    /* Drawer (sidebar) sur mobile: CSS-only avec checkbox */
+    .sidebar-open-toggle {
+      position: fixed;
+      left: -9999px;
+      top: -9999px;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      overflow: hidden;
+    }
+    .mobile-sidebar-btn {
+      display: none;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: var(--white);
+      border-radius: 10px;
+      padding: 6px 10px;
+      font-weight: 800;
+      cursor: pointer;
+      line-height: 1;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .sidebar-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 12, 22, 0.45);
+      z-index: 80;
+    }
+    @media (max-width: 900px) {
+      .navbar { z-index: 100; }
+      .mobile-sidebar-btn { display: inline-flex; align-items: center; justify-content: center; }
+
+      /* la sidebar devient un drawer qui glisse */
+      .sidebar {
+        display: flex; /* override si jamais */
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: min(320px, 86vw);
+        min-width: 0;
+        border-radius: 0 18px 18px 0;
+        transform: translateX(-110%);
+        transition: transform 0.25s ease;
+        z-index: 90;
+        padding-top: 56px; /* espace visuel sous la navbar */
+      }
+
+      /* ouvrir/fermer via checkbox */
+      #sidebar-open:checked ~ .sidebar-backdrop { display: block; }
+      #sidebar-open:checked ~ .portfolio-container #sidebar { transform: translateX(0); }
+
+      /* le bouton "collapse" desktop n'est pas utile sur mobile */
+      #sidebar-toggle { display: none; }
+
+      /* Le contenu principal prend toute la largeur (pas de sidebar inline) */
+      .portfolio-container { flex-direction: column; }
     }
     /* Sidebar retractable */
     .sidebar {
@@ -107,10 +206,7 @@
       right: -16px;
     }
     @media (max-width: 900px) {
-      .portfolio-container { flex-direction: column; }
-      .sidebar { width: 100%; min-width: 0; border-radius: 0 0 18px 18px; }
-      .sidebar.collapsed { width: 60px; min-width: 60px; }
-      .main { padding: 24px 6vw; }
+      .main { padding: 24px 6vw; overflow-y: visible; }
       .navbar-content { padding: 0 8px; }
     }
     @media (max-width: 600px) {
@@ -119,8 +215,8 @@
       .page { padding: 12px 2vw; }
       .navbar-title { font-size: 1em; }
       .main-title { font-size: 1.1em; }
-      .navbar { height: 40px; }
-      .navbar-content { height: 40px; }
+      .navbar { min-height: 40px; }
+      .navbar-content { min-height: 40px; }
     }
     .portfolio-container {
       display: flex;
@@ -181,7 +277,7 @@
       flex: 1;
       padding: 56px 48px 32px 48px;
       background: var(--bg);
-      overflow-y: auto;
+      overflow-y: visible;
       min-width: 0;
       display: flex;
       flex-direction: column;
@@ -232,6 +328,7 @@
       gap: 24px;
       margin-bottom: 40px;
       justify-content: flex-start;
+      flex-wrap: wrap;
     }
     .cta-btn {
       background: var(--primary);
@@ -287,6 +384,29 @@
       .page { padding: 12px 2vw; }
       .navbar-title { font-size: 1.2em; }
       .main-title { font-size: 1.3em; }
+      .navbar-content {
+        flex-wrap: wrap;
+        gap: 8px;
+        padding-bottom: 8px;
+      }
+      .navbar-links {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .nav-btn {
+        font-size: 0.95em;
+        padding: 6px 10px;
+      }
+      .cta-btn {
+        width: 100%;
+        padding: 14px 18px;
+      }
+      ul, ol {
+        margin: 0 0 0 18px;
+        padding: 0 0 0 14px;
+      }
     }
     .page {
       display: none;
@@ -299,8 +419,67 @@
       margin-bottom: 32px;
       animation: fadeIn 0.7s;
     }
-    .page.active {
-      display: block;
+
+    /* Afficher UNE seule section à la fois (sans JavaScript) */
+    #accueil { display: block; }              /* par défaut */
+    .page:target { display: block; }          /* quand on clique un lien #... */
+    /* Quand on cible Fullstack/Cyber, on cache Accueil (placé après dans le DOM) */
+    #fullstack:target ~ #accueil,
+    #cyber:target ~ #accueil { display: none; }
+
+    /* Footer */
+    .site-footer {
+      margin-top: 24px;
+      background: linear-gradient(160deg, var(--primary) 60%, var(--secondary));
+      color: var(--white);
+      box-shadow: var(--shadow);
+    }
+    /* Footer uniquement sur mobile (desktop = sidebar) */
+    @media (min-width: 901px) {
+      .site-footer { display: none; }
+    }
+    /* Sidebar uniquement sur desktop (mobile = footer) */
+    @media (max-width: 900px) {
+      .sidebar { display: none !important; position: static !important; transform: none !important; }
+    }
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 22px 16px;
+      display: flex;
+      gap: 18px 28px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+    .footer-col {
+      min-width: 220px;
+      flex: 1;
+    }
+    .footer-col h3 {
+      margin: 0 0 10px 0;
+      font-size: 1.05em;
+      color: var(--accent);
+      letter-spacing: 0.3px;
+    }
+    .footer-item {
+      margin: 8px 0;
+      font-size: 1.02em;
+      opacity: 0.95;
+      word-break: break-word;
+    }
+    .site-footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .site-footer a:hover {
+      text-decoration: underline;
+    }
+    .footer-bottom {
+      text-align: center;
+      padding: 10px 16px 16px 16px;
+      font-size: 0.98em;
+      opacity: 0.85;
     }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(30px); }
@@ -313,12 +492,13 @@
     <div class="navbar-content">
       <div class="navbar-title">BODIAN ARPHAN KABACK JUNIOR</div>
       <nav class="navbar-links">
-        <button class="nav-btn active" onclick="showPage(0)">Accueil</button>
-        <button class="nav-btn" onclick="showPage(1)">Développement Fullstack</button>
-        <button class="nav-btn" onclick="showPage(2)">Cybersécurité & DevSecOps</button>
+        <a class="nav-btn" href="#accueil">Accueil</a>
+        <a class="nav-btn" href="#fullstack">Développement Fullstack</a>
+        <a class="nav-btn" href="#cyber">Cybersécurité & DevSecOps</a>
       </nav>
     </div>
   </header>
+
   <div class="portfolio-container">
     <aside class="sidebar" id="sidebar">
       <button class="toggle-btn" id="sidebar-toggle" title="Réduire/agrandir">&#9776;</button>
@@ -347,74 +527,8 @@
       </footer>
     </aside>
     <main class="main">
-      <!-- PAGE 1: ACCUEIL -->
-      <section class="page active">
-        <h1 class="main-title">Bienvenue sur mon portfolio</h1>
-        <div class="section-block">
-          <p class="intro-text">
-            Je suis <span class="highlight">Bodian Arphan Kaback Junior</span>, développeur <span class="highlight">Fullstack</span> et <span class="highlight-cyber">Ingénieur Cybersécurité</span> basé à Keur Massar, Dakar.<br><br>
-            Passionné par la conception de solutions numériques performantes, je développe des applications modernes, sécurisées et évolutives, en combinant expérience utilisateur, architecture backend robuste et bonnes pratiques de cybersécurité.<br><br>
-            <b>Mon objectif :</b> transformer des idées en produits numériques fiables, sécurisés et performants.
-          </p>
-        </div>
-        <div class="cta-section">
-          <button class="cta-btn" onclick="showPage(1)">Voir mes compétences Fullstack</button>
-          <button class="cta-btn cta-cyber" onclick="showPage(2)">Découvrir mon expertise Cybersécurité</button>
-          <button class="cta-btn" id="toggle-formation-btn" onclick="toggleFormation()">Afficher la formation & expérience</button>
-        </div>
-        <div id="formation-experience" style="display:none">
-          <div class="section-block">
-            <h2>Formation</h2>
-            <ul class="formation-list">
-              <li>Technicien Supérieur – École Supérieure Polytechnique, Dakar (2021–2023)</li>
-              <li>Licence Génie Logiciel & Systèmes – ESP, Dakar (2023–2024)</li>
-              <li>Master 1 & 2 Sécurité Système Informatique – ESP, Dakar (2024 – présent)</li>
-            </ul>
-          </div>
-          <div class="section-block">
-            <h2>Expérience professionnelle</h2>
-            <ul class="exp-list">
-              <li><b>Stagiaire IT – PNUD, Dakar (2023)</b> : Développement Web (Power Apps), plateforme DPC-calculator, base de données & visualisation Power BI, configuration réseau Cisco / GNS3</li>
-              <li><b>Stagiaire IT – Sendigital Pulse (2024)</b> : Développement mobile React Native, application TAF-TAF (covoiturage urbain)</li>
-              <li><b>Développeur Fullstack – Rezilux (2024 – présent)</b> : Applications mobiles Flutter, API avec Django REST Framework, application desktop React, authentification Firebase, migration base vers MySQL</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-      <!-- PAGE 2: FULLSTACK -->
-      <section class="page">
-        <h1 class="main-title">Développement Fullstack</h1>
-        <div class="section-block">
-          <h2>Compétences Frontend</h2>
-          <ul>
-            <li>HTML5 / CSS3</li>
-            <li>JavaScript (ES6+), React.js, Tailwind CSS</li>
-            <li>React Native, Flutter, Expo Go</li>
-            <li>Applications web dynamiques, mobiles multiplateformes, interfaces responsives</li>
-            <li>Dashboards analytiques (Power BI)</li>
-          </ul>
-        </div>
-        <div class="section-block">
-          <h2>Compétences Backend</h2>
-          <ul>
-            <li>Node.js / Express, Python, Django REST Framework</li>
-            <li>MySQL, Oracle, Firebase (authentification & temps réel)</li>
-            <li>Conception d’API REST, authentification & gestion des rôles</li>
-            <li>Migration et optimisation de base de données</li>
-            <li>Programmation orientée objet (POO)</li>
-          </ul>
-        </div>
-        <div class="section-block">
-          <h2>Data & Analyse</h2>
-          <ul>
-            <li>Python (Pandas, NumPy, Matplotlib, Seaborn)</li>
-            <li>Power BI</li>
-            <li>Visualisation et traitement de données</li>
-          </ul>
-        </div>
-      </section>
       <!-- PAGE 3: CYBERSECURITE & DEVSECOPS -->
-      <section class="page cyber-page">
+      <section class="page page-cyber cyber-page" id="cyber">
         <h1 class="main-title highlight-cyber">Cybersécurité & DevSecOps</h1>
         <div class="section-block">
           <h2>Incident Response & Forensic</h2>
@@ -472,35 +586,108 @@
           <span class="tag">DevSecOps mindset</span>
         </div>
       </section>
+
+      <!-- PAGE 2: FULLSTACK -->
+      <section class="page page-fullstack" id="fullstack">
+        <h1 class="main-title">Développement Fullstack</h1>
+        <div class="section-block">
+          <h2>Compétences Frontend</h2>
+          <ul>
+            <li>HTML5 / CSS3</li>
+            <li>JavaScript (ES6+), React.js, Tailwind CSS</li>
+            <li>React Native, Flutter, Expo Go</li>
+            <li>Applications web dynamiques, mobiles multiplateformes, interfaces responsives</li>
+            <li>Dashboards analytiques (Power BI)</li>
+          </ul>
+        </div>
+        <div class="section-block">
+          <h2>Compétences Backend</h2>
+          <ul>
+            <li>Node.js / Express, Python, Django REST Framework</li>
+            <li>MySQL, Oracle, Firebase (authentification & temps réel)</li>
+            <li>Conception d’API REST, authentification & gestion des rôles</li>
+            <li>Migration et optimisation de base de données</li>
+            <li>Programmation orientée objet (POO)</li>
+          </ul>
+        </div>
+        <div class="section-block">
+          <h2>Data & Analyse</h2>
+          <ul>
+            <li>Python (Pandas, NumPy, Matplotlib, Seaborn)</li>
+            <li>Power BI</li>
+            <li>Visualisation et traitement de données</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- PAGE 1: ACCUEIL (placée en dernier pour permettre de la cacher via CSS quand on cible #fullstack/#cyber) -->
+      <section class="page page-accueil" id="accueil">
+        <h1 class="main-title">Bienvenue sur mon portfolio</h1>
+        <div class="section-block">
+          <p class="intro-text">
+            Je suis <span class="highlight">Bodian Arphan Kaback Junior</span>, développeur <span class="highlight">Fullstack</span> et <span class="highlight-cyber">Ingénieur Cybersécurité</span> basé à Keur Massar, Dakar.<br><br>
+            Passionné par la conception de solutions numériques performantes, je développe des applications modernes, sécurisées et évolutives, en combinant expérience utilisateur, architecture backend robuste et bonnes pratiques de cybersécurité.<br><br>
+            <b>Mon objectif :</b> transformer des idées en produits numériques fiables, sécurisés et performants.
+          </p>
+        </div>
+        <div class="cta-section">
+          <a class="cta-btn" href="#fullstack">Voir mes compétences Fullstack</a>
+          <a class="cta-btn cta-cyber" href="#cyber">Découvrir mon expertise Cybersécurité</a>
+          <button class="cta-btn" id="toggle-formation-btn" onclick="toggleFormation()">Afficher la formation & expérience</button>
+        </div>
+        <div id="formation-experience" style="display:none">
+          <div class="section-block">
+            <h2>Formation</h2>
+            <ul class="formation-list">
+              <li>Technicien Supérieur – École Supérieure Polytechnique, Dakar (2021–2023)</li>
+              <li>Licence Génie Logiciel & Systèmes – ESP, Dakar (2023–2024)</li>
+              <li>Master 1 & 2 Sécurité Système Informatique – ESP, Dakar (2024 – présent)</li>
+            </ul>
+          </div>
+          <div class="section-block">
+            <h2>Expérience professionnelle</h2>
+            <ul class="exp-list">
+              <li><b>Stagiaire IT – PNUD, Dakar (2023)</b> : Développement Web (Power Apps), plateforme DPC-calculator, base de données & visualisation Power BI, configuration réseau Cisco / GNS3</li>
+              <li><b>Stagiaire IT – Sendigital Pulse (2024)</b> : Développement mobile React Native, application TAF-TAF (covoiturage urbain)</li>
+              <li><b>Développeur Fullstack – Rezilux (2024 – présent)</b> : Applications mobiles Flutter, API avec Django REST Framework, application desktop React, authentification Firebase, migration base vers MySQL</li>
+            </ul>
+          </div>
+        </div>
+      </section>
     </main>
   </div>
+
+  <footer class="site-footer" id="contact">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <div class="footer-item">arphanbodian91@gmail.com</div>
+        <div class="footer-item">+221 77 136 49 68</div>
+        <div class="footer-item">Keur Massar, Dakar</div>
+        <div class="footer-item"><a href="https://github.com/daiki91">github.com/daiki91</a></div>
+      </div>
+      <div class="footer-col">
+        <h3>Langues</h3>
+        <div class="footer-item">Français • Anglais • Wolof • Diolla</div>
+      </div>
+      <div class="footer-col">
+        <h3>Centres d’intérêt</h3>
+        <div class="footer-item">Sport • Musique • Voyage • Lecture • Manga</div>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 Bodian Arphan Kaback Junior</div>
+  </footer>
+
   <script>
-    function showPage(idx) {
-      const pages = document.querySelectorAll('.page');
-      const navs = document.querySelectorAll('.nav-btn');
+    // Sidebar retractable (desktop uniquement; sur mobile elle est cachée)
+    (function () {
       const sidebar = document.getElementById('sidebar');
-      pages.forEach((p, i) => {
-        p.classList.toggle('active', i === idx);
-        navs[i].classList.toggle('active', i === idx);
+      const btn = document.getElementById('sidebar-toggle');
+      if (!sidebar || !btn) return;
+      btn.addEventListener('click', function () {
+        sidebar.classList.toggle('collapsed');
       });
-      // Masquer la sidebar sur la page d'accueil (idx === 0)
-      if (sidebar) {
-        sidebar.style.display = idx === 0 ? 'none' : '';
-      }
-      window.scrollTo(0, 0);
-    }
-
-    // Sidebar retractable
-    function toggleSidebar() {
-      const sidebar = document.getElementById('sidebar');
-      sidebar.classList.toggle('collapsed');
-    }
-    document.getElementById('sidebar-toggle').addEventListener('click', toggleSidebar);
-
-    // Masquer la sidebar au chargement si accueil
-    window.addEventListener('DOMContentLoaded', function() {
-      showPage(0);
-    });
+    })();
 
     // Afficher/masquer la section formation/expérience
     function toggleFormation() {
