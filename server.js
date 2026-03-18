@@ -9,6 +9,9 @@ app.use(express.json());
 
 const path = require("path");
 
+// Servir les fichiers statiques (images, etc.)
+app.use(express.static(path.join(__dirname)));
+
 // Servir le fichier HTML du CV
 app.get("/cv", (req, res) => {
   res.sendFile(path.join(__dirname, "cv_arphan.html"));
