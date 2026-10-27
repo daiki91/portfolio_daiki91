@@ -646,7 +646,8 @@
       align-items: center;
       gap: clamp(32px, 6vw, 76px);
       min-height: 500px;
-      padding: 28px 0 54px;
+      padding: 32px 28px 48px;
+      background: linear-gradient(118deg, #edf5f0 0%, #f8faf8 48%, #e8f2f1 100%);
     }
     .hero-copy { max-width: 620px; }
     .eyebrow {
@@ -697,10 +698,9 @@
       display: grid;
       grid-template-columns: 1.45fr 0.7fr 1fr;
       gap: 28px;
-      margin: 0 0 42px;
-      padding: 22px 0;
-      border-top: 1px solid #dfe7e2;
-      border-bottom: 1px solid #dfe7e2;
+      margin: 18px 0 28px;
+      padding: 22px 28px;
+      background: linear-gradient(105deg, #e8f2ed 0%, #f2f7f3 54%, #eaf2f4 100%);
     }
     .home-detail-group { min-width: 0; }
     .home-detail-group h2 {
@@ -878,9 +878,11 @@
       letter-spacing: 0.04em;
     }
     .home-band {
-      padding: 48px 0;
-      border-top: 1px solid #dfe7e2;
+      margin-bottom: 18px;
+      padding: 38px 28px;
+      background: linear-gradient(115deg, #f0f6f2 0%, #f7f9f7 55%, #eaf3ef 100%);
     }
+    .home-band.approach-band { background: linear-gradient(115deg, #eef5f2 0%, #f8faf8 52%, #e9f2f5 100%); }
     .band-heading {
       display: flex;
       align-items: end;
@@ -902,6 +904,8 @@
     .strength-item h3 { margin: 9px 0; color: #23464a; font-size: 1.12rem; }
     .strength-item p { margin: 0; color: #667472; font-size: 0.94rem; line-height: 1.7; }
     .study-band { display: grid; grid-template-columns: 0.7fr 1.3fr; gap: 44px; align-items: start; }
+      .home-band.study-band { background: linear-gradient(112deg, #f6f4e9 0%, #f7f8f2 52%, #eaf2ed 100%); }
+      .home-band.experience-band { background: linear-gradient(112deg, #edf3f5 0%, #f7f9f8 56%, #edf4ef 100%); }
     .study-label { color: #638477; font-size: 0.76rem; font-weight: 800; text-transform: uppercase; }
     .study-title { margin: 12px 0; color: #153b43; font-size: 1.7rem; line-height: 1.2; }
     .study-copy { margin: 0; color: #667472; line-height: 1.7; }
@@ -917,8 +921,8 @@
       align-items: center;
       justify-content: space-between;
       gap: 20px;
-      padding: 22px 0;
-      border-top: 1px solid #dfe7e2;
+      padding: 20px 28px;
+      background: linear-gradient(100deg, #edf4f0, #f7f9f7 70%, #eaf2f3);
       color: #74817e;
       font-size: 0.82rem;
     }
@@ -1001,6 +1005,7 @@
       .home-contact-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .band-heading { align-items: start; flex-direction: column; }
       .study-band { grid-template-columns: 1fr; gap: 20px; }
+      .home-band { padding: 30px 20px; }
     }
     @media (max-width: 600px) {
       .navbar { height: auto; }
@@ -1021,7 +1026,7 @@
       .dashboard { padding: 12px; }
       .dashboard-stat { padding: 8px 6px; }
       .dashboard-stat strong { font-size: 0.88rem; }
-      .home-band { padding: 34px 0; }
+      .home-band { padding: 26px 16px; }
       .strength-grid { grid-template-columns: 1fr; gap: 20px; }
       .thesis-block { padding: 18px; }
       .home-footer { align-items: start; flex-direction: column; gap: 7px; }
@@ -1107,7 +1112,7 @@
             <div class="home-info-chips"><span class="home-info-chip">Sport</span><span class="home-info-chip">Musique</span><span class="home-info-chip">Voyage</span><span class="home-info-chip">Lecture</span><span class="home-info-chip">Manga</span></div>
           </div>
         </section>
-        <section class="home-band" aria-labelledby="approach-title">
+        <section class="home-band approach-band" aria-labelledby="approach-title">
           <div class="band-heading">
             <h2 id="approach-title">Du besoin métier à une solution prête à évoluer.</h2>
             <p>Un équilibre entre expérience utilisateur, architecture applicative et sécurité, de la conception à la mise en production.</p>
@@ -1129,7 +1134,7 @@
             <h3>AFFIC : conception et déploiement d’une plateforme web sécurisée de gestion de portefeuille client</h3>
           </div>
         </section>
-        <section class="home-band" aria-labelledby="experience-title">
+        <section class="home-band experience-band" aria-labelledby="experience-title">
           <div class="band-heading">
             <h2 id="experience-title">Une expérience entre développement et terrain.</h2>
             <button class="text-link" id="toggle-formation-btn" type="button" aria-expanded="false" aria-controls="formation-experience" onclick="toggleFormation()">Formation & expérience <span aria-hidden="true">＋</span></button>
@@ -1148,7 +1153,8 @@
               <ul class="exp-list">
                 <li><b>Stagiaire IT – PNUD, Dakar (2023)</b> : Développement Web (Power Apps), plateforme DPC-calculator, base de données & visualisation Power BI, configuration réseau Cisco / GNS3</li>
                 <li><b>Stagiaire IT – Sendigital Pulse (2024)</b> : Développement mobile React Native, application TAF-TAF (covoiturage urbain)</li>
-                <li><b>Développeur Fullstack – Rezilux (2024 – présent)</b> : Applications mobiles Flutter, API avec Django REST Framework, application desktop React, authentification Firebase, migration base vers MySQL</li>
+                <li><b>Développeur Fullstack – Rezilux (2024 – 2026)</b> : Applications mobiles Flutter, API avec Django REST Framework, application desktop React, authentification Firebase, migration base vers MySQL</li>
+                <li><b>Stagiaire développeur – avril à octobre 2026, puis développeur prestataire depuis octobre 2026</b></li>
               </ul>
             </div>
           </div>
