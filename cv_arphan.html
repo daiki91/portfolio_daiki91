@@ -561,6 +561,41 @@
     .project-contribution p { min-height: 0; color: #536763; font-size: 0.82rem; line-height: 1.55; }
     .project-link { display: inline-flex; align-items: center; gap: 7px; margin-top: 13px; color: #24684f; font-size: 0.86rem; font-weight: 800; text-decoration: none; }
     .project-link:hover { color: #a64e20; }
+    .deployment-preview { position: relative; display: grid; aspect-ratio: 1.65; overflow: hidden; place-items: center; padding: 14px; }
+    .deploy-window { width: 100%; height: 100%; overflow: hidden; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; box-shadow: 0 8px 20px rgba(17,35,39,0.13); }
+    .render-preview { background: #e8ecef; }
+    .render-window { background: #fff; color: #29323b; }
+    .render-toolbar { display: flex; align-items: center; justify-content: space-between; height: 25px; padding: 0 10px; border-bottom: 1px solid #e8ebee; font-size: 0.52rem; font-weight: 800; }
+    .render-toolbar span:last-child { color: #718078; font-size: 0.44rem; }
+    .render-body { padding: 11px; }
+    .render-service { display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 8px; border: 1px solid #e8ebee; border-radius: 4px; }
+    .render-service strong, .render-service small { display: block; }
+    .render-service strong { font-size: 0.54rem; }
+    .render-service small { margin-top: 3px; color: #7a858d; font-size: 0.42rem; }
+    .render-live { display: inline-flex; align-items: center; gap: 4px; color: #36795b; font-size: 0.44rem; font-weight: 800; white-space: nowrap; }
+    .render-live::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: #36a46d; }
+    .render-build { display: flex; justify-content: space-between; margin-top: 7px; padding: 7px 8px; border-radius: 4px; background: #f5f7f8; color: #707b82; font-size: 0.42rem; }
+    .supabase-preview { background: #e6f4eb; }
+    .supabase-window { background: #fff; color: #284a3c; }
+    .supabase-toolbar { display: flex; align-items: center; justify-content: space-between; height: 25px; padding: 0 10px; border-bottom: 1px solid #e5eee8; font-size: 0.52rem; font-weight: 800; }
+    .supabase-toolbar span:last-child { color: #56856d; font-size: 0.44rem; }
+    .supabase-schema { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; height: calc(100% - 25px); padding: 12px; }
+    .schema-table { align-self: center; overflow: hidden; border: 1px solid #dfeae2; border-radius: 4px; background: #f8fbf8; }
+    .schema-table strong { display: block; padding: 6px 7px; background: #dff2e5; color: #34714f; font-size: 0.46rem; }
+    .schema-table i { display: block; height: 4px; margin: 6px 7px; border-radius: 4px; background: #dce5df; }
+    .schema-table i:last-child { width: 58%; }
+    .python-preview { background: #243648; }
+    .python-window { background: #172633; color: #e7eef1; }
+    .python-toolbar { display: flex; align-items: center; justify-content: space-between; height: 25px; padding: 0 10px; border-bottom: 1px solid rgba(255,255,255,0.1); color: #d7e2e8; font-size: 0.48rem; font-weight: 800; }
+    .python-toolbar span:last-child { color: #91a6b0; font-size: 0.42rem; }
+    .python-editor { display: grid; grid-template-columns: 0.72fr 1.28fr; height: calc(100% - 25px); }
+    .python-files { display: grid; align-content: start; gap: 7px; padding: 10px 7px; border-right: 1px solid rgba(255,255,255,0.1); color: #9aadb6; font-size: 0.42rem; }
+    .python-code { display: grid; align-content: center; gap: 7px; padding: 10px; }
+    .python-code i { display: block; width: 84%; height: 4px; border-radius: 3px; background: #597386; }
+    .python-code i:nth-child(2) { width: 64%; background: #e2bf68; }
+    .python-code i:nth-child(3) { width: 74%; margin-left: 9px; background: #76c6ad; }
+    .python-code i:nth-child(4) { width: 52%; margin-left: 9px; }
+    .python-code i:nth-child(5) { width: 78%; background: #92a8d1; }
     @media (max-width: 900px) { .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
     @media (max-width: 600px) {
       .project-section-heading { align-items: start; flex-direction: column; }
@@ -1120,6 +1155,32 @@
                 <div class="project-art sama-art" aria-hidden="true"><span class="sama-badge">CHAUFFEUR EN ROUTE · 4 MIN</span><img class="sama-car" src="https://samachauffeur-web.onrender.com/assets/hero-car-sYsjMD4e.png" alt=""></div>
               </a>
               <div class="project-card-content"><span class="project-type">Mobilité · Transport</span><h3>samaChauffeur</h3><p>Plateforme de réservation de courses privées et partagées, avec suivi du chauffeur en direct, chauffeurs vérifiés et paiement flexible.</p><div class="project-contribution"><h4>Contribution fullstack en équipe</h4><p>Participation aux interfaces de réservation et aux parcours chauffeur/passager, ainsi qu’à l’intégration du suivi de course et des informations de trajet.</p></div><a class="project-link" href="https://samachauffeur-web.onrender.com/" target="_blank" rel="noopener noreferrer">Visiter le projet <span aria-hidden="true">↗</span></a></div>
+            </article>
+          </div>
+        </section>
+        <section class="project-section" aria-labelledby="deployment-title">
+          <div class="project-section-heading">
+            <div><h2 id="deployment-title">Déploiement & données</h2><p>Les services que j’utilise pour mettre en ligne des applications et gérer leur stockage.</p></div>
+            <p>Illustrations de présentation des environnements.</p>
+          </div>
+          <div class="project-grid">
+            <article class="project-card deployment-card">
+              <div class="deployment-preview render-preview" role="img" aria-label="Illustration du dashboard Render avec service Web en ligne">
+                <div class="deploy-window render-window"><div class="render-toolbar"><span>RENDER DASHBOARD</span><span>Services</span></div><div class="render-body"><div class="render-service"><div><strong>portfolio-web</strong><small>Web service · Production</small></div><span class="render-live">Live</span></div><div class="render-build"><span>Latest deploy</span><strong>Build successful</strong></div><div class="render-build"><span>Region</span><strong>Frankfurt</strong></div></div></div>
+              </div>
+              <div class="project-card-content"><span class="project-type">Hébergement · Déploiement</span><h3>Render Dashboard</h3><p>Déploiement et suivi des applications Web depuis le dashboard Render : services, mises en production et état des déploiements.</p></div>
+            </article>
+            <article class="project-card deployment-card">
+              <div class="deployment-preview supabase-preview" role="img" aria-label="Illustration de tables relationnelles dans Supabase">
+                <div class="deploy-window supabase-window"><div class="supabase-toolbar"><span>SUPABASE · DATABASE</span><span>PostgreSQL</span></div><div class="supabase-schema"><div class="schema-table"><strong>clients</strong><i></i><i></i><i></i></div><div class="schema-table"><strong>projects</strong><i></i><i></i><i></i></div></div></div>
+              </div>
+              <div class="project-card-content"><span class="project-type">Base de données · PostgreSQL</span><h3>Supabase</h3><p>Gestion de bases de données PostgreSQL hébergées avec Supabase pour stocker et organiser les données des applications.</p></div>
+            </article>
+            <article class="project-card deployment-card">
+              <div class="deployment-preview python-preview" role="img" aria-label="Illustration d’un environnement PythonAnywhere avec fichiers et code Python">
+                <div class="deploy-window python-window"><div class="python-toolbar"><span>PYTHONANYWHERE</span><span>Web · Console</span></div><div class="python-editor"><div class="python-files"><span>app.py</span><span>requirements.txt</span><span>wsgi.py</span></div><div class="python-code"><i></i><i></i><i></i><i></i><i></i></div></div></div>
+              </div>
+              <div class="project-card-content"><span class="project-type">Python · Hébergement</span><h3>PythonAnywhere</h3><p>Hébergement et mise en ligne d’applications Python dans un environnement Web accessible à distance.</p></div>
             </article>
           </div>
         </section>
