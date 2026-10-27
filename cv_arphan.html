@@ -645,9 +645,9 @@
       grid-template-columns: minmax(0, 1fr) minmax(340px, 0.88fr);
       align-items: center;
       gap: clamp(32px, 6vw, 76px);
-      min-height: 500px;
+      min-height: 440px;
       padding: 32px 28px 48px;
-      background: linear-gradient(118deg, #edf5f0 0%, #f8faf8 48%, #e8f2f1 100%);
+      background: linear-gradient(120deg, #10282b 0%, #19383b 60%, #263b36 100%);
     }
     .hero-copy { max-width: 620px; }
     .eyebrow {
@@ -655,7 +655,7 @@
       align-items: center;
       gap: 9px;
       margin-bottom: 20px;
-      color: #39705f;
+      color: #e6b365;
       font-size: 0.78rem;
       font-weight: 800;
       text-transform: uppercase;
@@ -665,32 +665,32 @@
       content: "";
       width: 25px;
       height: 2px;
-      background: var(--accent);
+      background: #e6b365;
     }
     .home-title {
       max-width: 700px;
       margin: 0 0 20px;
-      color: #153b43;
+      color: #f5f6f1;
       font-size: clamp(2.5rem, 5vw, 4.65rem);
       font-weight: 800;
       line-height: 1.04;
     }
-    .home-title span { color: #287c68; }
+    .home-title span { color: #e9b55e; }
     .home-role-line {
       display: flex;
       align-items: center;
       flex-wrap: wrap;
       gap: 9px;
       margin: 0 0 18px;
-      color: #34745b;
+      color: #e9b55e;
       font-size: 0.96rem;
       font-weight: 800;
     }
-    .home-role-line .role-divider { width: 1px; height: 17px; background: #a4b9ad; }
+    .home-role-line .role-divider { width: 1px; height: 17px; background: rgba(255,255,255,0.42); }
     .hero-lede {
       max-width: 590px;
       margin: 0;
-      color: #536365;
+      color: #d3ded9;
       font-size: 1.08rem;
       line-height: 1.8;
     }
@@ -776,8 +776,37 @@
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: #4a9b79;
+      background: #e6b365;
     }
+    .hero-portrait { max-width: 470px; margin: 0 0 0 auto; }
+    .portrait-frame {
+      position: relative;
+      overflow: hidden;
+      padding: 9px;
+      border: 1px solid rgba(255,255,255,0.24);
+      background: rgba(255,255,255,0.08);
+      box-shadow: 0 24px 55px rgba(0,0,0,0.28);
+      animation: visualEnter 0.8s 0.1s both;
+    }
+    .portrait-image {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1.28;
+      object-fit: cover;
+      object-position: center 45%;
+    }
+    .portrait-caption {
+      position: absolute;
+      right: 18px;
+      bottom: 18px;
+      left: 18px;
+      padding: 10px 12px;
+      background: rgba(16,40,43,0.88);
+      color: #f3f5ef;
+      font-size: 0.74rem;
+      font-weight: 700;
+    }
+    .portrait-caption span { display: block; margin-top: 3px; color: #e9b55e; font-size: 0.65rem; font-weight: 600; }
     .affic-visual {
       position: relative;
       min-height: 390px;
@@ -999,7 +1028,7 @@
       .page.home-page { padding-top: 22px; }
       .home-hero { grid-template-columns: 1fr; min-height: 0; gap: 30px; padding: 15px 0 38px; }
       .hero-copy { max-width: 720px; }
-      .affic-visual { min-height: 360px; }
+      .hero-portrait { width: min(100%, 520px); margin: 0; }
       .home-profile-details { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
       .home-detail-group:first-child { grid-column: 1 / -1; }
       .home-contact-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -1021,11 +1050,8 @@
       .home-contact-links { grid-template-columns: 1fr; }
       .hero-actions { align-items: stretch; flex-direction: column; }
       .hero-actions .cta-btn { width: 100%; }
-      .affic-visual { min-height: 330px; padding: 20px 12px; }
-      .affic-window { margin-top: 16px; }
-      .dashboard { padding: 12px; }
-      .dashboard-stat { padding: 8px 6px; }
-      .dashboard-stat strong { font-size: 0.88rem; }
+      .portrait-frame { padding: 6px; }
+      .portrait-caption { right: 13px; bottom: 13px; left: 13px; }
       .home-band { padding: 26px 16px; }
       .strength-grid { grid-template-columns: 1fr; gap: 20px; }
       .thesis-block { padding: 18px; }
@@ -1069,29 +1095,12 @@
               <span>Cybersécurité</span>
             </div>
           </div>
-          <div class="affic-visual" aria-label="Aperçu illustratif d'une plateforme sécurisée de gestion de portefeuille client">
-            <div class="affic-window">
-              <div class="window-bar"><span>AFFIC · ESP</span><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span></div>
-              <div class="dashboard">
-                <div class="dashboard-heading">
-                  <div><strong>Portefeuille clients</strong><small>Vue de gestion · Données protégées</small></div>
-                  <span class="dashboard-status">Sécurisé</span>
-                </div>
-                <div class="dashboard-stats">
-                  <div class="dashboard-stat"><small>Clients actifs</small><strong>248</strong></div>
-                  <div class="dashboard-stat"><small>Dossiers suivis</small><strong>86</strong></div>
-                  <div class="dashboard-stat"><small>Accès protégés</small><strong>100%</strong></div>
-                </div>
-                <div class="portfolio-row">
-                  <span class="portfolio-avatar">A</span><span class="portfolio-person"><strong>Client A</strong><small>Suivi commercial · Mis à jour</small></span><span class="portfolio-value">Actif</span>
-                </div>
-                <div class="portfolio-row">
-                  <span class="portfolio-avatar">B</span><span class="portfolio-person"><strong>Client B</strong><small>Portefeuille · Accès contrôlé</small></span><span class="portfolio-value">Actif</span>
-                </div>
-              </div>
+          <figure class="hero-portrait">
+            <div class="portrait-frame">
+              <img class="portrait-image" src="images/ma_photo.JPG" alt="Bodian Arphan Kaback Junior présentant son diplôme de Master en Génie Informatique">
+              <figcaption class="portrait-caption">École Supérieure Polytechnique<span>Master en Génie Informatique · Promotion 2025–2026</span></figcaption>
             </div>
-            <div class="visual-caption">Maquette illustrative · Données fictives</div>
-          </div>
+          </figure>
         </div>
         <section class="home-profile-details" aria-label="Coordonnées, langues et centres d’intérêt">
           <div class="home-detail-group">
