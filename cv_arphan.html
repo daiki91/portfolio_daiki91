@@ -596,6 +596,35 @@
     .python-code i:nth-child(3) { width: 74%; margin-left: 9px; background: #76c6ad; }
     .python-code i:nth-child(4) { width: 52%; margin-left: 9px; }
     .python-code i:nth-child(5) { width: 78%; background: #92a8d1; }
+    .docker-preview { background: #e6f1f5; }
+    .docker-window { background: #fff; color: #284956; }
+    .docker-toolbar { display: flex; align-items: center; justify-content: space-between; height: 25px; padding: 0 10px; border-bottom: 1px solid #e2eaee; font-size: 0.5rem; font-weight: 800; }
+    .docker-toolbar span:last-child { color: #618391; font-size: 0.42rem; }
+    .docker-content { display: grid; grid-template-columns: 0.7fr 1.3fr; gap: 9px; height: calc(100% - 25px); padding: 10px; }
+    .docker-menu { display: grid; align-content: start; gap: 7px; padding: 8px; border-radius: 4px; background: #f2f7f9; }
+    .docker-menu i { display: block; height: 4px; border-radius: 3px; background: #c6d9e0; }
+    .docker-containers { display: grid; align-content: center; gap: 6px; }
+    .docker-container { display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 7px 8px; border: 1px solid #dfe9ed; border-radius: 4px; background: #fbfdfe; font-size: 0.44rem; }
+    .docker-container strong { color: #24769a; }
+    .docker-container span { color: #64828e; }
+    .aws-preview { background: #253749; }
+    .aws-window { background: #182b3c; color: #eff5f5; }
+    .aws-toolbar { display: flex; align-items: center; justify-content: space-between; height: 25px; padding: 0 10px; border-bottom: 1px solid rgba(255,255,255,0.12); font-size: 0.5rem; font-weight: 800; }
+    .aws-toolbar span:last-child { color: #b7c5c8; font-size: 0.42rem; }
+    .aws-architecture { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; gap: 7px; height: calc(100% - 25px); padding: 12px; }
+    .aws-service { display: grid; min-height: 45px; place-items: center; padding: 5px; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; background: rgba(255,255,255,0.07); color: #e8f0f0; font-size: 0.42rem; text-align: center; }
+    .aws-service strong { color: #f2b34b; font-size: 0.48rem; }
+    .aws-connect { height: 1px; background: #eea943; }
+    .edge-preview { background: #eaf0f3; }
+    .edge-window { background: #fff; color: #334d5a; }
+    .edge-toolbar { display: flex; align-items: center; justify-content: space-between; height: 25px; padding: 0 10px; border-bottom: 1px solid #e6ecef; font-size: 0.48rem; font-weight: 800; }
+    .edge-toolbar span:last-child { color: #718892; font-size: 0.42rem; }
+    .edge-flow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 6px; height: calc(100% - 25px); padding: 10px; }
+    .edge-node { display: grid; min-height: 49px; place-items: center; padding: 5px; border: 1px solid #e1e9ed; border-radius: 4px; background: #f6f9fa; color: #415e69; font-size: 0.41rem; text-align: center; }
+    .edge-node strong { color: #266d8b; font-size: 0.48rem; }
+    .edge-node.firewall { border-color: #f0d7b4; background: #fff8ec; }
+    .edge-node.firewall strong { color: #b46a20; }
+    .edge-arrow { color: #8299a2; font-size: 0.7rem; }
     @media (max-width: 900px) { .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
     @media (max-width: 600px) {
       .project-section-heading { align-items: start; flex-direction: column; }
@@ -1007,7 +1036,7 @@
 <body>
   <header class="navbar">
     <div class="navbar-content">
-      <div class="navbar-title">PORTFOLIO</div>
+      <div class="navbar-title">AKJB</div>
       <nav class="navbar-links">
         <button class="nav-btn active" onclick="showPage(0)">Accueil</button>
         <button class="nav-btn" onclick="showPage(1)">Développement Fullstack</button>
@@ -1181,6 +1210,24 @@
                 <div class="deploy-window python-window"><div class="python-toolbar"><span>PYTHONANYWHERE</span><span>Web · Console</span></div><div class="python-editor"><div class="python-files"><span>app.py</span><span>requirements.txt</span><span>wsgi.py</span></div><div class="python-code"><i></i><i></i><i></i><i></i><i></i></div></div></div>
               </div>
               <div class="project-card-content"><span class="project-type">Python · Hébergement</span><h3>PythonAnywhere</h3><p>Hébergement et mise en ligne d’applications Python dans un environnement Web accessible à distance.</p></div>
+            </article>
+            <article class="project-card deployment-card">
+              <div class="deployment-preview docker-preview" role="img" aria-label="Illustration d’applications isolées dans des conteneurs Docker">
+                <div class="deploy-window docker-window"><div class="docker-toolbar"><span>DOCKER · CONTAINERS</span><span>Environnement local</span></div><div class="docker-content"><div class="docker-menu"><i></i><i></i><i></i></div><div class="docker-containers"><div class="docker-container"><strong>web-app</strong><span>Running</span></div><div class="docker-container"><strong>api-service</strong><span>Running</span></div><div class="docker-container"><strong>database</strong><span>Ready</span></div></div></div></div>
+              </div>
+              <div class="project-card-content"><span class="project-type">Conteneurisation · Environnements</span><h3>Docker</h3><p>Conteneurisation d’applications et de leurs dépendances pour faciliter la reproduction des environnements de développement et de déploiement.</p></div>
+            </article>
+            <article class="project-card deployment-card">
+              <div class="deployment-preview aws-preview" role="img" aria-label="Illustration d’une architecture applicative hébergée sur AWS">
+                <div class="deploy-window aws-window"><div class="aws-toolbar"><span>AWS · CLOUD</span><span>Région active</span></div><div class="aws-architecture"><div class="aws-service"><strong>App</strong>Application</div><i class="aws-connect"></i><div class="aws-service"><strong>API</strong>Services</div><i class="aws-connect"></i><div class="aws-service"><strong>Data</strong>Stockage</div></div></div>
+              </div>
+              <div class="project-card-content"><span class="project-type">Cloud · Infrastructure</span><h3>Amazon Web Services</h3><p>Utilisation des services AWS pour héberger et exploiter des composants applicatifs dans le cloud.</p></div>
+            </article>
+            <article class="project-card deployment-card">
+              <div class="deployment-preview edge-preview" role="img" aria-label="Illustration d’une distribution CloudFront protégée par AWS WAF devant l’application">
+                <div class="deploy-window edge-window"><div class="edge-toolbar"><span>PROTECTION WEB · AWS</span><span>Flux entrant</span></div><div class="edge-flow"><div class="edge-node"><strong>Visiteur</strong>Requête Web</div><span class="edge-arrow" aria-hidden="true">›</span><div class="edge-node firewall"><strong>CloudFront</strong>CDN + AWS WAF</div><span class="edge-arrow" aria-hidden="true">›</span><div class="edge-node"><strong>Application</strong>Origine protégée</div></div></div>
+              </div>
+              <div class="project-card-content"><span class="project-type">CDN · Pare-feu applicatif</span><h3>CloudFront & AWS WAF</h3><p>CloudFront distribue et met en cache le contenu; AWS WAF applique des règles de filtrage Web à la distribution pour aider à protéger l’application.</p></div>
             </article>
           </div>
         </section>
