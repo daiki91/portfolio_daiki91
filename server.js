@@ -9,19 +9,19 @@ app.use(express.json());
 
 const path = require("path");
 
-// Servir les fichiers statiques (images, etc.)
+// Servir les fichiers statiques (images, CV PDF, etc.)
 app.use(express.static(path.join(__dirname)));
 
 // Servir le fichier HTML du CV
 app.get("/cv", (req, res) => {
-  res.sendFile(path.join(__dirname, "cv_arphan.html"));
+  res.sendFile(path.join(__dirname, "cv", "cv_arphan.html"));
 });
 
 // Messages en mémoire (temporaire)
 let messages = [];
 
 
-// Servir le CV directement à la racine
+// Servir le portfolio à la racine
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "cv_arphan.html"));
 });

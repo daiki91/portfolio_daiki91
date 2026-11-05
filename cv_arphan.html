@@ -64,6 +64,7 @@
       border-radius: 8px;
       cursor: pointer;
       transition: background 0.2s, color 0.2s;
+      text-decoration: none;
     }
     .nav-btn.active, .nav-btn:hover {
       background: var(--accent);
@@ -299,6 +300,9 @@
       justify-content: flex-start;
     }
     .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       background: var(--primary);
       color: var(--white);
       border: none;
@@ -310,6 +314,7 @@
       margin-top: 8px;
       transition: background 0.2s, color 0.2s, box-shadow 0.2s;
       box-shadow: 0 2px 8px rgba(7,66,106,0.08);
+      text-decoration: none;
     }
     .cta-btn.cta-cyber {
       background: var(--cyber);
@@ -1096,6 +1101,7 @@
         <button class="nav-btn active" onclick="showPage(0)">Accueil</button>
         <button class="nav-btn" onclick="showPage(1)">Développement Fullstack</button>
         <button class="nav-btn" onclick="showPage(2)">Cybersécurité & DevSecOps</button>
+        <a class="nav-btn" href="/cv" target="_blank" rel="noopener noreferrer">Voir mon CV</a>
       </nav>
     </div>
   </header>
@@ -1112,6 +1118,7 @@
             <div class="hero-actions">
               <button class="cta-btn" type="button" onclick="showPage(1)">Explorer mes compétences <span aria-hidden="true">↗</span></button>
               <button class="cta-btn cta-cyber" type="button" onclick="showPage(2)">Voir mon expertise sécurité</button>
+              <a class="cta-btn" href="/cv/cv_arphan.pdf" download="CV-Bodian-Arphan-Kaback-Junior.pdf">Télécharger mon CV (PDF) <span aria-hidden="true">↓</span></a>
             </div>
             <div class="hero-meta">
               <span>Master en Génie Informatique</span>

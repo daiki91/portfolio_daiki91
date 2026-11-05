@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CV de Bodian Arphan Kaback Junior, développeur fullstack et ingénieur en cybersécurité à Dakar.">
+  <title>CV — Bodian Arphan Kaback Junior</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --navy: #123b50;
+      --blue: #28708b;
+      --mint: #d7eee6;
+      --ink: #25343d;
+      --muted: #64737b;
+      --line: #dce5e8;
+      --paper: #fff;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: #eaf0f2; }
+
+    body {
+      margin: 0;
+      padding: 28px 16px;
+      color: var(--ink);
+      font: 14px/1.5 "Segoe UI", Arial, sans-serif;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .cv {
+      display: grid;
+      grid-template-columns: 31% 69%;
+      width: min(100%, 1050px);
+      min-height: 1050px;
+      margin: 0 auto;
+      overflow: hidden;
+      background: var(--paper);
+      box-shadow: 0 16px 48px rgba(27, 55, 66, 0.15);
+    }
+
+    .sidebar {
+      padding: 38px 28px;
+      background: var(--navy);
+      color: #f4f8f8;
+    }
+
+    .identity { margin-bottom: 30px; }
+    .identity h1 { margin: 0; font-size: 2rem; line-height: 1.08; letter-spacing: -0.04em; }
+    .identity h1 span { display: block; color: #9cdbc6; }
+    .role { margin: 14px 0 0; color: #d3e2e7; font-size: 0.92rem; font-weight: 600; line-height: 1.55; }
+    .sidebar-section { margin-top: 25px; }
+    .sidebar-section h2, .main-section h2 {
+      margin: 0 0 12px;
+      font-size: 0.77rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .sidebar-section h2 { color: #9cdbc6; }
+    .contact-list, .skill-list { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+    .contact-list { font-size: 0.81rem; }
+    .contact-list li { overflow-wrap: anywhere; }
+    .skill-list { gap: 6px; color: #e0eaed; font-size: 0.82rem; }
+    .skill-list li { padding-left: 12px; position: relative; }
+    .skill-list li::before { position: absolute; left: 0; color: #9cdbc6; content: "•"; }
+    .language-list { color: #e0eaed; font-size: 0.83rem; }
+
+    .main { padding: 40px 42px; }
+    .summary {
+      margin: 0 0 25px;
+      padding: 0 0 20px;
+      border-bottom: 1px solid var(--line);
+      color: #4c5d66;
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+    .main-section { margin-top: 25px; }
+    .main-section h2 { color: var(--blue); }
+    .entry { margin-top: 16px; break-inside: avoid; }
+    .entry:first-of-type { margin-top: 0; }
+    .entry-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+    .entry h3 { margin: 0; color: var(--navy); font-size: 0.96rem; line-height: 1.35; }
+    .date { flex: 0 0 auto; color: var(--muted); font-size: 0.76rem; font-weight: 700; }
+    .entry p { margin: 5px 0 0; color: #52616a; font-size: 0.83rem; line-height: 1.5; }
+    .entry .institution { color: var(--muted); }
+    .project-list { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 18px; }
+    .project { padding-top: 10px; border-top: 2px solid var(--mint); }
+    .project h3 { margin: 0; color: var(--navy); font-size: 0.88rem; }
+    .project p { margin: 4px 0 0; color: #52616a; font-size: 0.78rem; line-height: 1.48; }
+    .focus { color: #52616a; font-size: 0.83rem; line-height: 1.55; }
+    .cv-footer { margin-top: 26px; padding-top: 12px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.72rem; }
+
+    @media (max-width: 700px) {
+      body { padding: 0; }
+      .cv { grid-template-columns: 1fr; min-height: 0; }
+      .sidebar, .main { padding: 28px 24px; }
+      .sidebar { display: grid; grid-template-columns: 1fr 1fr; gap: 0 22px; }
+      .identity { grid-column: 1 / -1; margin-bottom: 10px; }
+      .sidebar-section { margin-top: 18px; }
+      .main { padding-top: 10px; }
+      .project-list { grid-template-columns: 1fr; }
+    }
+
+    @page { size: A4; margin: 10mm; }
+
+    @media print {
+      html, body { background: #fff; }
+      body { padding: 0; font-size: 8pt; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .cv { width: 100%; min-height: 0; margin: 0; overflow: visible; box-shadow: none; }
+      .sidebar { padding: 6mm; }
+      .main { padding: 6mm 7mm; }
+      .identity h1 { font-size: 19pt; }
+      .identity { margin-bottom: 5mm; }
+      .sidebar-section { margin-top: 4mm; }
+      .sidebar-section h2, .main-section h2 { margin-bottom: 2mm; }
+      .main-section { margin-top: 4mm; }
+      .summary { margin-bottom: 4mm; padding-bottom: 3mm; font-size: 7.8pt; }
+      .entry { margin-top: 2mm; }
+      .entry p, .focus { font-size: 7.5pt; }
+      .project-list { gap: 2mm 3mm; }
+      .project { padding-top: 1.5mm; }
+      .project p { font-size: 7.2pt; }
+      .cv-footer { margin-top: 4mm; padding-top: 2mm; }
+      a { text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <article class="cv">
+    <aside class="sidebar">
+      <header class="identity">
+        <h1>Bodian Arphan <span>Kaback Junior</span></h1>
+        <p class="role">Développeur Fullstack<br>Cybersécurité &amp; DevSecOps</p>
+      </header>
+
+      <section class="sidebar-section">
+        <h2>Contact</h2>
+        <ul class="contact-list">
+          <li><a href="mailto:arphanbodian91@gmail.com">arphanbodian91@gmail.com</a></li>
+          <li><a href="tel:+221771364968">+221 77 136 49 68</a></li>
+          <li>Keur Massar, Dakar, Sénégal</li>
+          <li><a href="https://github.com/daiki91">github.com/daiki91</a></li>
+        </ul>
+      </section>
+
+      <section class="sidebar-section">
+        <h2>Développement</h2>
+        <ul class="skill-list">
+          <li>JavaScript, React, React Native</li>
+          <li>Python, Django REST Framework</li>
+          <li>Node.js, Express, API REST</li>
+          <li>Flutter, HTML, CSS, Tailwind</li>
+          <li>MySQL, PostgreSQL, Oracle, Firebase</li>
+          <li>Power BI, Pandas, NumPy</li>
+        </ul>
+      </section>
+
+      <section class="sidebar-section">
+        <h2>Cybersécurité</h2>
+        <ul class="skill-list">
+          <li>Réponse aux incidents &amp; investigation numérique</li>
+          <li>Analyse réseau : Wireshark, tcpdump</li>
+          <li>IDS / SIEM : Snort, ELK Stack</li>
+          <li>Forensic : Autopsy, Volatility</li>
+          <li>Burp Suite, OWASP ZAP, Nmap</li>
+          <li>Durcissement, journalisation, DevSecOps</li>
+        </ul>
+      </section>
+
+      <section class="sidebar-section">
+        <h2>Langues</h2>
+        <p class="language-list">Français · Anglais · Wolof · Diolla</p>
+      </section>
+    </aside>
+
+    <main class="main">
+      <p class="summary">Titulaire d’un Master en Génie Informatique, option Sécurité des Systèmes d’Information. Je conçois des applications fiables et sécurisées, de l’interface aux services backend, et m’intéresse à la détection et à l’analyse des incidents.</p>
+
+      <section class="main-section">
+        <h2>Expérience professionnelle</h2>
+        <article class="entry">
+          <div class="entry-heading"><h3>Développeur prestataire</h3><span class="date">Depuis oct. 2026</span></div>
+        </article>
+        <article class="entry">
+          <div class="entry-heading"><h3>Stagiaire développeur</h3><span class="date">Avr. – oct. 2026</span></div>
+        </article>
+        <article class="entry">
+          <div class="entry-heading"><h3>Développeur Fullstack · Rezilux, Dakar</h3><span class="date">2024 – 2026</span></div>
+          <p>Applications mobiles Flutter, API Django REST Framework, application desktop React, authentification Firebase et migration de base de données vers MySQL.</p>
+        </article>
+        <article class="entry">
+          <div class="entry-heading"><h3>Stagiaire IT · Sendigital Pulse</h3><span class="date">2024</span></div>
+          <p>Développement mobile avec React Native pour TAF-TAF, une application de covoiturage urbain.</p>
+        </article>
+        <article class="entry">
+          <div class="entry-heading"><h3>Stagiaire IT · PNUD, Dakar</h3><span class="date">2023</span></div>
+          <p>Développement Power Apps et DPC-calculator, données et visualisation Power BI, configuration réseau Cisco / GNS3.</p>
+        </article>
+      </section>
+
+      <section class="main-section">
+        <h2>Projets sélectionnés</h2>
+        <div class="project-list">
+          <article class="project">
+            <h3>AFFIC · Mémoire de Master</h3>
+            <p>Conception et déploiement d’une plateforme web sécurisée de gestion de portefeuille client; authentification, droits d’accès, validation des données et journal d’audit.</p>
+          </article>
+          <article class="project">
+            <h3>DATA LINK</h3>
+            <p>Plateforme de données ouvertes du Sénégal : tableaux de bord, cartographie et consultation d’indicateurs. Contribution fullstack en équipe.</p>
+          </article>
+          <article class="project">
+            <h3>NOPPAL</h3>
+            <p>Application web de gestion financière pour commerçants; participation aux parcours d’accès et de suivi, et à l’intégration des données.</p>
+          </article>
+          <article class="project">
+            <h3>samaChauffeur</h3>
+            <p>Plateforme de réservation de courses privées et partagées; contribution aux parcours chauffeur/passager et au suivi des trajets.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="main-section">
+        <h2>Formation</h2>
+        <article class="entry">
+          <div class="entry-heading"><h3>Master en Génie Informatique</h3><span class="date">2025 – 2026</span></div>
+          <p class="institution">École Supérieure Polytechnique (ESP), Dakar · Option Sécurité des Systèmes d’Information</p>
+        </article>
+        <article class="entry">
+          <div class="entry-heading"><h3>Licence Génie Logiciel &amp; Systèmes</h3><span class="date">2023 – 2024</span></div>
+          <p class="institution">École Supérieure Polytechnique (ESP), Dakar</p>
+        </article>
+        <article class="entry">
+          <div class="entry-heading"><h3>Technicien Supérieur</h3><span class="date">2021 – 2023</span></div>
+          <p class="institution">École Supérieure Polytechnique (ESP), Dakar</p>
+        </article>
+      </section>
+
+      <section class="main-section">
+        <h2>Pratique sécurité</h2>
+        <p class="focus">Analyse et corrélation de traces réseau, système et journaux; réponse aux incidents et recommandations de renforcement. Exercices réalisés en laboratoire, CTF et périmètres autorisés.</p>
+      </section>
+
+      <footer class="cv-footer">Bodian Arphan Kaback Junior · Dakar, Sénégal</footer>
+    </main>
+  </article>
+</body>
+</html>
