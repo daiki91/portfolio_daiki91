@@ -7,4 +7,4 @@ npm install
 node server.js
 ```
 
-Le portfolio est disponible sur `http://localhost:5000`. Le CV peut être consulté sur `http://localhost:5000/cv` et téléchargé en PDF depuis le bouton de la page d’accueil.
+Le portfolio est disponible sur `http://localhost:5000`. Le CV peut être consulté sur `http://localhost:5000/cv`, téléchargé en PDF ou quitté avec le lien de retour au portfolio.
