@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="CV de Bodian Arphan Kaback Junior, développeur fullstack et ingénieur en Sécuritéà Dakar.">
+  <meta name="description" content="CV de Bodian Arphan Kaback Junior, développeur fullstack et ingénieur en sécurité à Dakar.">
   <title>CV — Bodian Arphan Kaback Junior</title>
   <style>
     :root {
@@ -52,6 +52,7 @@
       font-size: 0.9rem;
       font-weight: 700;
       text-align: center;
+      cursor: pointer;
     }
 
     .cv-action:hover { background: var(--blue); text-decoration: none; }
@@ -163,6 +164,7 @@
   <nav class="cv-actions" aria-label="Actions du CV">
     <a class="cv-action cv-action-secondary" href="/">Retour au portfolio</a>
     <a class="cv-action" href="/cv/cv_arphan.pdf" download="CV-Bodian-Arphan-Kaback-Junior.pdf">Télécharger le CV (PDF)</a>
+    <button class="cv-action cv-action-secondary" id="language-toggle" type="button" onclick="toggleLanguage()" aria-label="Switch to English" title="Switch to English">EN</button>
   </nav>
   <article class="cv">
     <aside class="sidebar">
@@ -282,5 +284,112 @@
       <footer class="cv-footer">Bodian Arphan Kaback Junior · Dakar, Sénégal</footer>
     </main>
   </article>
+  <script>
+    const englishTranslations = {
+      'CV — Bodian Arphan Kaback Junior': 'Résumé — Bodian Arphan Kaback Junior',
+      'CV de Bodian Arphan Kaback Junior, développeur fullstack et ingénieur en sécurité à Dakar.': 'Résumé of Bodian Arphan Kaback Junior, full-stack developer and cybersecurity engineer in Dakar.',
+      'Actions du CV': 'Résumé actions',
+      'Retour au portfolio': 'Back to portfolio',
+      'Télécharger le CV (PDF)': 'Download résumé (PDF · French)',
+      'Keur Massar, Dakar, Sénégal': 'Keur Massar, Dakar, Senegal',
+      'Diolla': 'Diola',
+      'Switch to English': 'Passer en français',
+      'Développeur Fullstack': 'Full-Stack Developer',
+      'Sécurité& DevSecOps': 'Cybersecurity & DevSecOps',
+      'Contact': 'Contact',
+      'Développement': 'Development',
+      'Cybersécurité': 'Cybersecurity',
+      'Réponse aux incidents & investigation numérique': 'Incident response & digital forensics',
+      'Analyse réseau : Wireshark, tcpdump': 'Network analysis: Wireshark, tcpdump',
+      'IDS / SIEM : Snort, ELK Stack': 'IDS / SIEM: Snort, ELK Stack',
+      'Forensic : Autopsy, Volatility': 'Forensics: Autopsy, Volatility',
+      'Durcissement, journalisation, DevSecOps': 'Hardening, logging, DevSecOps',
+      'Langues': 'Languages',
+      'Français · Anglais · Wolof · Diolla': 'French · English · Wolof · Diola',
+      'Titulaire d’un Master en Génie Informatique, option Sécurité des Systèmes d’Information. Je conçois des applications fiables et sécurisées, de l’interface aux services backend, et m’intéresse à la détection et à l’analyse des incidents.': 'I hold a Master’s degree in Computer Engineering, specializing in Information Systems Security. I build reliable, secure applications from the user interface to backend services, and I am interested in incident detection and analysis.',
+      'Expérience professionnelle': 'Professional experience',
+      'Développeur prestataire': 'Contract Developer',
+      'Depuis oct. 2026': 'Since Oct 2026',
+      'Stagiaire développeur': 'Developer Intern',
+      'Avr. – oct. 2026': 'Apr – Oct 2026',
+      'Développeur Fullstack · Rezilux, Dakar': 'Full-Stack Developer · Rezilux, Dakar',
+      'Applications mobiles Flutter, API Django REST Framework, application desktop React, authentification Firebase et migration de base de données vers MySQL.': 'Flutter mobile apps, Django REST Framework APIs, a React desktop app, Firebase authentication, and database migration to MySQL.',
+      'Stagiaire IT · Sendigital Pulse': 'IT Intern · Sendigital Pulse',
+      'Développement mobile avec React Native pour TAF-TAF, une application de covoiturage urbain.': 'React Native mobile development for TAF-TAF, an urban carpooling app.',
+      'Stagiaire IT · PNUD, Dakar': 'IT Intern · UNDP, Dakar',
+      'Développement Power Apps et DPC-calculator, données et visualisation Power BI, configuration réseau Cisco / GNS3.': 'Power Apps and DPC-calculator development, data and Power BI visualizations, and Cisco / GNS3 network configuration.',
+      'Projets sélectionnés': 'Selected projects',
+      'AFFIC · Mémoire de Master': 'AFFIC · Master’s thesis',
+      'Conception et déploiement d’une plateforme web sécurisée de gestion de portefeuille client; authentification, droits d’accès, validation des données et journal d’audit.': 'Design and deployment of a secure web-based client portfolio management platform, with authentication, access controls, data validation, and audit logging.',
+      'Plateforme de données ouvertes du Sénégal : tableaux de bord, cartographie et consultation d’indicateurs. Contribution fullstack en équipe.': 'Senegal open data platform featuring dashboards, mapping, and indicator exploration. Full-stack team contribution.',
+      'Application web de gestion financière pour commerçants; participation aux parcours d’accès et de suivi, et à l’intégration des données.': 'Financial management web app for merchants; contributed to sign-in and tracking flows and data integration.',
+      'Plateforme de réservation de courses privées et partagées; contribution aux parcours chauffeur/passager et au suivi des trajets.': 'Private and shared ride-booking platform; contributed to driver and passenger flows and trip tracking.',
+      'Formation': 'Education',
+      'Master en Génie Informatique': 'Master’s in Computer Engineering',
+      'École Supérieure Polytechnique (ESP), Dakar · Option Sécurité des Systèmes d’Information': 'Polytechnic School (ESP), Dakar · Specialization in Information Systems Security',
+      'Licence Génie Logiciel & Systèmes': 'Bachelor’s in Software Engineering & Systems',
+      'École Supérieure Polytechnique (ESP), Dakar': 'Polytechnic School (ESP), Dakar',
+      'Technicien Supérieur': 'Higher Technician Diploma',
+      'Pratique sécurité': 'Cybersecurity practice',
+      'Analyse et corrélation de traces réseau, système et journaux; réponse aux incidents et recommandations de renforcement. Exercices réalisés en laboratoire, CTF et périmètres autorisés.': 'Analyze and correlate network, system, and log artifacts; respond to incidents and provide hardening recommendations. Exercises conducted in labs, CTFs, and authorized environments.',
+      'Bodian Arphan Kaback Junior · Dakar, Sénégal': 'Bodian Arphan Kaback Junior · Dakar, Senegal',
+      'Français': 'French',
+      'Anglais': 'English'
+    };
+
+    let cvLanguage = 'fr';
+    const originalTextNodes = new WeakMap();
+
+    function toggleLanguage() {
+      cvLanguage = cvLanguage === 'fr' ? 'en' : 'fr';
+      const english = cvLanguage === 'en';
+      sessionStorage.setItem('portfolioLanguage', cvLanguage);
+
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+      let textNode;
+      while ((textNode = walker.nextNode())) {
+        if (textNode.parentElement.closest('script, style')) {
+          continue;
+        }
+        if (!originalTextNodes.has(textNode)) {
+          originalTextNodes.set(textNode, textNode.nodeValue);
+        }
+
+        const originalText = originalTextNodes.get(textNode);
+        const translation = englishTranslations[originalText.replace(/\s+/g, ' ').trim()];
+        if (translation) {
+          const whitespace = originalText.match(/^(\s*)([\s\S]*?)(\s*)$/);
+          textNode.nodeValue = english ? `${whitespace[1]}${translation}${whitespace[3]}` : originalText;
+        }
+      }
+
+      document.documentElement.lang = cvLanguage;
+      document.title = english ? 'Résumé — Bodian Arphan Kaback Junior' : 'CV — Bodian Arphan Kaback Junior';
+      document.querySelector('meta[name="description"]').content = english
+        ? englishTranslations['CV de Bodian Arphan Kaback Junior, développeur fullstack et ingénieur en sécurité à Dakar.']
+        : 'CV de Bodian Arphan Kaback Junior, développeur fullstack et ingénieur en sécurité à Dakar.';
+
+      const button = document.getElementById('language-toggle');
+      button.textContent = english ? 'FR' : 'EN';
+      button.setAttribute('aria-label', english ? 'Passer en français' : 'Switch to English');
+      button.title = button.getAttribute('aria-label');
+
+      document.querySelectorAll('[aria-label]').forEach(element => {
+        const translation = englishTranslations[element.getAttribute('aria-label')];
+        if (translation) {
+          if (!element.dataset.originalAriaLabel) {
+            element.dataset.originalAriaLabel = element.getAttribute('aria-label');
+          }
+          element.setAttribute('aria-label', english ? translation : element.dataset.originalAriaLabel);
+        }
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', function() {
+      if (sessionStorage.getItem('portfolioLanguage') === 'en') {
+        toggleLanguage();
+      }
+    });
+  </script>
 </body>
 </html>

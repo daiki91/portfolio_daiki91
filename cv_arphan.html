@@ -72,6 +72,23 @@
       background: var(--accent);
       color: var(--primary);
     }
+    .language-toggle {
+      min-width: 46px;
+      border: 1px solid rgba(255,255,255,0.42);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--white);
+      font: inherit;
+      font-size: 0.78rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .language-toggle:hover, .language-toggle:focus-visible {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: var(--primary);
+    }
     /* Sidebar retractable */
     .sidebar {
       transition: width 0.3s, min-width 0.3s, padding 0.3s;
@@ -1555,6 +1572,7 @@
 
       .nav-btn { flex: 0 0 auto; padding: 8px 10px; font-size: 0.68rem; }
       .nav-btn:last-child { padding: 8px 12px; background: var(--primary); color: #fff; }
+      .language-toggle { flex: 0 0 auto; padding: 8px 10px; font-size: 0.68rem; }
       .portfolio-container { padding: 0 12px; }
       .main { padding: 14px 0 56px; }
       .page { padding: 24px 18px; margin: 12px auto 24px; border-radius: 16px; }
@@ -1908,8 +1926,9 @@
       <nav class="navbar-links">
         <button class="nav-btn active" onclick="showPage(0)">Accueil</button>
         <button class="nav-btn" onclick="showPage(1)">Développement Fullstack</button>
-        <button class="nav-btn" onclick="showPage(2)">Sécurité& DevSecOps</button>
+        <button class="nav-btn" onclick="showPage(2)">Sécurité & DevSecOps</button>
         <a class="nav-btn" href="/cv">Voir mon CV</a>
+        <button class="language-toggle" id="language-toggle" type="button" onclick="toggleLanguage()" aria-label="Switch to English" title="Switch to English">EN</button>
       </nav>
     </div>
   </header>
@@ -2379,6 +2398,350 @@
     <button class="contact-toggle" id="contact-toggle" type="button" aria-expanded="false" aria-controls="contact-panel" onclick="toggleContact()"><span class="contact-symbol" aria-hidden="true">✉</span><span>Me contacter</span></button>
   </aside>
   <script>
+    const englishTranslations = {
+      'Accueil': 'Home',
+      'Développement Fullstack': 'Full-Stack Development',
+      'Sécurité & DevSecOps': 'Cybersecurity & DevSecOps',
+      'Sécurité& DevSecOps': 'Cybersecurity & DevSecOps',
+      'Voir mon CV': 'View my résumé',
+      'Portfolio · Dakar, Sénégal': 'Portfolio · Dakar, Senegal',
+      'Développeur Fullstack': 'Full-Stack Developer',
+      'Ingénieur Cybersécurité': 'Cybersecurity Engineer',
+      'Titulaire d’un Master en Génie Informatique, option Sécurité des Systèmes d’Information, je conçois des applications fiables et sécurisées, de l’interface aux services backend.': 'I hold a Master’s degree in Computer Engineering, specializing in Information Systems Security. I build reliable, secure applications, from the user interface to backend services.',
+      'Explorer mes compétences': 'Explore my skills',
+      'Voir mon expertise sécurité': 'Explore my cybersecurity expertise',
+      'Télécharger mon CV (PDF)': 'Download my résumé (PDF · French)',
+      'Master en Génie Informatique': 'Master’s in Computer Engineering',
+      'Développement fullstack': 'Full-stack development',
+      'Cybersécurité': 'Cybersecurity',
+      'Sécurité': 'Security',
+      'École Supérieure Polytechnique': 'Polytechnic School',
+      'Master en Génie Informatique · Promotion 2025–2026': 'Master’s in Computer Engineering · Class of 2025–2026',
+      'Simulation du contrôle d’accès dans AFFIC': 'AFFIC access-control simulation',
+      'Simulation': 'Simulation',
+      'Authentification': 'Authentication',
+      'Droits d’accès': 'Access permissions',
+      'Validation des données': 'Data validation',
+      'Journal d’audit': 'Audit log',
+      'Décision': 'Decision',
+      'Accès autorisé': 'Access granted',
+      'Illustration du principe, pas une capture de la plateforme.': 'Illustration of the concept, not a screenshot of the platform.',
+      'Coordonnées, langues et centres d’intérêt': 'Contact details, languages and interests',
+      'Mes repères : intégrité, agilité et sécurité': 'My values: integrity, agility, and security',
+      'Contact': 'Contact',
+      'Keur Massar, Dakar': 'Keur Massar, Dakar',
+      'Langues': 'Languages',
+      'Français': 'French',
+      'Anglais': 'English',
+      'Diolla': 'Diola',
+      'Centres d’intérêt': 'Interests',
+      'Sport': 'Sports',
+      'Musique': 'Music',
+      'Voyage': 'Travel',
+      'Lecture': 'Reading',
+      'Du besoin métier à une solution prête à évoluer.': 'From business needs to a solution built to grow.',
+      'Un équilibre entre expérience utilisateur, architecture applicative et sécurité, de la conception à la mise en production.': 'Balancing user experience, application architecture, and security from design through deployment.',
+      'construire': 'build',
+      'avec sens': 'with purpose',
+      'Intégrité': 'Integrity',
+      'Agilité': 'Agility',
+      '01 / CONCEVOIR': '01 / DESIGN',
+      '02 / DÉVELOPPER': '02 / DEVELOP',
+      '03 / SÉCURISER': '03 / SECURE',
+      'Comprendre les usages': 'Understand user needs',
+      'Clarifier le besoin, structurer les parcours et concevoir des interfaces accessibles sur ordinateur comme sur mobile.': 'Clarify requirements, shape user journeys, and design accessible interfaces for desktop and mobile.',
+      'Construire l’application': 'Build the application',
+      'Créer des expériences frontend et des services backend robustes, reliés à des API et bases de données adaptées.': 'Create engaging frontends and robust backend services connected to suitable APIs and databases.',
+      'Protéger les données': 'Protect data',
+      'Intégrer les contrôles d’accès, la journalisation et les bonnes pratiques de sécurité tout au long du développement.': 'Build in access controls, logging, and security best practices throughout development.',
+      'Formation · École Supérieure Polytechnique': 'Education · Polytechnic School',
+      'Option : Sécurité des Systèmes d’Information': 'Specialization: Information Systems Security',
+      'Département Génie Informatique': 'Computer Engineering Department',
+      'Sujet de mémoire': 'Thesis topic',
+      'AFFIC : conception et déploiement d’une plateforme web sécurisée de gestion de portefeuille client': 'AFFIC: Design and deployment of a secure web-based client portfolio management platform',
+      'Une expérience entre développement et terrain.': 'Experience across software development and hands-on work.',
+      'Formation & expérience': 'Education & experience',
+      'Masquer la formation & expérience': 'Hide education & experience',
+      'Formation': 'Education',
+      'Technicien Supérieur – École Supérieure Polytechnique, Dakar (2021–2023)': 'Higher Technician Diploma – Polytechnic School, Dakar (2021–2023)',
+      'Licence Génie Logiciel & Systèmes – ESP, Dakar (2023–2024)': 'Bachelor’s in Software Engineering & Systems – ESP, Dakar (2023–2024)',
+      'Master en Génie Informatique, option Sécurité des Systèmes d’Information – ESP, Département Génie Informatique': 'Master’s in Computer Engineering, specializing in Information Systems Security – ESP, Computer Engineering Department',
+      'Expérience professionnelle': 'Professional experience',
+      'Stagiaire IT – PNUD, Dakar (2023)': 'IT Intern – UNDP, Dakar (2023)',
+      ': Développement Web (Power Apps), plateforme DPC-calculator, base de données & visualisation Power BI, configuration réseau Cisco / GNS3': ': Web development (Power Apps), DPC-calculator platform, database and Power BI visualizations, Cisco / GNS3 network configuration',
+      'Stagiaire IT – Sendigital Pulse (2024)': 'IT Intern – Sendigital Pulse (2024)',
+      ': Développement mobile React Native, application TAF-TAF (covoiturage urbain)': ': React Native mobile development for TAF-TAF, an urban carpooling app',
+      'Développeur Fullstack – Rezilux (2024 – 2026)': 'Full-Stack Developer – Rezilux (2024–2026)',
+      ': Applications mobiles Flutter, API avec Django REST Framework, application desktop React, authentification Firebase, migration base vers MySQL': ': Flutter mobile apps, Django REST Framework APIs, a React desktop app, Firebase authentication, and database migration to MySQL',
+      'Stagiaire développeur – avril à octobre 2026, puis développeur prestataire depuis octobre 2026': 'Developer Intern – April to October 2026; freelance developer since October 2026',
+      'École Supérieure Polytechnique · Dakar': 'Polytechnic School · Dakar',
+      'Langages & technologies': 'Languages & technologies',
+      'Un aperçu des langages et outils que j’utilise pour concevoir des interfaces, des applications et leurs services backend.': 'An overview of the languages and tools I use to build interfaces, applications, and backend services.',
+      'Langages': 'Languages',
+      'Frontend & mobile': 'Frontend & mobile',
+      'Backend & données': 'Backend & data',
+      'Réalisations avec mon équipe': 'Projects built with my team',
+      'Des projets conçus et développés en équipe, au service de besoins concrets.': 'Projects designed and built collaboratively to solve real-world needs.',
+      'Explorez les plateformes en ligne.': 'Explore the live platforms.',
+      'DONNÉES DU SÉNÉGAL': 'SENEGAL OPEN DATA',
+      'TABLEAU DE BORD · POPULATION': 'DASHBOARD · POPULATION',
+      'Indicateurs clés par région': 'Key indicators by region',
+      'Données · Visualisation': 'Data · Visualization',
+      'Plateforme de valorisation des données ouvertes du Sénégal : tableaux de bord, carte interactive, croisement de jeux de données et assistant IA.': 'A platform showcasing Senegalese open data through dashboards, an interactive map, dataset comparisons, and an AI assistant.',
+      'Contribution fullstack en équipe': 'Full-stack team contribution',
+      'Participation au développement des écrans de consultation, à l’intégration des indicateurs et à la liaison des vues avec les modules de catalogue, de tableaux de bord et de cartographie.': 'Contributed to data exploration screens, indicator integration, and connecting views to catalog, dashboard, and mapping modules.',
+      'Visiter le projet': 'Visit project',
+      'ESPACE COMMERÇANT': 'MERCHANT PORTAL',
+      'APERÇU FINANCIER': 'FINANCIAL OVERVIEW',
+      'Suivi de l’activité': 'Business activity tracking',
+      'Gestion · Finance': 'Management · Finance',
+      'Application web de gestion financière pensée pour simplifier le quotidien des commerçants, avec un parcours d’accès dédié et une interface de suivi.': 'A financial management web app designed to simplify merchants’ daily operations, with a dedicated sign-in flow and tracking interface.',
+      'Participation au parcours d’accès commerçant et aux interfaces de suivi financier, avec intégration des données de gestion entre l’interface et les services de l’application.': 'Contributed to the merchant sign-in flow and financial tracking interfaces, connecting management data between the interface and application services.',
+      'CHAUFFEUR EN ROUTE · 4 MIN': 'DRIVER ON THE WAY · 4 MIN',
+      'Mobilité · Transport': 'Mobility · Transportation',
+      'Plateforme de réservation de courses privées et partagées, avec suivi du chauffeur en direct, chauffeurs vérifiés et paiement flexible.': 'A private and shared ride-booking platform with live driver tracking, verified drivers, and flexible payment options.',
+      'Participation aux interfaces de réservation et aux parcours chauffeur/passager, ainsi qu’à l’intégration du suivi de course et des informations de trajet.': 'Contributed to booking interfaces and driver/passenger journeys, as well as integrating live ride tracking and trip details.',
+      'Déploiement & données': 'Deployment & data',
+      'Les services que j’utilise pour mettre en ligne des applications et gérer leur stockage.': 'Services I use to deploy applications and manage their data.',
+      'Illustrations de présentation des environnements.': 'Illustrations of the platforms and environments.',
+      'Services': 'Services',
+      'Web service · Production': 'Web service · Production',
+      'Latest deploy': 'Latest deployment',
+      'Build successful': 'Build successful',
+      'Region': 'Region',
+      'Hébergement · Déploiement': 'Hosting · Deployment',
+      'Déploiement et suivi des applications Web depuis le dashboard Render : services, mises en production et état des déploiements.': 'Deploy and monitor web applications from the Render dashboard, including services, releases, and deployment status.',
+      'Base de données · PostgreSQL': 'Database · PostgreSQL',
+      'Gestion de bases de données PostgreSQL hébergées avec Supabase pour stocker et organiser les données des applications.': 'Manage hosted PostgreSQL databases with Supabase to store and organize application data.',
+      'Python · Hébergement': 'Python · Hosting',
+      'Hébergement et mise en ligne d’applications Python dans un environnement Web accessible à distance.': 'Host and deploy Python applications in a remotely accessible web environment.',
+      'Environnement local': 'Local environment',
+      'Running': 'Running',
+      'Ready': 'Ready',
+      'Conteneurisation · Environnements': 'Containerization · Environments',
+      'Conteneurisation d’applications et de leurs dépendances pour faciliter la reproduction des environnements de développement et de déploiement.': 'Package applications and dependencies in containers to make development and deployment environments reproducible.',
+      'Région active': 'Active region',
+      'Application': 'Application',
+      'Stockage': 'Storage',
+      'Cloud · Infrastructure': 'Cloud · Infrastructure',
+      'Utilisation des services AWS pour héberger et exploiter des composants applicatifs dans le cloud.': 'Use AWS services to host and operate application components in the cloud.',
+      'PROTECTION WEB · AWS': 'WEB PROTECTION · AWS',
+      'Flux entrant': 'Incoming traffic',
+      'Visiteur': 'Visitor',
+      'Requête Web': 'Web request',
+      'Origine protégée': 'Protected origin',
+      'CDN · Pare-feu applicatif': 'CDN · Web application firewall',
+      'CloudFront distribue et met en cache le contenu; AWS WAF applique des règles de filtrage Web à la distribution pour aider à protéger l’application.': 'CloudFront distributes and caches content; AWS WAF applies web filtering rules to help protect the application.',
+      'Compétences Frontend': 'Frontend skills',
+      'Applications web dynamiques, mobiles multiplateformes, interfaces responsives': 'Dynamic web apps, cross-platform mobile apps, responsive interfaces',
+      'Dashboards analytiques (Power BI)': 'Analytics dashboards (Power BI)',
+      'Compétences Backend': 'Backend skills',
+      'MySQL, Oracle, Firebase (authentification & temps réel)': 'MySQL, Oracle, Firebase (authentication & real-time)',
+      'Conception d’API REST, authentification & gestion des rôles': 'REST API design, authentication & role management',
+      "Conception d'API REST, authentification & gestion des rôles": 'REST API design, authentication & role management',
+      'Migration et optimisation de base de données': 'Database migration and optimization',
+      'Programmation orientée objet (POO)': 'Object-oriented programming (OOP)',
+      'Data & Analyse': 'Data & analytics',
+      'Visualisation et traitement de données': 'Data visualization and processing',
+      'Investigation de sécurité et analyse forensic (compromission système et réseau)': 'Security investigations and digital forensics (system and network compromise)',
+      'Détection de ralentissements réseau, connexions suspectes, enquête forensic complète': 'Detect network slowdowns and suspicious connections; conduct full forensic investigations',
+      'Identification de l’origine de l’attaque, actions réalisées, impact sur le système': 'Identify the source of an attack, actions taken, and impact on the system',
+      'Architecture de détection & d’analyse': 'Detection & analysis architecture',
+      'IDS réseau : Snort (CSI Linux)': 'Network IDS: Snort (CSI Linux)',
+      'SIEM : ELK Stack (Elasticsearch, Logstash, Kibana)': 'SIEM: ELK Stack (Elasticsearch, Logstash, Kibana)',
+      'Forensic réseau : Wireshark': 'Network forensics: Wireshark',
+      'Forensic disque : Autopsy': 'Disk forensics: Autopsy',
+      'Environnement technique : Thonny, ESP32, phase de détection, centralisation & corrélation': 'Technical environment: Thonny, ESP32, detection, centralization & correlation',
+      'Détection & Analyse de l’attaque': 'Attack detection & analysis',
+      'Détection IDS (Snort)': 'IDS detection (Snort)',
+      ': scan réseau, tentatives SSH, alertes horodatées': ': network scans, SSH attempts, timestamped alerts',
+      'Centralisation & Corrélation (ELK)': 'Centralization & correlation (ELK)',
+      ': logs Snort vers ELK, analyse Kibana, identification IP attaquante': ': Snort logs sent to ELK, Kibana analysis, identification of the attacker’s IP',
+      'Analyse réseau avancée (Wireshark)': 'Advanced network analysis (Wireshark)',
+      ': analyse PCAP, reconstruction flux TCP, confirmation connexion SSH': ': PCAP analysis, TCP stream reconstruction, confirmation of an SSH connection',
+      'Analyse forensic disque (Autopsy)': 'Disk forensics (Autopsy)',
+      ': analyse image disque, création fichiers malveillants, exécution scripts, traces attaquant': ': disk image analysis, creation of malicious files, script execution, attacker traces',
+      'Corrélation & Reconstitution de l’attaque': 'Attack correlation & reconstruction',
+      'Corrélation des preuves : réseau (Snort, Wireshark), logs centralisés (ELK), système (Autopsy)': 'Correlate evidence from network tools (Snort, Wireshark), centralized logs (ELK), and systems (Autopsy)',
+      'Reconstitution complète de la chaîne d’attaque': 'Reconstruct the full attack chain',
+      'Production de preuves exploitables en contexte académique et professionnel': 'Produce actionable evidence for academic and professional contexts',
+      'Recommandations de sécurité': 'Security recommendations',
+      'Renforcement de l’authentification SSH': 'Strengthen SSH authentication',
+      'Segmentation du réseau': 'Network segmentation',
+      'Durcissement des règles Snort': 'Harden Snort rules',
+      'Surveillance continue': 'Continuous monitoring',
+      'Renforcement des politiques de journalisation': 'Strengthen logging policies',
+      'Outils de sécurité utilisés et testés': 'Security tools used and tested',
+      'Pratique réalisée dans des laboratoires, des CTF et des périmètres explicitement autorisés. Les tests sont limités au cadre défini, sans collecte de données réelles ni impact sur des systèmes tiers.': 'Work is conducted in labs, CTFs, and explicitly authorized environments. Testing stays within the defined scope, without collecting real data or affecting third-party systems.',
+      'Reconnaissance & OSINT': 'Reconnaissance & OSINT',
+      '9 outils': '9 tools',
+      '— découverte d’hôtes, de ports et de services dans un périmètre autorisé.': '— discover hosts, ports, and services within an authorized scope.',
+      '— cartographie de domaines et sous-domaines pour l’inventaire d’exposition.': '— map domains and subdomains for exposure inventory.',
+      '— structuration de recherches OSINT.': '— organize OSINT research.',
+      '— collecte d’informations accessibles publiquement.': '— collect publicly available information.',
+      '— automatisation de collecte et de corrélation OSINT.': '— automate OSINT collection and correlation.',
+      '— visualisation des relations entre entités et données.': '— visualize relationships between entities and data.',
+      '— consultation d’informations de domaine et de DNS.': '— look up domain and DNS information.',
+      'Analyse réseau': 'Network analysis',
+      '4 outils': '4 tools',
+      '— inspection de captures et analyse des protocoles réseau.': '— inspect captures and analyze network protocols.',
+      '— capture réseau en ligne de commande dans un lab.': '— capture network traffic from the command line in a lab.',
+      '— diagnostic de connectivité TCP/UDP entre systèmes de test.': '— diagnose TCP/UDP connectivity between test systems.',
+      '— inventaire rapide de ports sur des plages explicitement autorisées.': '— quickly inventory ports across explicitly authorized ranges.',
+      'Tests de sécurité Web': 'Web security testing',
+      '7 outils': '7 tools',
+      '— proxy d’analyse des échanges HTTP/HTTPS en laboratoire.': '— proxy for analyzing HTTP/HTTPS traffic in a lab.',
+      '— proxy et analyse de sécurité d’applications Web de test.': '— proxy and security analysis for test web applications.',
+      '— repérage de configurations Web à risque sur des cibles autorisées.': '— identify risky web configurations on authorized targets.',
+      '— tests contrôlés de découverte de contenus et de paramètres Web.': '— controlled discovery of web content and parameters.',
+      '— validation encadrée de risques d’injection SQL sur des applications autorisées, sans extraction de données réelles.': '— safely validate SQL injection risks in authorized applications without extracting real data.',
+      '— vérification de sécurité de sites WordPress dans un périmètre autorisé.': '— assess WordPress site security within an authorized scope.',
+      'Vulnérabilités & validation': 'Vulnerabilities & validation',
+      '4 outils': '4 tools',
+      '— validation contrôlée de vulnérabilités dans un lab dédié.': '— controlled vulnerability validation in a dedicated lab.',
+      '— recherche de vulnérabilités et références publiques associées.': '— find vulnerabilities and related public references.',
+      '— détection par modèles sur des systèmes autorisés.': '— template-based detection on authorized systems.',
+      '— analyse de vulnérabilités et examen des rapports.': '— vulnerability scanning and report review.',
+      'Qualité & sécurité du code': 'Code quality & security',
+      '1 outil': '1 tool',
+      '— analyse statique du code pour repérer les bugs, les vulnérabilités et les code smells, puis suivre les Quality Gates.': '— statically analyze code to identify bugs, vulnerabilities, and code smells, then track Quality Gates.',
+      'Sécurité Wi-Fi': 'Wi-Fi security',
+      '3 outils': '3 tools',
+      '— audit de configuration Wi-Fi sur réseau de laboratoire.': '— audit Wi-Fi configuration on a lab network.',
+      '— détection et observation de réseaux sans fil.': '— detect and monitor wireless networks.',
+      '— orchestration d’audits Wi-Fi dans un environnement isolé et autorisé.': '— orchestrate Wi-Fi audits in an isolated, authorized environment.',
+      'Mots de passe & authentification': 'Passwords & authentication',
+      '— audit hors ligne de mots de passe et de condensats de test.': '— offline audit of test passwords and hashes.',
+      '— vérification contrôlée de mécanismes d’authentification sur services autorisés.': '— controlled testing of authentication mechanisms on authorized services.',
+      '— étude de la robustesse des mots de passe à partir de contenu public et de jeux de test.': '— study password strength using public content and test datasets.',
+      'Active Directory & Windows': 'Active Directory & Windows',
+      '— analyse de protocoles Windows et exercices d’audit en lab.': '— analyze Windows protocols and perform lab audit exercises.',
+      '— visualisation des relations et des chemins de privilèges Active Directory.': '— visualize relationships and privilege paths in Active Directory.',
+      '— contrôle de configurations sur des environnements Windows autorisés.': '— review configurations in authorized Windows environments.',
+      '— observation de protocoles d’authentification réseau dans un lab isolé.': '— observe network authentication protocols in an isolated lab.',
+      'Forensics & analyse': 'Forensics & analysis',
+      '— analyse d’images disque et de traces numériques.': '— analyze disk images and digital traces.',
+      '— analyse de captures mémoire RAM.': '— analyze RAM captures.',
+      '— examen de fichiers et de firmwares.': '— inspect files and firmware.',
+      '— extraction et vérification de métadonnées.': '— extract and verify metadata.',
+      'Reverse engineering': 'Reverse engineering',
+      '6 outils': '6 tools',
+      '— désassemblage et analyse statique de programmes.': '— disassemble and statically analyze programs.',
+      '— analyse de binaires en ligne de commande et via interface graphique.': '— analyze binaries from the command line and through a graphical interface.',
+      '— inspection de chaînes et de structures de binaires.': '— inspect strings and binary structures.',
+      'Analyse Android': 'Android analysis',
+      '— diagnostic et interaction avec des appareils de test.': '— diagnose and interact with test devices.',
+      '— analyse de sécurité d’applications mobiles.': '— perform security analysis of mobile applications.',
+      '— inspection du code décompilé d’applications Android.': '— inspect decompiled code from Android applications.',
+      '— examen de la structure de paquets Android en laboratoire.': '— examine Android package structures in a lab.',
+      'Pratique :': 'Practice:',
+      'exercices CTF et PortSwigger Web Security Academy; analyse de captures réseau avec Wireshark; simulations pédagogiques d’ingénierie sociale avec Storm-Breaker, en laboratoire isolé et sans collecte d’identifiants réels.': 'CTF and PortSwigger Web Security Academy exercises; network capture analysis with Wireshark; and educational social engineering simulations with Storm-Breaker in an isolated lab, without collecting real credentials.',
+      'Compétences clés': 'Core skills',
+      'Incident Response': 'Incident response',
+      'Digital Forensics': 'Digital forensics',
+      'SIEM & Corrélation': 'SIEM & correlation',
+      'Analyse PCAP': 'PCAP analysis',
+      'Sécurité Linux': 'Linux security',
+      'Investigation post-compromission': 'Post-compromise investigation',
+      'Parlons de votre projet': 'Let’s discuss your project',
+      'Choisissez le moyen qui vous convient pour me joindre.': 'Choose your preferred way to get in touch.',
+      'Envoyer un e-mail': 'Send an email',
+      'Écrire sur WhatsApp': 'Message on WhatsApp',
+      'Appeler le +221 77 136 49 68': 'Call +221 77 136 49 68',
+      'Me contacter': 'Contact me',
+      'Switch to English': 'Passer en français',
+      'Bodian Arphan Kaback Junior présentant son diplôme de Master en Génie Informatique': 'Bodian Arphan Kaback Junior presenting his Master’s degree in Computer Engineering',
+      'Migration': 'Database migration',
+      'Databases': 'Databases',
+      'POO': 'OOP',
+      'Ouvrir DATA LINK dans un nouvel onglet': 'Open DATA LINK in a new tab',
+      'Ouvrir NOPPAL dans un nouvel onglet': 'Open NOPPAL in a new tab',
+      'Ouvrir samaChauffeur dans un nouvel onglet': 'Open samaChauffeur in a new tab',
+      'Illustration du dashboard Render avec service Web en ligne': 'Illustration of the Render dashboard with a live web service',
+      'Illustration de tables relationnelles dans Supabase': 'Illustration of relational tables in Supabase',
+      'Illustration d’un environnement PythonAnywhere avec fichiers et code Python': 'Illustration of a PythonAnywhere environment with files and Python code',
+      'Illustration d’applications isolées dans des conteneurs Docker': 'Illustration of applications isolated in Docker containers',
+      'Illustration d’une architecture applicative hébergée sur AWS': 'Illustration of an application architecture hosted on AWS',
+      'Illustration d’une distribution CloudFront protégée par AWS WAF devant l’application': 'Illustration of a CloudFront distribution protected by AWS WAF in front of the application'
+    };
+
+    const originalTextNodes = new WeakMap();
+    let portfolioLanguage = 'fr';
+
+    function normalizeTranslationText(value) {
+      return value.replace(/\s+/g, ' ').trim();
+    }
+
+    function toggleLanguage() {
+      portfolioLanguage = portfolioLanguage === 'fr' ? 'en' : 'fr';
+      const english = portfolioLanguage === 'en';
+      sessionStorage.setItem('portfolioLanguage', portfolioLanguage);
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+      let textNode;
+
+      while ((textNode = walker.nextNode())) {
+        if (textNode.parentElement.closest('script, style')) {
+          continue;
+        }
+        if (!originalTextNodes.has(textNode)) {
+          originalTextNodes.set(textNode, textNode.nodeValue);
+        }
+
+        const originalText = originalTextNodes.get(textNode);
+        const translation = englishTranslations[normalizeTranslationText(originalText)];
+        if (translation) {
+          const whitespace = originalText.match(/^(\s*)([\s\S]*?)(\s*)$/);
+          textNode.nodeValue = english
+            ? `${whitespace[1]}${translation}${whitespace[3]}`
+            : originalText;
+        }
+      }
+
+      document.documentElement.lang = portfolioLanguage;
+      document.title = english
+        ? 'Portfolio – Bodian Arphan Kaback Junior | Full-Stack Developer & Cybersecurity Engineer'
+        : 'Portfolio – Bodian Arphan Kaback Junior';
+
+      const languageButton = document.getElementById('language-toggle');
+      languageButton.textContent = english ? 'FR' : 'EN';
+      languageButton.setAttribute('aria-label', english ? 'Passer en français' : 'Switch to English');
+      languageButton.title = english ? 'Passer en français' : 'Switch to English';
+
+      document.querySelectorAll('[aria-label]').forEach(element => {
+        const translation = englishTranslations[element.getAttribute('aria-label')];
+        if (translation) {
+          if (!element.dataset.originalAriaLabel) {
+            element.dataset.originalAriaLabel = element.getAttribute('aria-label');
+          }
+          element.setAttribute('aria-label', english ? translation : element.dataset.originalAriaLabel);
+        }
+      });
+
+      document.querySelectorAll('[alt]').forEach(element => {
+        const translation = englishTranslations[element.getAttribute('alt')];
+        if (translation) {
+          if (!element.dataset.originalAlt) {
+            element.dataset.originalAlt = element.getAttribute('alt');
+          }
+          element.setAttribute('alt', english ? translation : element.dataset.originalAlt);
+        }
+      });
+
+      const formationButton = document.getElementById('toggle-formation-btn');
+      if (formationButton) {
+        updateFormationButton(formationButton.getAttribute('aria-expanded') === 'true');
+      }
+    }
+
+    function updateFormationButton(expanded) {
+      const button = document.getElementById('toggle-formation-btn');
+      const label = portfolioLanguage === 'en'
+        ? (expanded ? 'Hide education & experience' : 'Education & experience')
+        : (expanded ? 'Masquer la formation & expérience' : 'Formation & expérience');
+      const symbol = expanded ? '−' : '＋';
+      button.innerHTML = `${label} <span aria-hidden="true">${symbol}</span>`;
+    }
+
     function showPage(idx) {
       const pages = document.querySelectorAll('.page');
       const navs = document.querySelectorAll('.nav-btn');
@@ -2400,16 +2763,18 @@
 
     window.addEventListener('DOMContentLoaded', function() {
       showPage(0);
+      if (sessionStorage.getItem('portfolioLanguage') === 'en') {
+        toggleLanguage();
+      }
     });
 
-    // Afficher/masquer la section formation/expérience
     function toggleFormation() {
       const fe = document.getElementById('formation-experience');
       const btn = document.getElementById('toggle-formation-btn');
       const expanded = btn.getAttribute('aria-expanded') === 'true';
       fe.hidden = expanded;
       btn.setAttribute('aria-expanded', String(!expanded));
-      btn.innerHTML = expanded ? 'Formation & expérience <span aria-hidden="true">＋</span>' : 'Masquer la formation & expérience <span aria-hidden="true">−</span>';
+      updateFormationButton(!expanded);
     }
 
     function toggleContact() {
