@@ -1763,6 +1763,298 @@
       .tech-stack-card { padding: 18px; }
     }
 
+    .cyber-page {
+      overflow: hidden;
+      padding: clamp(24px, 5vw, 58px);
+      background: #f7f8f3;
+    }
+
+    .cyber-page > .main-title {
+      margin: 0 0 20px;
+      color: #24271f;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(2.1rem, 5vw, 3.7rem);
+      letter-spacing: -0.07em;
+    }
+
+    .cyber-hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(270px, 0.78fr);
+      align-items: center;
+      gap: clamp(24px, 5vw, 58px);
+      min-height: 340px;
+      padding: clamp(24px, 4vw, 42px);
+      overflow: hidden;
+      border-radius: 20px;
+      background: #171a17;
+      color: #f5f6ef;
+      isolation: isolate;
+    }
+
+    .cyber-hero::before {
+      position: absolute;
+      z-index: -1;
+      top: -240px;
+      right: -130px;
+      width: 540px;
+      height: 540px;
+      border: 1px solid rgba(182, 216, 75, 0.2);
+      border-radius: 50%;
+      box-shadow: 0 0 0 42px rgba(182, 216, 75, 0.035), 0 0 0 84px rgba(182, 216, 75, 0.025);
+      content: "";
+    }
+
+    .cyber-hero-copy { position: relative; z-index: 1; }
+    .cyber-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 16px;
+      color: #c8e66a;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .cyber-eyebrow::before { width: 20px; height: 2px; background: currentColor; content: ""; }
+    .cyber-hero h2 {
+      max-width: 580px;
+      margin: 0 0 14px;
+      color: #f6f7f1;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(2rem, 4.3vw, 3.45rem);
+      letter-spacing: -0.065em;
+      line-height: 1.02;
+    }
+    .cyber-hero h2 span { color: #c8e66a; }
+    .cyber-hero-copy > p {
+      max-width: 540px;
+      margin: 0;
+      color: #c5c9bf;
+      font-size: 0.95rem;
+      line-height: 1.75;
+    }
+    .cyber-hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 21px; }
+    .cyber-hero-tags span {
+      padding: 7px 10px;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 999px;
+      color: #e0e4d8;
+      font-size: 0.68rem;
+      font-weight: 600;
+    }
+    .cyber-hero-art {
+      position: relative;
+      min-height: 245px;
+      margin: 0;
+      isolation: isolate;
+    }
+    .cyber-hero-art::before {
+      position: absolute;
+      z-index: 1;
+      inset: 0;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 14px;
+      background: linear-gradient(90deg, #171a17 0%, rgba(23,26,23,0.15) 48%, rgba(23,26,23,0.08) 100%), linear-gradient(0deg, rgba(23,26,23,0.62), transparent 55%);
+      content: "";
+      pointer-events: none;
+    }
+    .cyber-hero-art > img {
+      width: 100%;
+      height: 245px;
+      border-radius: 14px;
+      object-fit: cover;
+      object-position: center 48%;
+    }
+    .cyber-hero-art figcaption {
+      position: absolute;
+      z-index: 2;
+      right: 14px;
+      bottom: 14px;
+      left: 14px;
+      color: #f6f7f1;
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .cyber-hero-art figcaption span { display: block; margin-top: 5px; color: #c8e66a; font-size: 0.57rem; }
+
+    .cyber-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+      gap: 16px;
+      margin: 18px 0 46px;
+    }
+    .cyber-intro-card {
+      padding: 22px;
+      border: 1px solid #e6e8df;
+      border-radius: 14px;
+      background: #fff;
+    }
+    .cyber-intro-card h2 { margin: 0 0 9px; font-size: 1.05rem; }
+    .cyber-intro-card p { margin: 0; color: #676b61; font-size: 0.85rem; line-height: 1.7; }
+    .cyber-intro-card ul { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+    .cyber-intro-card li { position: relative; padding-left: 18px; color: #565b52; font-size: 0.8rem; line-height: 1.55; }
+    .cyber-intro-card li::before {
+      position: absolute;
+      top: 0.48em;
+      left: 0;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #a7c543;
+      content: "";
+    }
+
+    .cyber-journey { margin: 0 0 46px; }
+    .cyber-section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 21px;
+    }
+    .cyber-section-heading > div { max-width: 620px; }
+    .cyber-section-kicker {
+      display: block;
+      margin-bottom: 9px;
+      color: #75832d;
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+    .cyber-section-heading h2 {
+      margin: 0;
+      color: #24271f;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(1.7rem, 3.6vw, 2.45rem);
+      letter-spacing: -0.055em;
+      line-height: 1.08;
+    }
+    .cyber-section-heading p { max-width: 340px; margin: 0; color: #6d7167; font-size: 0.83rem; line-height: 1.65; }
+    .cyber-timeline {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .cyber-timeline::before {
+      position: absolute;
+      top: 23px;
+      right: 8%;
+      left: 8%;
+      height: 1px;
+      background: #dce2cc;
+      content: "";
+    }
+    .cyber-step {
+      position: relative;
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid #e4e7dc;
+      border-radius: 13px;
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(28, 31, 24, 0.045);
+      transition: transform 0.24s ease, box-shadow 0.24s ease;
+    }
+    .cyber-step:hover { transform: translateY(-5px); box-shadow: 0 16px 30px rgba(28, 31, 24, 0.1); }
+    .cyber-step-top { position: relative; z-index: 1; display: flex; align-items: center; gap: 9px; padding: 13px 14px; background: #fff; }
+    .cyber-step-number {
+      display: grid;
+      width: 23px;
+      height: 23px;
+      place-items: center;
+      border: 1px solid #dfe5cf;
+      border-radius: 50%;
+      background: #f2f5e9;
+      color: #657521;
+      font-size: 0.63rem;
+      font-weight: 800;
+    }
+    .cyber-step-top span:last-child { color: #72766b; font-size: 0.6rem; font-weight: 800; letter-spacing: 0.1em; }
+    .cyber-step-image { display: block; width: 100%; height: 136px; object-fit: cover; transition: transform 0.45s ease; }
+    .cyber-step:hover .cyber-step-image { transform: scale(1.04); }
+    .cyber-step-copy { padding: 16px; }
+    .cyber-step-copy h3 { margin: 0 0 8px; color: #282b23; font-family: "Space Grotesk", sans-serif; font-size: 1.02rem; }
+    .cyber-step-copy p { margin: 0; color: #686c63; font-size: 0.76rem; line-height: 1.65; }
+    .cyber-step-tool { display: inline-block; margin-top: 12px; color: #6f8029; font-size: 0.64rem; font-weight: 800; letter-spacing: 0.05em; }
+    .cyber-environment {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin-top: 14px;
+      padding: 16px 18px;
+      border: 1px solid #e5e8dc;
+      border-radius: 12px;
+      background: #eef2e5;
+      color: #586044;
+      font-size: 0.78rem;
+      line-height: 1.6;
+    }
+    .cyber-environment strong { flex: 0 0 auto; color: #404b23; }
+
+    .cyber-outcome {
+      display: grid;
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+      gap: 28px;
+      align-items: center;
+      margin: 0 0 42px;
+      padding: clamp(22px, 4vw, 36px);
+      border-radius: 16px;
+      background: #e9eee0;
+    }
+    .cyber-outcome h2 { margin: 0 0 9px; color: #283022; font-family: "Space Grotesk", sans-serif; font-size: 1.45rem; letter-spacing: -0.04em; }
+    .cyber-outcome p { margin: 0; color: #646a5b; font-size: 0.82rem; line-height: 1.65; }
+    .cyber-outcome ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 18px; margin: 0; padding: 0; list-style: none; }
+    .cyber-outcome li { display: flex; align-items: center; gap: 9px; color: #424a38; font-size: 0.78rem; font-weight: 700; }
+    .cyber-outcome li::before { display: grid; width: 20px; height: 20px; flex: 0 0 20px; place-items: center; border-radius: 50%; background: #d5e0bd; color: #52671f; content: "✓"; font-size: 0.65rem; }
+
+    .cyber-toolkit { margin-top: 42px; }
+    .cyber-toolkit > h2 { margin-bottom: 12px; color: #24271f; font-family: "Space Grotesk", sans-serif; font-size: clamp(1.55rem, 3vw, 2rem); letter-spacing: -0.045em; }
+    .cyber-toolkit .toolkit-grid { gap: 0 28px; }
+    .cyber-toolkit .tool-group { padding: 0 14px; border: 1px solid #e4e7dc; border-radius: 10px; background: #fff; }
+    .cyber-toolkit .tool-group summary { min-height: 52px; }
+    .cyber-toolkit .tool-list { padding-bottom: 2px; }
+    .cyber-reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.2, 0.7, 0.2, 1); }
+    .cyber-reveal.is-visible { opacity: 1; transform: none; }
+    .cyber-step:nth-child(2) { transition-delay: 80ms; }
+    .cyber-step:nth-child(3) { transition-delay: 160ms; }
+    .cyber-step:nth-child(4) { transition-delay: 240ms; }
+
+    @media (max-width: 900px) {
+      .cyber-hero { grid-template-columns: minmax(0, 1fr) minmax(220px, 0.78fr); }
+      .cyber-timeline { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .cyber-timeline::before { display: none; }
+    }
+
+    @media (max-width: 650px) {
+      .cyber-page { padding: 24px 18px; }
+      .cyber-hero { grid-template-columns: 1fr; gap: 20px; padding: 24px; }
+      .cyber-hero-art { min-height: 190px; }
+      .cyber-hero-art > img { height: 190px; }
+      .cyber-intro, .cyber-outcome { grid-template-columns: 1fr; gap: 12px; }
+      .cyber-section-heading { align-items: start; flex-direction: column; gap: 9px; }
+      .cyber-timeline { grid-template-columns: 1fr; gap: 12px; }
+      .cyber-step { display: grid; grid-template-columns: 0.85fr 1.15fr; align-items: stretch; }
+      .cyber-step-top { grid-column: 1 / -1; padding-bottom: 9px; }
+      .cyber-step-image { height: 100%; min-height: 155px; }
+      .cyber-step-copy { padding: 13px; }
+      .cyber-step-copy h3 { font-size: 0.95rem; }
+      .cyber-step-copy p { font-size: 0.72rem; }
+      .cyber-outcome ul { gap: 9px; }
+      .cyber-environment { align-items: start; flex-direction: column; gap: 5px; }
+      .cyber-toolkit .toolkit-grid { grid-template-columns: 1fr; gap: 8px; }
+    }
+
+    @media (max-width: 400px) {
+      .cyber-step { grid-template-columns: 1fr; }
+      .cyber-step-top { grid-column: auto; }
+      .cyber-step-image { height: 170px; min-height: 0; }
+    }
+
     @media (min-width: 851px) {
       .home-hero { grid-template-columns: minmax(0, 1fr); }
 
@@ -1916,6 +2208,8 @@
       .project-card:hover, .image-gallery .gallery-item:hover { transform: none; }
       .values-orbit-ring { animation: none; }
       .tech-stack-card, .tech-stack-card:hover { transform: none; transition: none; }
+      .cyber-reveal { opacity: 1; transform: none; transition: none; }
+      .cyber-step, .cyber-step:hover, .cyber-step-image { transform: none; transition: none; }
     }
   </style>
 </head>
@@ -2207,67 +2501,104 @@
       </section>
       <!-- PAGE 3: CYBERSECURITE & DEVSECOPS -->
       <section class="page cyber-page">
-        <h1 class="main-title highlight-cyber">Sécurité& DevSecOps</h1>
-        <div class="section-block">
-          <h2>Incident Response & Forensic</h2>
-          <ul>
-            <li>Investigation de sécurité et analyse forensic (compromission système et réseau)</li>
-            <li>Détection de ralentissements réseau, connexions suspectes, enquête forensic complète</li>
-            <li>Identification de l’origine de l’attaque, actions réalisées, impact sur le système</li>
-          </ul>
-        </div>
-        <div class="section-block">
-          <h2>Architecture de détection & d’analyse</h2>
-          <div class="image-gallery gallery-2">
-            <div class="gallery-item">
-              <img src="images/snort.jfif" alt="Snort IDS">
-              <div class="description">IDS réseau : Snort (CSI Linux)</div>
-            </div>
-            <div class="gallery-item">
-              <img src="images/elk.jpg" alt="ELK Stack">
-              <div class="description">SIEM : ELK Stack (Elasticsearch, Logstash, Kibana)</div>
-            </div>
-            <div class="gallery-item">
-              <img src="images/Wireshark.jpg" alt="Wireshark">
-              <div class="description">Forensic réseau : Wireshark</div>
-            </div>
-            <div class="gallery-item">
-              <img src="images/Autopsy.jpg" alt="Autopsy">
-              <div class="description">Forensic disque : Autopsy</div>
+        <h1 class="main-title highlight-cyber">Sécurité & DevSecOps</h1>
+        <section class="cyber-hero cyber-reveal" aria-labelledby="cyber-hero-title">
+          <div class="cyber-hero-copy">
+            <span class="cyber-eyebrow">Incident response · Forensic · DevSecOps</span>
+            <h2 id="cyber-hero-title">De l’alerte à une réponse <span>qui renforce.</span></h2>
+            <p>Une investigation de sécurité suit un fil clair : repérer les signaux, préserver les preuves, reconstituer les faits et transformer les constats en actions concrètes.</p>
+            <div class="cyber-hero-tags" aria-label="Domaines de pratique">
+              <span>Détection</span><span>Investigation</span><span>Corrélation</span><span>Remédiation</span>
             </div>
           </div>
-          <ul>
-            <li>Environnement technique : Thonny, ESP32, phase de détection, centralisation & corrélation</li>
-          </ul>
-        </div>
-        <div class="section-block">
-          <h2>Détection & Analyse de l’attaque</h2>
-          <ol>
-            <li><b>Détection IDS (Snort)</b> : scan réseau, tentatives SSH, alertes horodatées</li>
-            <li><b>Centralisation & Corrélation (ELK)</b> : logs Snort vers ELK, analyse Kibana, identification IP attaquante</li>
-            <li><b>Analyse réseau avancée (Wireshark)</b> : analyse PCAP, reconstruction flux TCP, confirmation connexion SSH</li>
-            <li><b>Analyse forensic disque (Autopsy)</b> : analyse image disque, création fichiers malveillants, exécution scripts, traces attaquant</li>
-          </ol>
-        </div>
-        <div class="section-block">
-          <h2>Corrélation & Reconstitution de l’attaque</h2>
-          <ul>
-            <li>Corrélation des preuves : réseau (Snort, Wireshark), logs centralisés (ELK), système (Autopsy)</li>
-            <li>Reconstitution complète de la chaîne d’attaque</li>
-            <li>Production de preuves exploitables en contexte académique et professionnel</li>
-          </ul>
-        </div>
-        <div class="section-block">
-          <h2>Recommandations de sécurité</h2>
-          <ul>
-            <li>Renforcement de l’authentification SSH</li>
-            <li>Segmentation du réseau</li>
-            <li>Durcissement des règles Snort</li>
-            <li>Surveillance continue</li>
-            <li>Renforcement des politiques de journalisation</li>
-          </ul>
-        </div>
-        <div class="section-block">
+          <figure class="cyber-hero-art">
+            <img src="images/Wireshark.jpg" alt="Illustration d’une investigation de sécurité en salle d’analyse">
+            <figcaption>Une méthode, des preuves, une réponse<span>Pratique en laboratoire et périmètre autorisé</span></figcaption>
+          </figure>
+        </section>
+
+        <section class="cyber-intro cyber-reveal" aria-label="Incident Response & Forensic">
+          <article class="cyber-intro-card">
+            <h2>Incident Response & Forensic</h2>
+            <p>Enquête sur des incidents de sécurité et analyse forensic de compromissions système et réseau.</p>
+          </article>
+          <article class="cyber-intro-card">
+            <ul>
+              <li>Détecter les ralentissements réseau et les connexions suspectes.</li>
+              <li>Identifier l’origine de l’incident, les actions réalisées et leur impact.</li>
+              <li>Relier les indices réseau, les journaux et les traces système.</li>
+            </ul>
+          </article>
+        </section>
+
+        <section class="cyber-journey" aria-labelledby="cyber-journey-title">
+          <div class="cyber-section-heading cyber-reveal">
+            <div>
+              <span class="cyber-section-kicker">Le fil conducteur</span>
+              <h2 id="cyber-journey-title">Quatre étapes, des signaux à la chronologie.</h2>
+            </div>
+            <p>Chaque outil éclaire une partie de l’enquête; c’est leur corrélation qui permet de comprendre l’incident.</p>
+          </div>
+          <div class="cyber-timeline">
+            <article class="cyber-step cyber-reveal">
+              <div class="cyber-step-top"><span class="cyber-step-number">01</span><span>REPÉRER</span></div>
+              <img class="cyber-step-image" src="images/snort.jfif" alt="Illustration du système de détection réseau Snort">
+              <div class="cyber-step-copy">
+                <h3>Détecter les signaux</h3>
+                <p>Repérer scans réseau et tentatives SSH à partir d’alertes horodatées.</p>
+                <span class="cyber-step-tool">Snort · IDS</span>
+              </div>
+            </article>
+            <article class="cyber-step cyber-reveal">
+              <div class="cyber-step-top"><span class="cyber-step-number">02</span><span>ANALYSER</span></div>
+              <img class="cyber-step-image" src="images/Wireshark.jpg" alt="Illustration de l’analyse des échanges réseau">
+              <div class="cyber-step-copy">
+                <h3>Examiner les échanges</h3>
+                <p>Analyser les captures PCAP, reconstruire les flux TCP et vérifier les connexions observées.</p>
+                <span class="cyber-step-tool">Wireshark · PCAP</span>
+              </div>
+            </article>
+            <article class="cyber-step cyber-reveal">
+              <div class="cyber-step-top"><span class="cyber-step-number">03</span><span>CORRÉLER</span></div>
+              <img class="cyber-step-image" src="images/elk.jpg" alt="Illustration de centralisation et corrélation de journaux">
+              <div class="cyber-step-copy">
+                <h3>Relier les indices</h3>
+                <p>Centraliser les journaux Snort et les explorer pour rapprocher les événements et les adresses IP observées.</p>
+                <span class="cyber-step-tool">ELK · Kibana</span>
+              </div>
+            </article>
+            <article class="cyber-step cyber-reveal">
+              <div class="cyber-step-top"><span class="cyber-step-number">04</span><span>RECONSTITUER</span></div>
+              <img class="cyber-step-image" src="images/Autopsy.jpg" alt="Illustration de l’analyse forensic d’un disque">
+              <div class="cyber-step-copy">
+                <h3>Établir la chronologie</h3>
+                <p>Examiner une image disque, les fichiers créés, l’exécution de scripts et les traces laissées sur le système.</p>
+                <span class="cyber-step-tool">Autopsy · Forensic</span>
+              </div>
+            </article>
+          </div>
+          <div class="cyber-environment cyber-reveal"><strong>Environnement de pratique</strong><span>Thonny · ESP32 · détection · centralisation et corrélation des événements</span></div>
+        </section>
+
+        <section class="cyber-outcome cyber-reveal" aria-label="Résultats et recommandations">
+          <div>
+            <span class="cyber-section-kicker">De l’analyse à l’action</span>
+            <h2>Relier les faits. Réduire les risques.</h2>
+            <p>La corrélation des preuves réseau (Snort, Wireshark), des journaux (ELK) et des traces système (Autopsy) aide à reconstituer la chaîne d’attaque et à produire des constats exploitables.</p>
+          </div>
+          <div>
+            <h2>Recommandations de sécurité</h2>
+            <ul>
+              <li>Renforcer l’authentification SSH</li>
+              <li>Segmenter le réseau</li>
+              <li>Durcir les règles Snort</li>
+              <li>Surveiller en continu</li>
+              <li>Renforcer la journalisation</li>
+            </ul>
+          </div>
+        </section>
+
+        <div class="section-block cyber-toolkit cyber-reveal">
           <h2>Outils de sécurité utilisés et testés</h2>
           <p class="toolkit-intro">Pratique réalisée dans des laboratoires, des CTF et des périmètres explicitement autorisés. Les tests sont limités au cadre défini, sans collecte de données réelles ni impact sur des systèmes tiers.</p>
           <div class="toolkit-grid">
@@ -2403,6 +2734,57 @@
       'Développement Fullstack': 'Full-Stack Development',
       'Sécurité & DevSecOps': 'Cybersecurity & DevSecOps',
       'Sécurité& DevSecOps': 'Cybersecurity & DevSecOps',
+      'Incident response · Forensic · DevSecOps': 'Incident response · Forensics · DevSecOps',
+      'De l’alerte à une réponse': 'From alert to a response',
+      'qui renforce.': 'that makes systems stronger.',
+      'Une investigation de sécurité suit un fil clair : repérer les signaux, préserver les preuves, reconstituer les faits et transformer les constats en actions concrètes.': 'A security investigation follows a clear path: spot the signals, preserve the evidence, establish what happened, and turn findings into practical actions.',
+      'Détection': 'Detection',
+      'Investigation': 'Investigation',
+      'Corrélation': 'Correlation',
+      'Remédiation': 'Remediation',
+      'Domaines de pratique': 'Areas of practice',
+      'Illustration d’une investigation de sécurité en salle d’analyse': 'Illustration of a security investigation in an analysis room',
+      'Illustration de centralisation et corrélation de journaux': 'Illustration of log centralization and correlation',
+      'Une méthode, des preuves, une réponse': 'A method, evidence, and a response',
+      'Pratique en laboratoire et périmètre autorisé': 'Lab practice and authorized scope',
+      'Incident Response & Forensic': 'Incident Response & Forensics',
+      'Enquête sur des incidents de sécurité et analyse forensic de compromissions système et réseau.': 'Investigate security incidents and conduct digital forensics on system and network compromises.',
+      'Détecter les ralentissements réseau et les connexions suspectes.': 'Detect network slowdowns and suspicious connections.',
+      'Identifier l’origine de l’incident, les actions réalisées et leur impact.': 'Identify the incident source, actions taken, and their impact.',
+      'Relier les indices réseau, les journaux et les traces système.': 'Connect network indicators, logs, and system artifacts.',
+      'Le fil conducteur': 'The investigation flow',
+      'Quatre étapes, des signaux à la chronologie.': 'Four steps, from signals to a timeline.',
+      'Chaque outil éclaire une partie de l’enquête; c’est leur corrélation qui permet de comprendre l’incident.': 'Each tool reveals part of the investigation; correlating them helps explain the incident.',
+      'REPÉRER': 'DETECT',
+      'ANALYSER': 'ANALYZE',
+      'CORRÉLER': 'CORRELATE',
+      'RECONSTITUER': 'RECONSTRUCT',
+      'Illustration du système de détection réseau Snort': 'Illustration of the Snort network intrusion detection system',
+      'Détecter les signaux': 'Detect the signals',
+      'Repérer scans réseau et tentatives SSH à partir d’alertes horodatées.': 'Identify network scans and SSH attempts through timestamped alerts.',
+      'Wireshark · PCAP': 'Wireshark · PCAP',
+      'Snort · IDS': 'Snort · IDS',
+      'ELK · Kibana': 'ELK · Kibana',
+      'Autopsy · Forensic': 'Autopsy · Forensics',
+      'Examiner les échanges': 'Inspect network traffic',
+      'Analyser les captures PCAP, reconstruire les flux TCP et vérifier les connexions observées.': 'Analyze PCAP captures, reconstruct TCP streams, and verify observed connections.',
+      'Illustration de l’analyse des échanges réseau': 'Illustration of network traffic analysis',
+      'Centraliser les journaux Snort et les explorer pour rapprocher les événements et les adresses IP observées.': 'Centralize Snort logs and explore them to correlate events and observed IP addresses.',
+      'Établir la chronologie': 'Establish the timeline',
+      'Examiner une image disque, les fichiers créés, l’exécution de scripts et les traces laissées sur le système.': 'Examine a disk image, created files, script execution, and traces left on the system.',
+      'Illustration de l’analyse forensic d’un disque': 'Illustration of forensic disk analysis',
+      'Environnement de pratique': 'Lab environment',
+      'Thonny · ESP32 · détection · centralisation et corrélation des événements': 'Thonny · ESP32 · detection · event centralization and correlation',
+      'Résultats et recommandations': 'Findings and recommendations',
+      'De l’analyse à l’action': 'From analysis to action',
+      'Relier les faits. Réduire les risques.': 'Connect the evidence. Reduce the risk.',
+      'La corrélation des preuves réseau (Snort, Wireshark), des journaux (ELK) et des traces système (Autopsy) aide à reconstituer la chaîne d’attaque et à produire des constats exploitables.': 'Correlating network evidence (Snort, Wireshark), logs (ELK), and system artifacts (Autopsy) helps reconstruct the incident timeline and produce actionable findings.',
+      'Recommandations de sécurité': 'Security recommendations',
+      'Renforcer l’authentification SSH': 'Strengthen SSH authentication',
+      'Segmenter le réseau': 'Segment the network',
+      'Durcir les règles Snort': 'Harden Snort rules',
+      'Surveiller en continu': 'Monitor continuously',
+      'Renforcer la journalisation': 'Improve logging',
       'Voir mon CV': 'View my résumé',
       'Portfolio · Dakar, Sénégal': 'Portfolio · Dakar, Senegal',
       'Développeur Fullstack': 'Full-Stack Developer',
@@ -2742,6 +3124,34 @@
       button.innerHTML = `${label} <span aria-hidden="true">${symbol}</span>`;
     }
 
+    let cyberRevealObserver;
+
+    function initializeCyberReveal() {
+      const elements = document.querySelectorAll('.cyber-reveal');
+      if (cyberRevealObserver) {
+        cyberRevealObserver.disconnect();
+      }
+      if (document.visibilityState === 'hidden' || !('IntersectionObserver' in window)) {
+        elements.forEach(element => element.classList.add('is-visible'));
+        return;
+      }
+
+      cyberRevealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            cyberRevealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      elements.forEach(element => {
+        if (!element.classList.contains('is-visible')) {
+          cyberRevealObserver.observe(element);
+        }
+      });
+    }
+
     function showPage(idx) {
       const pages = document.querySelectorAll('.page');
       const navs = document.querySelectorAll('.nav-btn');
@@ -2750,6 +3160,9 @@
         p.classList.toggle('active', i === idx);
         navs[i].classList.toggle('active', i === idx);
       });
+      if (idx === 2) {
+        initializeCyberReveal();
+      }
       if (contactWidget) {
         contactWidget.style.display = idx === 0 ? 'grid' : 'none';
         if (idx !== 0) {
@@ -2763,6 +3176,7 @@
 
     window.addEventListener('DOMContentLoaded', function() {
       showPage(0);
+      initializeCyberReveal();
       if (sessionStorage.getItem('portfolioLanguage') === 'en') {
         toggleLanguage();
       }
