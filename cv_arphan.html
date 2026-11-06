@@ -1591,10 +1591,313 @@
       .image-gallery.gallery-2, .image-gallery.gallery-3 { grid-template-columns: 1fr; }
     }
 
+    .approach-band .band-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(220px, 0.7fr) 150px;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .values-orbit {
+      position: relative;
+      display: grid;
+      width: 140px;
+      height: 140px;
+      place-items: center;
+      justify-self: end;
+      color: #424a31;
+      isolation: isolate;
+    }
+
+    .values-orbit::before,
+    .values-orbit::after,
+    .values-orbit-ring {
+      position: absolute;
+      inset: 12px;
+      border: 1px solid #dfe5d4;
+      border-radius: 50%;
+      content: "";
+    }
+
+    .values-orbit::before {
+      inset: 26px;
+      border-color: #e7eadf;
+      background: radial-gradient(circle, #f8f9f4 0%, #fff 72%);
+      box-shadow: 0 8px 24px rgba(34, 43, 26, 0.08);
+    }
+
+    .values-orbit::after {
+      inset: 4px;
+      border-color: rgba(111, 130, 42, 0.14);
+    }
+
+    .values-orbit-ring {
+      inset: 12px;
+      border: 1px dashed #91a45b;
+      animation: values-orbit-spin 18s linear infinite;
+    }
+
+    .values-orbit-ring::before,
+    .values-orbit-ring::after {
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #b6d84b;
+      content: "";
+    }
+
+    .values-orbit-ring::before { top: 16px; left: 18px; }
+    .values-orbit-ring::after { right: 12px; bottom: 24px; width: 5px; height: 5px; background: #e6b365; }
+
+    .values-orbit-core {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      width: 75px;
+      height: 75px;
+      align-content: center;
+      justify-items: center;
+      border-radius: 50%;
+      color: #565b48;
+      font-size: 0.64rem;
+      font-weight: 700;
+      line-height: 1.25;
+      text-align: center;
+    }
+
+    .values-orbit-core strong {
+      color: #687d25;
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+    }
+
+    .values-orbit-label {
+      position: absolute;
+      z-index: 2;
+      padding: 5px 8px;
+      border: 1px solid #e6e8df;
+      border-radius: 999px;
+      background: #fff;
+      color: #505448;
+      font-size: 0.58rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .values-orbit-label.integrity { top: 0; left: 50%; transform: translateX(-50%); }
+    .values-orbit-label.agility { right: -9px; top: 50%; transform: translateY(-50%); }
+    .values-orbit-label.security { bottom: 0; left: 50%; transform: translateX(-50%); }
+
+    @keyframes values-orbit-spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .page { box-sizing: border-box; }
+    .tech-stack-section { margin: 0 0 42px; }
+    .tech-stack-heading { margin: 0 0 18px; }
+    .tech-stack-heading h2 {
+      margin: 0 0 7px;
+      color: var(--ink);
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(1.45rem, 2.7vw, 2rem);
+      letter-spacing: -0.04em;
+    }
+    .tech-stack-heading p { max-width: 650px; margin: 0; color: #70736a; line-height: 1.65; }
+    .tech-stack-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .tech-stack-card {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(24, 27, 21, 0.04);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .tech-stack-card:hover { transform: translateY(-3px); box-shadow: 0 14px 28px rgba(24, 27, 21, 0.09); }
+    .tech-stack-card h3 {
+      margin: 0 0 14px;
+      color: #73766c;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .tech-stack-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tech-stack-tags span {
+      padding: 7px 10px;
+      border: 1px solid #e6e8df;
+      border-radius: 999px;
+      background: #f7f8f3;
+      color: #42463d;
+      font-size: 0.76rem;
+      font-weight: 600;
+    }
+
+    @media (max-width: 900px) {
+      .approach-band .band-heading { grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr); }
+      .values-orbit { grid-column: 1 / -1; justify-self: center; }
+      .tech-stack-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 600px) {
+      .approach-band .band-heading { grid-template-columns: 1fr; }
+      .values-orbit { grid-column: auto; }
+      .tech-stack-grid { grid-template-columns: 1fr; }
+      .tech-stack-card { padding: 18px; }
+    }
+
+    @media (min-width: 851px) {
+      .home-hero { grid-template-columns: minmax(0, 1fr); }
+
+      .hero-portrait {
+        position: absolute;
+        inset: 0 0 0 auto;
+        width: 53%;
+        max-width: none;
+        margin: 0;
+        z-index: 0;
+      }
+
+      .portrait-frame {
+        position: absolute;
+        inset: 0;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      .portrait-frame::after {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, #151612 0%, rgba(21, 22, 18, 0.52) 22%, transparent 62%), linear-gradient(0deg, rgba(21, 22, 18, 0.92), transparent 30%);
+        content: "";
+        pointer-events: none;
+      }
+
+      .portrait-image {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: auto;
+        border-radius: 0;
+        object-fit: cover;
+        object-position: center 20%;
+        -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 38%);
+        mask-image: linear-gradient(90deg, transparent 0%, #000 38%);
+      }
+
+      .portrait-caption {
+        position: absolute;
+        z-index: 1;
+        right: auto;
+        bottom: 22px;
+        left: clamp(18px, 3vw, 40px);
+        max-width: 210px;
+        padding: 10px 12px;
+        margin: 0;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 9px;
+        background: rgba(24, 26, 21, 0.78);
+        backdrop-filter: blur(8px);
+      }
+
+      .hero-console {
+        position: absolute;
+        z-index: 2;
+        right: clamp(16px, 3vw, 38px);
+        bottom: 18px;
+        box-sizing: border-box;
+        width: min(320px, 52%);
+        border-color: rgba(255, 255, 255, 0.18);
+        background: rgba(24, 26, 21, 0.84);
+        backdrop-filter: blur(8px);
+      }
+    }
+
+    @media (max-width: 850px) {
+      .home-hero { grid-template-columns: minmax(0, 1fr); }
+
+      .hero-portrait {
+        position: relative;
+        inset: auto;
+        width: min(100%, 540px);
+        height: clamp(340px, 68vw, 480px);
+        max-width: none;
+        margin: 0 auto;
+        z-index: 0;
+      }
+
+      .portrait-frame {
+        position: absolute;
+        inset: 0 0 46px;
+        padding: 0;
+        overflow: hidden;
+        border: 0;
+        border-radius: 14px;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      .portrait-frame::after {
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: linear-gradient(180deg, #151612 0%, rgba(21, 22, 18, 0.22) 28%, transparent 54%, rgba(21, 22, 18, 0.7) 100%);
+        content: "";
+        pointer-events: none;
+      }
+
+      .portrait-image {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: auto;
+        border-radius: inherit;
+        object-fit: cover;
+        object-position: center top;
+        -webkit-mask-image: none;
+        mask-image: none;
+      }
+
+      .portrait-caption {
+        position: absolute;
+        z-index: 1;
+        top: auto;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        max-width: none;
+        padding: 8px 0;
+        margin: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        backdrop-filter: none;
+      }
+
+      .hero-console {
+        position: absolute;
+        z-index: 2;
+        right: 16px;
+        bottom: 56px;
+        box-sizing: border-box;
+        width: min(320px, calc(100% - 32px));
+        padding: 8px;
+        background: rgba(24, 26, 21, 0.88);
+        backdrop-filter: blur(8px);
+      }
+
+      .console-heading { margin-bottom: 5px; }
+      .console-steps { gap: 5px; }
+      .console-verdict { margin-top: 6px; padding: 5px 7px; }
+      .console-note { display: none; }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .project-card, .gallery-item, .nav-btn, .contact-option { transition: none; }
       .project-card:hover, .image-gallery .gallery-item:hover { transform: none; }
+      .values-orbit-ring { animation: none; }
+      .tech-stack-card, .tech-stack-card:hover { transform: none; transition: none; }
     }
   </style>
 </head>
@@ -1672,6 +1975,13 @@
           <div class="band-heading">
             <h2 id="approach-title">Du besoin métier à une solution prête à évoluer.</h2>
             <p>Un équilibre entre expérience utilisateur, architecture applicative et sécurité, de la conception à la mise en production.</p>
+            <div class="values-orbit" role="img" aria-label="Mes repères : intégrité, agilité et sécurité">
+              <span class="values-orbit-ring" aria-hidden="true"></span>
+              <span class="values-orbit-core" aria-hidden="true"><strong>CAP</strong>construire<br>avec sens</span>
+              <span class="values-orbit-label integrity" aria-hidden="true">Intégrité</span>
+              <span class="values-orbit-label agility" aria-hidden="true">Agilité</span>
+              <span class="values-orbit-label security" aria-hidden="true">Sécurité</span>
+            </div>
           </div>
           <div class="strength-grid">
             <article class="strength-item"><span>01 / CONCEVOIR</span><h3>Comprendre les usages</h3><p>Clarifier le besoin, structurer les parcours et concevoir des interfaces accessibles sur ordinateur comme sur mobile.</p></article>
@@ -1720,6 +2030,26 @@
       <!-- PAGE 2: FULLSTACK -->
       <section class="page">
         <h1 class="main-title">Développement Fullstack</h1>
+        <section class="tech-stack-section" aria-labelledby="tech-stack-title">
+          <div class="tech-stack-heading">
+            <h2 id="tech-stack-title">Langages & technologies</h2>
+            <p>Un aperçu des langages et outils que j’utilise pour concevoir des interfaces, des applications et leurs services backend.</p>
+          </div>
+          <div class="tech-stack-grid">
+            <article class="tech-stack-card">
+              <h3>Langages</h3>
+              <div class="tech-stack-tags"><span>HTML5</span><span>CSS3</span><span>JavaScript (ES6+)</span><span>Python</span></div>
+            </article>
+            <article class="tech-stack-card">
+              <h3>Frontend & mobile</h3>
+              <div class="tech-stack-tags"><span>React.js</span><span>React Native</span><span>Flutter</span><span>Tailwind CSS</span></div>
+            </article>
+            <article class="tech-stack-card">
+              <h3>Backend & données</h3>
+              <div class="tech-stack-tags"><span>Node.js / Express</span><span>Django REST Framework</span><span>MySQL</span><span>Oracle</span><span>Firebase</span><span>Power BI</span></div>
+            </article>
+          </div>
+        </section>
         <section class="project-section" aria-labelledby="projects-title">
           <div class="project-section-heading">
             <div><h2 id="projects-title">Réalisations avec mon équipe</h2><p>Des projets conçus et développés en équipe, au service de besoins concrets.</p></div>
