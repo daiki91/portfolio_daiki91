@@ -2268,6 +2268,18 @@
       .cyber-reveal { opacity: 1; transform: none; transition: none; }
       .cyber-step, .cyber-step:hover, .cyber-step-image { transform: none; transition: none; }
     }
+    .reports-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .report-preview {
+      height: 320px;
+      overflow: hidden;
+      border-bottom: 1px solid #e1e9e4;
+      background: #f3f5f1;
+    }
+    .report-preview iframe { display: block; width: 100%; height: 100%; border: 0; }
+    .report-actions { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 16px; }
+    @media (max-width: 700px) {
+      .reports-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -2278,6 +2290,7 @@
         <button class="nav-btn active" onclick="showPage(0)">Accueil</button>
         <button class="nav-btn" onclick="showPage(1)">Développement Fullstack</button>
         <button class="nav-btn" onclick="showPage(2)">Sécurité & DevSecOps</button>
+        <button class="nav-btn" onclick="showPage(3)">Rapports</button>
         <a class="nav-btn" href="/cv">Voir mon CV</a>
         <button class="language-toggle" id="language-toggle" type="button" onclick="toggleLanguage()" aria-label="Switch to English" title="Switch to English">EN</button>
       </nav>
@@ -2820,6 +2833,45 @@
           <span class="tag">DevSecOps mindset</span>
         </div>
       </section>
+      <section class="page" aria-labelledby="reports-title">
+        <h1 class="main-title" id="reports-title">Rapports & travaux</h1>
+        <section class="project-section" aria-labelledby="reports-section-title">
+          <div class="project-section-heading">
+            <div><h2 id="reports-section-title">Mes rapports</h2><p>Consultez les rapports et travaux illustrés disponibles.</p></div>
+            <p>Les documents sont conservés dans le dossier rapport.</p>
+          </div>
+          <div class="project-grid reports-grid">
+            <article class="project-card">
+              <div class="report-preview">
+                <iframe src="rapport/Rapport_Messagerie_Entreprise_Kali_WSL_illustre_mis_a_jour.pdf#page=1&amp;toolbar=0" title="Aperçu du rapport sur la messagerie d’entreprise" loading="lazy"></iframe>
+              </div>
+              <div class="project-card-content">
+                <span class="project-type">Rapport illustré</span>
+                <h3>Messagerie d’entreprise sous Kali Linux / WSL</h3>
+                <p>Rapport illustré sur la mise en place d’une messagerie d’entreprise dans un environnement Kali Linux sous WSL.</p>
+                <div class="report-actions">
+                  <a class="project-link" href="rapport/Rapport_Messagerie_Entreprise_Kali_WSL_illustre_mis_a_jour.pdf" target="_blank" rel="noopener noreferrer">Lire le rapport <span aria-hidden="true">↗</span></a>
+                  <a class="project-link" href="rapport/Rapport_Messagerie_Entreprise_Kali_WSL_illustre_mis_a_jour.pdf" download>Télécharger le PDF <span aria-hidden="true">↓</span></a>
+                </div>
+              </div>
+            </article>
+            <article class="project-card">
+              <div class="report-preview">
+                <iframe src="rapport/memoire_Arphan_Bodian.pdf#page=1&amp;toolbar=0" title="Aperçu du mémoire d’Arphan Bodian" loading="lazy"></iframe>
+              </div>
+              <div class="project-card-content">
+                <span class="project-type">Mémoire</span>
+                <h3>Mémoire d’Arphan Bodian</h3>
+                <p>Mémoire de fin d’études d’Arphan Bodian, disponible au format PDF.</p>
+                <div class="report-actions">
+                  <a class="project-link" href="rapport/memoire_Arphan_Bodian.pdf" target="_blank" rel="noopener noreferrer">Lire le mémoire <span aria-hidden="true">↗</span></a>
+                  <a class="project-link" href="rapport/memoire_Arphan_Bodian.pdf" download>Télécharger le PDF <span aria-hidden="true">↓</span></a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+      </section>
     </main>
   </div>
   <aside class="contact-widget" id="contact-widget">
@@ -2839,6 +2891,22 @@
       'Accueil': 'Home',
       'Développement Fullstack': 'Full-Stack Development',
       'Sécurité & DevSecOps': 'Security & DevSecOps',
+      'Rapports': 'Reports',
+      'Rapports & travaux': 'Reports & work',
+      'Mes rapports': 'My reports',
+      'Consultez les rapports et travaux illustrés disponibles.': 'Browse the available illustrated reports and work.',
+      'Les documents sont conservés dans le dossier rapport.': 'The documents are stored in the reports folder.',
+      'Rapport illustré': 'Illustrated report',
+      'Messagerie d’entreprise sous Kali Linux / WSL': 'Company messaging server on Kali Linux / WSL',
+      'Rapport illustré sur la mise en place d’une messagerie d’entreprise dans un environnement Kali Linux sous WSL.': 'An illustrated report on setting up a company messaging server in a Kali Linux environment on WSL.',
+      'Lire le rapport': 'Read report',
+      'Mémoire': 'Thesis',
+      'Mémoire d’Arphan Bodian': 'Arphan Bodian’s thesis',
+      'Mémoire de fin d’études d’Arphan Bodian, disponible au format PDF.': 'Arphan Bodian’s final-year thesis, available as a PDF.',
+      'Lire le mémoire': 'Read thesis',
+      'Télécharger le PDF': 'Download PDF',
+      'Aperçu du rapport sur la messagerie d’entreprise': 'Preview of the company messaging report',
+      'Aperçu du mémoire d’Arphan Bodian': 'Preview of Arphan Bodian’s thesis',
       'Sécurité& DevSecOps': 'Security & DevSecOps',
       'Incident response · Forensic · DevSecOps': 'Incident response · Forensics · DevSecOps',
       'De l’alerte à une réponse': 'From alert to a response',
@@ -3245,6 +3313,16 @@
             element.dataset.originalAlt = element.getAttribute('alt');
           }
           element.setAttribute('alt', english ? translation : element.dataset.originalAlt);
+        }
+      });
+
+      document.querySelectorAll('[title]').forEach(element => {
+        const translation = englishTranslations[element.getAttribute('title')];
+        if (translation) {
+          if (!element.dataset.originalTitle) {
+            element.dataset.originalTitle = element.getAttribute('title');
+          }
+          element.setAttribute('title', english ? translation : element.dataset.originalTitle);
         }
       });
 
