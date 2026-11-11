@@ -583,11 +583,11 @@
     .permis-flow { position: relative; margin: 0 0 17px; padding: 0 0 8px; text-align: center; }
     .permis-flow-core { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 8px; padding: 8px 13px; border: 1px solid #c9ddd6; border-radius: 999px; background: #edf5f1; color: #315d52; font-size: 0.73rem; font-weight: 800; }
     .permis-flow-core span { display: grid; width: 25px; height: 25px; place-items: center; border-radius: 50%; background: #34745b; color: #fff; font-size: 0.58rem; }
-    .permis-flow-nodes { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 17px; }
-    .permis-flow-nodes::before { position: absolute; top: -9px; right: 16.66%; left: 16.66%; height: 1px; background: #b8cec5; content: ""; }
+    .permis-flow-nodes { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 17px; }
+    .permis-flow-nodes::before { position: absolute; top: -9px; right: 12.5%; left: 12.5%; height: 1px; background: #b8cec5; content: ""; }
     .permis-flow-nodes span { position: relative; z-index: 1; justify-self: center; padding: 5px 9px; border: 1px solid #e1e9e4; border-radius: 999px; background: #fff; color: #536763; font-size: 0.68rem; font-weight: 700; }
     .permis-flow-nodes span::before { position: absolute; bottom: 100%; left: 50%; width: 1px; height: 9px; background: #b8cec5; content: ""; }
-    .permis-portal-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .permis-portal-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
     .permis-portal-card { display: flex; flex-direction: column; }
     .permis-portal-card .project-preview { aspect-ratio: 1.55; }
     .permis-art { position: absolute; inset: 0; overflow: hidden; background: linear-gradient(135deg, #dce8f1, #b6d2d7); color: #203d4d; }
@@ -607,18 +607,29 @@
     .permis-stats b { display: block; margin-bottom: 2px; color: #2a7164; font-size: 0.6rem; }
     .permis-progress { height: 6px; margin-top: 9px; overflow: hidden; border-radius: 6px; background: #e7eeee; }
     .permis-progress i { display: block; width: 68%; height: 100%; border-radius: inherit; background: #7ab8a3; }
-    .permis-mobile-art { display: flex; align-items: center; justify-content: center; gap: 12px; background: linear-gradient(135deg, #d9eae1, #b9d6d1); }
-    .permis-phone { position: relative; display: flex; width: 25%; height: 84%; min-width: 0; flex-direction: column; padding: 15px 7px 8px; border: 3px solid #183b43; border-radius: 13px; background: #f9fcfa; box-shadow: 0 8px 18px rgba(22, 53, 65, 0.2); }
-    .permis-phone::before { position: absolute; top: 5px; left: 50%; width: 20px; height: 3px; border-radius: 4px; background: #183b43; content: ""; transform: translateX(-50%); }
-    .permis-phone small { margin-top: 4px; color: #68827e; font-size: 0.34rem; font-weight: 800; }
-    .permis-phone strong { margin-top: 5px; color: #214f4e; font-size: 0.5rem; }
-    .permis-phone span { margin-top: 4px; color: #81918d; font-size: 0.36rem; line-height: 1.35; }
-    .permis-phone-visual { position: relative; display: block; height: 34px; margin-top: 7px; overflow: hidden; border-radius: 4px; background: linear-gradient(140deg, #9ec9bb, #e1eee4); }
-    .permis-phone-visual::before { position: absolute; right: 12%; bottom: 7px; left: 12%; height: 9px; border-radius: 9px 10px 3px 3px; background: #477b71; content: ""; }
-    .permis-phone-visual::after { position: absolute; right: 23%; bottom: 4px; left: 23%; height: 4px; border-radius: 50%; background: #365b56; content: ""; }
-    .permis-course { margin-top: 6px; padding: 5px 4px; border-radius: 4px; background: #e7f2eb; color: #42715f; font-size: 0.34rem; line-height: 1.35; }
-    .permis-course i { display: block; height: 3px; margin-top: 4px; border-radius: 4px; background: #c1d9cb; }
-    .permis-request-state { display: block; margin-top: 8px; padding: 5px 3px; border: 1px solid #d8e9df; border-radius: 4px; color: #38745f; font-size: 0.32rem; text-align: center; }
+    .permis-location-art { position: absolute; inset: 0; overflow: hidden; padding: 7px; background: #f6f3eb; color: #1d3838; }
+    .permis-location-window { height: 100%; overflow: hidden; border: 1px solid #e8e1d7; border-radius: 6px; background: #fff; box-shadow: 0 7px 18px rgba(22, 53, 65, 0.12); }
+    .permis-location-topbar { display: flex; align-items: center; justify-content: space-between; height: 25px; padding: 0 8px; border-bottom: 1px solid #eee9df; }
+    .permis-location-brand { display: flex; align-items: center; gap: 5px; min-width: 0; }
+    .permis-location-brand > b { display: grid; width: 15px; height: 15px; place-items: center; border-radius: 4px; background: #173d3c; color: #fff; font-size: 0.42rem; }
+    .permis-location-brand > span { color: #1d3838; font-size: 0.43rem; font-weight: 800; line-height: 1.05; }
+    .permis-location-brand small { display: block; margin-top: 2px; color: #71817b; font-size: 0.28rem; font-weight: 700; letter-spacing: 0.04em; }
+    .permis-location-user { display: flex; align-items: center; gap: 4px; color: #61716c; font-size: 0.34rem; }
+    .permis-location-user i { display: grid; width: 13px; height: 13px; place-items: center; border-radius: 50%; background: #edf2eb; color: #34745b; font-size: 0.32rem; font-style: normal; font-weight: 800; }
+    .permis-location-tabs { display: flex; align-items: stretch; gap: 13px; height: 20px; padding: 0 9px; border-bottom: 1px solid #eee9df; color: #78827c; font-size: 0.34rem; }
+    .permis-location-tabs span, .permis-location-tabs strong { display: flex; align-items: center; white-space: nowrap; }
+    .permis-location-tabs strong { border-bottom: 2px solid #b45b3e; color: #244b48; font-weight: 800; }
+    .permis-location-list { display: grid; gap: 4px; padding: 6px; background: #f8f7f3; }
+    .permis-location-request { display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; align-items: center; gap: 5px; min-height: 43px; padding: 4px; border: 1px solid #e9e4da; border-radius: 5px; background: #fff; }
+    .permis-location-car { position: relative; display: block; width: 24px; height: 24px; overflow: hidden; border-radius: 4px; background: linear-gradient(145deg, #c9d8ce, #eff0e8); }
+    .permis-location-car::before { position: absolute; right: 3px; bottom: 7px; left: 3px; height: 7px; border-radius: 5px 6px 2px 2px; background: #536e65; content: ""; }
+    .permis-location-car::after { position: absolute; right: 6px; bottom: 5px; left: 6px; height: 3px; border-right: 2px solid #344c46; border-left: 2px solid #344c46; border-radius: 50%; content: ""; }
+    .permis-location-details { display: grid; min-width: 0; gap: 2px; }
+    .permis-location-details strong { overflow: hidden; color: #293d39; font-size: 0.38rem; text-overflow: ellipsis; white-space: nowrap; }
+    .permis-location-details span, .permis-location-details small { overflow: hidden; color: #77827c; font-size: 0.3rem; text-overflow: ellipsis; white-space: nowrap; }
+    .permis-location-actions { display: grid; justify-items: end; gap: 4px; }
+    .permis-location-actions b { padding: 3px 5px; border-radius: 999px; background: #e8f3f1; color: #397066; font-size: 0.29rem; white-space: nowrap; }
+    .permis-location-actions span { padding: 3px 6px; border-radius: 999px; background: #168d70; color: #fff; font-size: 0.29rem; font-weight: 700; white-space: nowrap; }
     .permis-invoice-lines { display: grid; gap: 4px; margin-top: 8px; padding: 6px 4px; border: 1px solid #e6eeee; border-radius: 4px; }
     .permis-invoice-lines i { display: block; width: 90%; height: 3px; border-radius: 3px; background: #d3e0dc; }
     .permis-invoice-lines i:last-child { width: 58%; }
@@ -701,6 +712,9 @@
     .edge-node.firewall { border-color: #f0d7b4; background: #fff8ec; }
     .edge-node.firewall strong { color: #b46a20; }
     .edge-arrow { color: #8299a2; font-size: 0.7rem; }
+    @media (max-width: 1100px) {
+      .permis-portal-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
     @media (max-width: 900px) {
       .project-grid, .permis-portal-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
@@ -2463,12 +2477,12 @@
             </article>
             <section class="permis-project-cluster" aria-labelledby="permis-project-title">
               <div class="permis-cluster-heading">
-                <h3 id="permis-project-title">Permis · Une plateforme, trois espaces connectés</h3>
+                <h3 id="permis-project-title">Permis · Une plateforme, quatre espaces connectés</h3>
                 <p>Chaque espace a son propre parcours; tous s’appuient sur la même plateforme pour relier gestion, formation et services aux clients.</p>
               </div>
-              <div class="permis-flow" aria-label="Une plateforme Permis relie l’auto-école, les clients et l’agence de location">
+              <div class="permis-flow" aria-label="Une plateforme Permis relie l’auto-école, les élèves, les clients et l’agence de location">
                 <div class="permis-flow-core"><span>API</span>Plateforme PERMIS</div>
-                <div class="permis-flow-nodes"><span>Espace Auto-École</span><span>Client · mobile</span><span>Agence de Location</span></div>
+                <div class="permis-flow-nodes"><span>Espace Auto-École</span><span>Espace Élève</span><span>Client · mobile</span><span>Agence de Location</span></div>
               </div>
               <div class="permis-portal-grid">
                 <article class="project-card permis-portal-card">
@@ -2486,13 +2500,33 @@
                   <div class="project-card-content"><span class="project-type">Formation</span><h3>Espace Auto-École</h3><p>Publier les cours et suivre la progression des élèves depuis un espace de gestion dédié.</p><a class="project-link" href="https://permis-backend-6ddi.onrender.com/autoecole" target="_blank" rel="noopener noreferrer">Visiter l’espace <span aria-hidden="true">↗</span></a></div>
                 </article>
                 <article class="project-card permis-portal-card">
-                  <a class="project-preview" href="https://permis-backend-6ddi.onrender.com/location" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir Mon espace location dans un nouvel onglet">
-                    <div class="permis-art permis-mobile-art" aria-hidden="true">
-                      <div class="permis-phone"><small>MON ESPACE LOCATION</small><strong>Choisir un véhicule</strong><span>Parcourir les véhicules disponibles</span><i class="permis-phone-visual"></i><div class="permis-course">Véhicule · tarif par jour<i></i></div></div>
-                      <div class="permis-phone"><small>MES DEMANDES</small><strong>Ma réservation</strong><span>Suivre ma demande</span><b class="permis-request-state">Demande envoyée</b><div class="permis-course">Ma facture<i></i></div></div>
+                  <a class="project-preview" href="https://permis-backend-6ddi.onrender.com/espace-eleve" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir l’espace Élève dans un nouvel onglet">
+                    <div class="permis-art" aria-hidden="true">
+                      <div class="permis-window">
+                        <div class="permis-topbar"><span>PERMIS</span><span>ESPACE ÉLÈVE</span></div>
+                        <div class="permis-dashboard">
+                          <div class="permis-menu"><i></i><i></i><i></i><i></i></div>
+                          <div class="permis-content"><small>MON APPRENTISSAGE</small><strong>Mes cours</strong><div class="permis-stats"><span><b>COURS</b>à consulter</span><span><b>PROGRÈS</b>personnel</span></div><div class="permis-progress"><i></i></div></div>
+                        </div>
+                      </div>
                     </div>
                   </a>
-                  <div class="project-card-content"><span class="project-type">Application mobile · Client</span><h3>Mon espace location</h3><p>Un parcours mobile pour découvrir les véhicules, créer un compte, suivre ses demandes et retrouver ses factures.</p><a class="project-link" href="https://permis-backend-6ddi.onrender.com/location" target="_blank" rel="noopener noreferrer">Visiter l’espace <span aria-hidden="true">↗</span></a></div>
+                  <div class="project-card-content"><span class="project-type">Formation · Élève</span><h3>Espace Élève</h3><p>Accéder à son espace de formation pour retrouver ses cours et consulter sa progression.</p><a class="project-link" href="https://permis-backend-6ddi.onrender.com/espace-eleve" target="_blank" rel="noopener noreferrer">Visiter l’espace <span aria-hidden="true">↗</span></a></div>
+                </article>
+                <article class="project-card permis-portal-card">
+                  <a class="project-preview" href="https://permis-backend-6ddi.onrender.com/location" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir Mon espace location dans un nouvel onglet">
+                    <div class="permis-location-art" aria-hidden="true">
+                      <div class="permis-location-window">
+                        <div class="permis-location-topbar"><span class="permis-location-brand"><b>P</b><span>Permis<small>MON ESPACE LOCATION</small></span></span><span class="permis-location-user"><i>P</i>Pape</span></div>
+                        <div class="permis-location-tabs"><span>Véhicules</span><strong>Mes demandes</strong><span>Mes factures</span></div>
+                        <div class="permis-location-list">
+                          <div class="permis-location-request"><i class="permis-location-car"></i><div class="permis-location-details"><strong>Toyota pick up</strong><span>Du 02/08/2026 au 07/08/2026</span><small>Dakar · Thiès</small><small>Facture FAC-2026-0003 · 360 000 FCFA</small></div><div class="permis-location-actions"><b>Terminée</b><span>Discuter</span></div></div>
+                          <div class="permis-location-request"><i class="permis-location-car"></i><div class="permis-location-details"><strong>Toyota pick up</strong><span>Du 15/07/2026 au 29/07/2026</span><small>Dakar · Ziguinchor</small><small>Facture FAC-2026-0001 · 1 050 000 FCFA</small></div><div class="permis-location-actions"><b>Terminée</b><span>Discuter</span></div></div>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                  <div class="project-card-content"><span class="project-type">Espace client · Location</span><h3>Mon espace location</h3><p>Un espace client pour retrouver ses demandes de véhicules, échanger avec l’agence et consulter ses factures.</p><a class="project-link" href="https://permis-backend-6ddi.onrender.com/location" target="_blank" rel="noopener noreferrer">Visiter l’espace <span aria-hidden="true">↗</span></a></div>
                 </article>
                 <article class="project-card permis-portal-card">
                   <a class="project-preview" href="https://permis-backend-6ddi.onrender.com/agencelocation" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir l’espace Agence de Location dans un nouvel onglet">
@@ -3038,13 +3072,35 @@
       'Mobilité · Transport': 'Mobility · Transportation',
       'Plateforme de réservation de courses privées et partagées, avec suivi du chauffeur en direct, chauffeurs vérifiés et paiement flexible.': 'A private and shared ride-booking platform with live driver tracking, verified drivers, and flexible payment options.',
       'Participation aux interfaces de réservation et aux parcours chauffeur/passager, ainsi qu’à l’intégration du suivi de course et des informations de trajet.': 'Contributed to booking interfaces and driver/passenger journeys, as well as integrating live ride tracking and trip details.',
-      'Permis · Une plateforme, trois espaces connectés': 'Permis · One platform, three connected portals',
+      'Permis · Une plateforme, quatre espaces connectés': 'Permis · One platform, four connected portals',
       'Chaque espace a son propre parcours; tous s’appuient sur la même plateforme pour relier gestion, formation et services aux clients.': 'Each portal has its own workflow; all use the same platform to connect management, training, and customer services.',
-      'Une plateforme Permis relie l’auto-école, les clients et l’agence de location': 'The Permis platform connects the driving school, customers, and rental agency',
+      'Une plateforme Permis relie l’auto-école, les élèves, les clients et l’agence de location': 'The Permis platform connects the driving school, students, customers, and rental agency',
       'Plateforme PERMIS': 'PERMIS Platform',
       'Client · mobile': 'Customer · mobile',
       'Espace Auto-École': 'Driving School Portal',
+      'Espace Élève': 'Student Portal',
+      'Formation · Élève': 'Training · Student',
+      'ESPACE ÉLÈVE': 'STUDENT PORTAL',
+      'MON APPRENTISSAGE': 'MY LEARNING',
+      'Mes cours': 'My lessons',
+      'à consulter': 'to review',
+      'personnel': 'personal',
+      'Accéder à son espace de formation pour retrouver ses cours et consulter sa progression.': 'Access a personal training space to find lessons and track learning progress.',
       'Mon espace location': 'My Rental Space',
+      'Espace client · Location': 'Customer portal · Rental',
+      'Un espace client pour retrouver ses demandes de véhicules, échanger avec l’agence et consulter ses factures.': 'A customer portal to track vehicle requests, message the agency, and view invoices.',
+      'MON ESPACE LOCATION': 'MY RENTAL SPACE',
+      'Véhicules': 'Vehicles',
+      'Mes demandes': 'My requests',
+      'Mes factures': 'My invoices',
+      'Du 02/08/2026 au 07/08/2026': 'Aug 2–7, 2026',
+      'Du 15/07/2026 au 29/07/2026': 'Jul 15–29, 2026',
+      'Dakar · Thiès': 'Dakar · Thiès',
+      'Dakar · Ziguinchor': 'Dakar · Ziguinchor',
+      'Facture FAC-2026-0003 · 360 000 FCFA': 'Invoice FAC-2026-0003 · 360,000 XOF',
+      'Facture FAC-2026-0001 · 1 050 000 FCFA': 'Invoice FAC-2026-0001 · 1,050,000 XOF',
+      'Terminée': 'Completed',
+      'Discuter': 'Chat',
       'Espace Agence de Location': 'Rental Agency Portal',
       'Agence de Location': 'Rental Agency',
       'AUTO-ÉCOLE': 'DRIVING SCHOOL',
