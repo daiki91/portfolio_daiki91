@@ -2277,6 +2277,7 @@
     }
     .report-preview iframe { display: block; width: 100%; height: 100%; border: 0; }
     .report-actions { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 16px; }
+    .reports-status { grid-column: 1 / -1; margin: 0; color: #5b6b66; }
     @media (max-width: 700px) {
       .reports-grid { grid-template-columns: 1fr; }
     }
@@ -2840,35 +2841,8 @@
             <div><h2 id="reports-section-title">Mes rapports</h2><p>Consultez les rapports et travaux illustrés disponibles.</p></div>
             <p>Les documents sont conservés dans le dossier rapport.</p>
           </div>
-          <div class="project-grid reports-grid">
-            <article class="project-card">
-              <div class="report-preview">
-                <iframe src="rapport/Rapport_Messagerie_Entreprise_Kali_WSL_illustre_mis_a_jour.pdf#page=1&amp;toolbar=0" title="Aperçu du rapport sur la messagerie d’entreprise" loading="lazy"></iframe>
-              </div>
-              <div class="project-card-content">
-                <span class="project-type">Rapport illustré</span>
-                <h3>Messagerie d’entreprise sous Kali Linux / WSL</h3>
-                <p>Rapport illustré sur la mise en place d’une messagerie d’entreprise dans un environnement Kali Linux sous WSL.</p>
-                <div class="report-actions">
-                  <a class="project-link" href="rapport/Rapport_Messagerie_Entreprise_Kali_WSL_illustre_mis_a_jour.pdf" target="_blank" rel="noopener noreferrer">Lire le rapport <span aria-hidden="true">↗</span></a>
-                  <a class="project-link" href="rapport/Rapport_Messagerie_Entreprise_Kali_WSL_illustre_mis_a_jour.pdf" download>Télécharger le PDF <span aria-hidden="true">↓</span></a>
-                </div>
-              </div>
-            </article>
-            <article class="project-card">
-              <div class="report-preview">
-                <iframe src="rapport/memoire_Arphan_Bodian.pdf#page=1&amp;toolbar=0" title="Aperçu du mémoire d’Arphan Bodian" loading="lazy"></iframe>
-              </div>
-              <div class="project-card-content">
-                <span class="project-type">Mémoire</span>
-                <h3>Mémoire d’Arphan Bodian</h3>
-                <p>Mémoire de fin d’études d’Arphan Bodian, disponible au format PDF.</p>
-                <div class="report-actions">
-                  <a class="project-link" href="rapport/memoire_Arphan_Bodian.pdf" target="_blank" rel="noopener noreferrer">Lire le mémoire <span aria-hidden="true">↗</span></a>
-                  <a class="project-link" href="rapport/memoire_Arphan_Bodian.pdf" download>Télécharger le PDF <span aria-hidden="true">↓</span></a>
-                </div>
-              </div>
-            </article>
+          <div class="project-grid reports-grid" id="reports-grid" aria-live="polite">
+            <p class="reports-status">Chargement des rapports…</p>
           </div>
         </section>
       </section>
@@ -2907,6 +2881,13 @@
       'Télécharger le PDF': 'Download PDF',
       'Aperçu du rapport sur la messagerie d’entreprise': 'Preview of the company messaging report',
       'Aperçu du mémoire d’Arphan Bodian': 'Preview of Arphan Bodian’s thesis',
+      'Rapport': 'Report',
+      'Sécurisation du serveur SMTP : SPF, DKIM, DMARC, TLS et Fail2ban': 'Securing an SMTP server: SPF, DKIM, DMARC, TLS and Fail2ban',
+      'Rapport sur la sécurisation d’un serveur de messagerie SMTP avec SPF, DKIM, DMARC, le chiffrement TLS et Fail2ban.': 'A report on securing an SMTP mail server with SPF, DKIM, DMARC, TLS encryption and Fail2ban.',
+      'Aperçu du rapport sur la sécurisation du serveur SMTP': 'Preview of the SMTP server security report',
+      'Document PDF disponible en consultation et en téléchargement.': 'PDF document available to read and download.',
+      'Chargement des rapports…': 'Loading reports…',
+      'Aucun rapport n’est disponible pour le moment.': 'No reports are available yet.',
       'Sécurité& DevSecOps': 'Security & DevSecOps',
       'Incident response · Forensic · DevSecOps': 'Incident response · Forensics · DevSecOps',
       'De l’alerte à une réponse': 'From alert to a response',
@@ -3297,7 +3278,7 @@
       languageButton.title = english ? 'Passer en français' : 'Switch to English';
 
       document.querySelectorAll('[aria-label]').forEach(element => {
-        const translation = englishTranslations[element.getAttribute('aria-label')];
+        const translation = englishTranslations[element.dataset.originalAriaLabel || element.getAttribute('aria-label')];
         if (translation) {
           if (!element.dataset.originalAriaLabel) {
             element.dataset.originalAriaLabel = element.getAttribute('aria-label');
@@ -3307,7 +3288,7 @@
       });
 
       document.querySelectorAll('[alt]').forEach(element => {
-        const translation = englishTranslations[element.getAttribute('alt')];
+        const translation = englishTranslations[element.dataset.originalAlt || element.getAttribute('alt')];
         if (translation) {
           if (!element.dataset.originalAlt) {
             element.dataset.originalAlt = element.getAttribute('alt');
@@ -3317,7 +3298,7 @@
       });
 
       document.querySelectorAll('[title]').forEach(element => {
-        const translation = englishTranslations[element.getAttribute('title')];
+        const translation = englishTranslations[element.dataset.originalTitle || element.getAttribute('title')];
         if (translation) {
           if (!element.dataset.originalTitle) {
             element.dataset.originalTitle = element.getAttribute('title');
@@ -3391,12 +3372,181 @@
       window.scrollTo(0, 0);
     }
 
+    // Descriptions des rapports connus. Tout autre PDF ajouté au dossier "rapport"
+    // s'affiche automatiquement avec un titre déduit du nom du fichier.
+    const reportDetails = {
+      'Rapport_Messagerie_Entreprise_Kali_WSL_illustre_mis_a_jour.pdf': {
+        type: 'Rapport illustré',
+        title: 'Messagerie d’entreprise sous Kali Linux / WSL',
+        description: 'Rapport illustré sur la mise en place d’une messagerie d’entreprise dans un environnement Kali Linux sous WSL.',
+        readLabel: 'Lire le rapport',
+        previewTitle: 'Aperçu du rapport sur la messagerie d’entreprise'
+      },
+      'Sécurisation du serveur SMTP SPF, DKIM, DMARC, TLS et Fail2ban.pdf': {
+        type: 'Rapport',
+        title: 'Sécurisation du serveur SMTP : SPF, DKIM, DMARC, TLS et Fail2ban',
+        description: 'Rapport sur la sécurisation d’un serveur de messagerie SMTP avec SPF, DKIM, DMARC, le chiffrement TLS et Fail2ban.',
+        readLabel: 'Lire le rapport',
+        previewTitle: 'Aperçu du rapport sur la sécurisation du serveur SMTP'
+      },
+      'memoire_Arphan_Bodian.pdf': {
+        type: 'Mémoire',
+        title: 'Mémoire d’Arphan Bodian',
+        description: 'Mémoire de fin d’études d’Arphan Bodian, disponible au format PDF.',
+        readLabel: 'Lire le mémoire',
+        previewTitle: 'Aperçu du mémoire d’Arphan Bodian'
+      }
+    };
+    const reportOrder = Object.keys(reportDetails);
+
+    function normalizeFileName(name) {
+      return name.normalize('NFC');
+    }
+
+    function findReportDetails(fileName) {
+      const key = Object.keys(reportDetails)
+        .find(name => normalizeFileName(name) === normalizeFileName(fileName));
+      return key ? reportDetails[key] : null;
+    }
+
+    function titleFromFileName(fileName) {
+      const base = fileName.replace(/\.pdf$/i, '').replace(/[_-]+/g, ' ').replace(/\s+/g, ' ').trim();
+      return base.charAt(0).toUpperCase() + base.slice(1);
+    }
+
+    function describeReport(report) {
+      const details = findReportDetails(report.fichier);
+      const title = details ? details.title : titleFromFileName(report.fichier);
+      return {
+        url: report.url,
+        type: details ? details.type : 'Rapport',
+        title,
+        description: details ? details.description : 'Document PDF disponible en consultation et en téléchargement.',
+        readLabel: details ? details.readLabel : 'Lire le rapport',
+        previewTitle: details ? details.previewTitle : `Aperçu du document « ${title} »`
+      };
+    }
+
+    function reportRank(fileName) {
+      const index = reportOrder.findIndex(name => normalizeFileName(name) === normalizeFileName(fileName));
+      return index === -1 ? reportOrder.length : index;
+    }
+
+    function createReportLink(href, label, symbol, download) {
+      const link = document.createElement('a');
+      link.className = 'project-link';
+      link.href = href;
+      if (download) {
+        link.setAttribute('download', '');
+      } else {
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+      }
+      link.append(document.createTextNode(label + ' '));
+      const icon = document.createElement('span');
+      icon.setAttribute('aria-hidden', 'true');
+      icon.textContent = symbol;
+      link.append(icon);
+      return link;
+    }
+
+    function createReportCard(report) {
+      const info = describeReport(report);
+      const card = document.createElement('article');
+      card.className = 'project-card';
+
+      const preview = document.createElement('div');
+      preview.className = 'report-preview';
+      const frame = document.createElement('iframe');
+      frame.src = `${info.url}#page=1&toolbar=0`;
+      frame.title = info.previewTitle;
+      frame.loading = 'lazy';
+      preview.append(frame);
+
+      const content = document.createElement('div');
+      content.className = 'project-card-content';
+      const type = document.createElement('span');
+      type.className = 'project-type';
+      type.textContent = info.type;
+      const heading = document.createElement('h3');
+      heading.textContent = info.title;
+      const description = document.createElement('p');
+      description.textContent = info.description;
+      const actions = document.createElement('div');
+      actions.className = 'report-actions';
+      actions.append(
+        createReportLink(info.url, info.readLabel, '↗', false),
+        createReportLink(info.url, 'Télécharger le PDF', '↓', true)
+      );
+      content.append(type, heading, description, actions);
+
+      card.append(preview, content);
+      return card;
+    }
+
+    // Traduit le contenu ajouté après le changement de langue
+    function translateNewContent(root) {
+      if (portfolioLanguage !== 'en') {
+        return;
+      }
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+      let textNode;
+      while ((textNode = walker.nextNode())) {
+        const originalText = textNode.nodeValue;
+        const translation = englishTranslations[normalizeTranslationText(originalText)];
+        if (translation) {
+          originalTextNodes.set(textNode, originalText);
+          const whitespace = originalText.match(/^(\s*)([\s\S]*?)(\s*)$/);
+          textNode.nodeValue = `${whitespace[1]}${translation}${whitespace[3]}`;
+        }
+      }
+      root.querySelectorAll('[title]').forEach(element => {
+        const translation = englishTranslations[element.getAttribute('title')];
+        if (translation) {
+          element.dataset.originalTitle = element.getAttribute('title');
+          element.setAttribute('title', translation);
+        }
+      });
+    }
+
+    function renderReports(reports) {
+      const grid = document.getElementById('reports-grid');
+      grid.replaceChildren();
+      if (!reports.length) {
+        const empty = document.createElement('p');
+        empty.className = 'reports-status';
+        empty.textContent = 'Aucun rapport n’est disponible pour le moment.';
+        grid.append(empty);
+      } else {
+        reports
+          .slice()
+          .sort((a, b) => reportRank(a.fichier) - reportRank(b.fichier) || a.fichier.localeCompare(b.fichier, 'fr'))
+          .forEach(report => grid.append(createReportCard(report)));
+      }
+      translateNewContent(grid);
+    }
+
+    async function loadReports() {
+      try {
+        const response = await fetch('/api/rapports', { cache: 'no-store' });
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+        renderReports(await response.json());
+      } catch (error) {
+        // Sans le serveur (fichier ouvert directement), on affiche les rapports connus
+        console.warn('Liste des rapports indisponible, affichage des rapports connus.', error);
+        renderReports(reportOrder.map(fichier => ({ fichier, url: 'rapport/' + encodeURIComponent(fichier) })));
+      }
+    }
+
     window.addEventListener('DOMContentLoaded', function() {
       showPage(0);
       initializeCyberReveal();
       if (sessionStorage.getItem('portfolioLanguage') === 'en') {
         toggleLanguage();
       }
+      loadReports();
     });
 
     function toggleFormation() {
