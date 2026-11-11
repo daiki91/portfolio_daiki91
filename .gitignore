@@ -30,3 +30,4 @@ logs/
 # PDF/Export
 *.pdf
 !cv/cv_arphan.pdf
+!rapport/*.pdf
