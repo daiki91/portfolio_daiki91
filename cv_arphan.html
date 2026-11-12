@@ -309,9 +309,7 @@
       font-size: 1.13em;
       line-height: 1.7;
     }
-    .formation-list, .exp-list {
-      margin-bottom: 0;
-    }
+    .exp-list { margin-bottom: 0; }
     .cta-section {
       display: flex;
       gap: 24px;
@@ -1047,19 +1045,23 @@
     .strength-item span { color: #638477; font-size: 0.76rem; font-weight: 800; }
     .strength-item h3 { margin: 9px 0; color: #23464a; font-size: 1.12rem; }
     .strength-item p { margin: 0; color: #667472; font-size: 0.94rem; line-height: 1.7; }
-    .study-band { display: grid; grid-template-columns: 0.7fr 1.3fr; gap: 44px; align-items: start; }
-      .home-band.study-band { background: linear-gradient(112deg, #f6f4e9 0%, #f7f8f2 52%, #eaf2ed 100%); }
+    .home-band.diploma-band { background: linear-gradient(112deg, #f6f4e9 0%, #f7f8f2 52%, #eaf2ed 100%); }
       .home-band.experience-band { background: linear-gradient(112deg, #edf3f5 0%, #f7f9f8 56%, #edf4ef 100%); }
     .study-label { color: #638477; font-size: 0.76rem; font-weight: 800; text-transform: uppercase; }
-    .study-title { margin: 12px 0; color: #153b43; font-size: 1.7rem; line-height: 1.2; }
-    .study-copy { margin: 0; color: #667472; line-height: 1.7; }
-    .thesis-block {
-      padding: 23px 25px;
-      border-left: 3px solid var(--accent);
-      background: #eaf0eb;
-    }
-    .thesis-block small { color: #638477; font-size: 0.72rem; font-weight: 800; text-transform: uppercase; }
-    .thesis-block h3 { margin: 9px 0 0; color: #23464a; font-size: 1.18rem; line-height: 1.55; }
+    .diploma-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 24px; }
+    .diploma-heading h2 { margin: 8px 0 0; color: #153b43; font-size: clamp(1.7rem, 3vw, 2.45rem); line-height: 1.18; }
+    .diploma-heading p { max-width: 420px; margin: 0; color: #667472; line-height: 1.65; }
+    .diploma-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-items: stretch; }
+    .diploma-card { display: flex; min-width: 0; flex-direction: column; padding: 20px; border: 1px solid #e5e9df; border-radius: 12px; background: rgba(255,255,255,0.82); }
+    .diploma-card-heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .diploma-period { color: #638477; font-size: 0.78rem; font-weight: 800; }
+    .diploma-level { padding: 5px 8px; border-radius: 999px; background: #eaf1e7; color: #496949; font-size: 0.68rem; font-weight: 800; }
+    .diploma-card h3 { margin: 15px 0 7px; color: #23464a; font-size: 1.14rem; line-height: 1.35; }
+    .diploma-card > p { margin: 0; color: #667472; font-size: 0.88rem; line-height: 1.6; }
+    .diploma-card .diploma-institution { margin-top: 12px; color: #52635c; font-size: 0.78rem; font-weight: 700; }
+    .diploma-thesis { margin-top: auto; padding: 13px 0 0; }
+    .diploma-thesis small { color: #73766c; font-size: 0.66rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+    .diploma-thesis p { margin: 6px 0 0; color: #667472; font-size: 0.78rem; line-height: 1.55; }
     .home-footer {
       display: flex;
       align-items: center;
@@ -1148,7 +1150,8 @@
       .home-detail-group:first-child { grid-column: 1 / -1; }
       .home-contact-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .band-heading { align-items: start; flex-direction: column; }
-      .study-band { grid-template-columns: 1fr; gap: 20px; }
+      .diploma-grid { grid-template-columns: 1fr; }
+      .diploma-heading { align-items: start; flex-direction: column; gap: 10px; }
       .home-band { padding: 30px 20px; }
     }
     @media (max-width: 600px) {
@@ -1171,7 +1174,6 @@
       .console-step { font-size: 0.64rem; }
       .home-band { padding: 26px 16px; }
       .strength-grid { grid-template-columns: 1fr; gap: 20px; }
-      .thesis-block { padding: 18px; }
       .home-footer { align-items: start; flex-direction: column; gap: 7px; }
       .contact-widget { right: 14px; bottom: 14px; }
       .contact-toggle { min-height: 50px; padding: 0 16px; }
@@ -1469,7 +1471,7 @@
     }
 
     .home-band.approach-band,
-    .home-band.study-band,
+    .home-band.diploma-band,
     .home-band.experience-band {
       background: #fff;
     }
@@ -1482,15 +1484,16 @@
       letter-spacing: -0.05em;
     }
 
-    .band-heading p, .strength-item p, .study-copy { color: #70736a; }
+    .band-heading p, .strength-item p, .diploma-heading p, .diploma-card > p, .diploma-thesis p { color: #70736a; }
 
     .strength-grid { gap: 22px; }
     .strength-item { padding: 18px 0 0; border-top: 1px solid #dfe1d7; }
-    .strength-item span, .study-label { color: #73766c; font-size: 0.68rem; letter-spacing: 0.11em; }
-    .strength-item h3, .thesis-block h3 { color: var(--ink); font-family: "Space Grotesk", sans-serif; letter-spacing: -0.025em; }
-    .thesis-block { border-left-color: #b6d84b; border-radius: 0 12px 12px 0; background: #f5f7ed; }
-    .thesis-block small { color: #747766; }
-    .study-title { color: var(--ink); font-family: "Space Grotesk", sans-serif; letter-spacing: -0.04em; }
+    .strength-item span, .study-label, .diploma-period { color: #73766c; font-size: 0.68rem; letter-spacing: 0.11em; }
+    .strength-item h3, .diploma-heading h2, .diploma-card h3 { color: var(--ink); font-family: "Space Grotesk", sans-serif; letter-spacing: -0.025em; }
+    .diploma-card { border-color: #e7e8e1; border-radius: 14px; background: #fff; }
+    .diploma-level { background: #f0f3e7; color: #596a37; }
+    .diploma-thesis { margin-top: 18px; border-top: 1px solid #e8e9df; }
+    .diploma-thesis small { color: #747766; }
 
     .home-footer {
       padding: 22px 4px 8px;
@@ -1662,8 +1665,8 @@
       .home-band { padding: 24px 18px; margin-bottom: 12px; border-radius: 14px; }
       .band-heading { gap: 14px; margin-bottom: 20px; }
       .strength-grid { grid-template-columns: 1fr; gap: 18px; }
-      .study-band { grid-template-columns: 1fr; gap: 22px; }
-      .thesis-block { padding: 18px; }
+      .diploma-grid { gap: 10px; }
+      .diploma-card { padding: 18px; }
       .home-footer { padding: 16px 2px; }
       .project-section { margin: 26px 0 36px; }
       .project-grid { grid-template-columns: 1fr; }
@@ -2387,31 +2390,40 @@
             <article class="strength-item"><span>03 / SÉCURISER</span><h3>Protéger les données</h3><p>Intégrer les contrôles d’accès, la journalisation et les bonnes pratiques de sécurité tout au long du développement.</p></article>
           </div>
         </section>
-        <section class="home-band study-band" aria-labelledby="study-title">
-          <div>
-            <div class="study-label">Formation · École Supérieure Polytechnique</div>
-            <h2 class="study-title" id="study-title">Master en Génie Informatique</h2>
-            <p class="study-copy">Option : Sécurité des Systèmes d’Information<br>Département Génie Informatique</p>
+        <section class="home-band diploma-band" aria-labelledby="diplomas-title">
+          <div class="diploma-heading">
+            <div>
+              <div class="study-label">Parcours académique</div>
+              <h2 id="diplomas-title">Diplômes & formation</h2>
+            </div>
+            <p>Un parcours en génie logiciel et en sécurité des systèmes d’information à l’École Supérieure Polytechnique de Dakar.</p>
           </div>
-          <div class="thesis-block">
-            <small>Sujet de mémoire</small>
-            <h3>AFFIC : conception et déploiement d’une plateforme web sécurisée de gestion de portefeuille client</h3>
+          <div class="diploma-grid">
+            <article class="diploma-card">
+              <div class="diploma-card-heading"><span class="diploma-period">2025–2026</span><span class="diploma-level">Master</span></div>
+              <h3>Génie Informatique</h3>
+              <p>Option : Sécurité des Systèmes d’Information</p>
+              <p class="diploma-institution">École Supérieure Polytechnique · Département Génie Informatique</p>
+              <div class="diploma-thesis"><small>Sujet de mémoire</small><p>AFFIC : conception et déploiement d’une plateforme web sécurisée de gestion de portefeuille client.</p></div>
+            </article>
+            <article class="diploma-card">
+              <div class="diploma-card-heading"><span class="diploma-period">2023–2024</span><span class="diploma-level">Licence</span></div>
+              <h3>Génie Logiciel & Systèmes</h3>
+              <p class="diploma-institution">École Supérieure Polytechnique · Dakar</p>
+            </article>
+            <article class="diploma-card">
+              <div class="diploma-card-heading"><span class="diploma-period">2021–2023</span><span class="diploma-level">Diplôme</span></div>
+              <h3>Technicien Supérieur</h3>
+              <p class="diploma-institution">École Supérieure Polytechnique · Dakar</p>
+            </article>
           </div>
         </section>
         <section class="home-band experience-band" aria-labelledby="experience-title">
           <div class="band-heading">
             <h2 id="experience-title">Une expérience entre développement et terrain.</h2>
-            <button class="text-link" id="toggle-formation-btn" type="button" aria-expanded="false" aria-controls="formation-experience" onclick="toggleFormation()">Formation & expérience <span aria-hidden="true">＋</span></button>
+            <button class="text-link" id="toggle-experience-btn" type="button" aria-expanded="false" aria-controls="professional-experience" onclick="toggleExperience()">Expérience professionnelle <span aria-hidden="true">＋</span></button>
           </div>
-          <div id="formation-experience" hidden>
-            <div class="section-block">
-              <h2>Formation</h2>
-              <ul class="formation-list">
-                <li>Technicien Supérieur – École Supérieure Polytechnique, Dakar (2021–2023)</li>
-                <li>Licence Génie Logiciel & Systèmes – ESP, Dakar (2023–2024)</li>
-                <li>Master en Génie Informatique, option Sécurité des Systèmes d’Information – ESP, Département Génie Informatique</li>
-              </ul>
-            </div>
+          <div id="professional-experience" hidden>
             <div class="section-block">
               <h2>Expérience professionnelle</h2>
               <ul class="exp-list">
@@ -3025,19 +3037,22 @@
       'Créer des expériences frontend et des services backend robustes, reliés à des API et bases de données adaptées.': 'Create engaging frontends and robust backend services connected to suitable APIs and databases.',
       'Protéger les données': 'Protect data',
       'Intégrer les contrôles d’accès, la journalisation et les bonnes pratiques de sécurité tout au long du développement.': 'Build in access controls, logging, and security best practices throughout development.',
-      'Formation · École Supérieure Polytechnique': 'Education · Polytechnic School',
+      'Parcours académique': 'Academic background',
+      'Diplômes & formation': 'Degrees & education',
+      'Un parcours en génie logiciel et en sécurité des systèmes d’information à l’École Supérieure Polytechnique de Dakar.': 'An academic journey in software engineering and information systems security at École Supérieure Polytechnique in Dakar.',
+      'Master': 'Master’s degree',
+      'Génie Informatique': 'Computer Engineering',
       'Option : Sécurité des Systèmes d’Information': 'Specialization: Information Systems Security',
-      'Département Génie Informatique': 'Computer Engineering Department',
+      'École Supérieure Polytechnique · Département Génie Informatique': 'École Supérieure Polytechnique · Computer Engineering Department',
       'Sujet de mémoire': 'Thesis topic',
-      'AFFIC : conception et déploiement d’une plateforme web sécurisée de gestion de portefeuille client': 'AFFIC: Design and deployment of a secure web-based client portfolio management platform',
+      'AFFIC : conception et déploiement d’une plateforme web sécurisée de gestion de portefeuille client.': 'AFFIC: Design and deployment of a secure web-based client portfolio management platform.',
+      'Licence': 'Bachelor’s degree',
+      'Génie Logiciel & Systèmes': 'Software Engineering & Systems',
+      'Diplôme': 'Diploma',
+      'Technicien Supérieur': 'Higher Technician Diploma',
       'Une expérience entre développement et terrain.': 'Experience across software development and hands-on work.',
-      'Formation & expérience': 'Education & experience',
-      'Masquer la formation & expérience': 'Hide education & experience',
-      'Formation': 'Education',
-      'Technicien Supérieur – École Supérieure Polytechnique, Dakar (2021–2023)': 'Higher Technician Diploma – Polytechnic School, Dakar (2021–2023)',
-      'Licence Génie Logiciel & Systèmes – ESP, Dakar (2023–2024)': 'Bachelor’s in Software Engineering & Systems – ESP, Dakar (2023–2024)',
-      'Master en Génie Informatique, option Sécurité des Systèmes d’Information – ESP, Département Génie Informatique': 'Master’s in Computer Engineering, specializing in Information Systems Security – ESP, Computer Engineering Department',
       'Expérience professionnelle': 'Professional experience',
+      'Masquer l’expérience professionnelle': 'Hide professional experience',
       'Stagiaire IT – PNUD, Dakar (2023)': 'IT Intern – UNDP, Dakar (2023)',
       ': Développement Web (Power Apps), plateforme DPC-calculator, base de données & visualisation Power BI, configuration réseau Cisco / GNS3': ': Web development (Power Apps), DPC-calculator platform, database and Power BI visualizations, Cisco / GNS3 network configuration',
       'Stagiaire IT – Sendigital Pulse (2024)': 'IT Intern – Sendigital Pulse (2024)',
@@ -3363,17 +3378,17 @@
         }
       });
 
-      const formationButton = document.getElementById('toggle-formation-btn');
-      if (formationButton) {
-        updateFormationButton(formationButton.getAttribute('aria-expanded') === 'true');
+      const experienceButton = document.getElementById('toggle-experience-btn');
+      if (experienceButton) {
+        updateExperienceButton(experienceButton.getAttribute('aria-expanded') === 'true');
       }
     }
 
-    function updateFormationButton(expanded) {
-      const button = document.getElementById('toggle-formation-btn');
+    function updateExperienceButton(expanded) {
+      const button = document.getElementById('toggle-experience-btn');
       const label = portfolioLanguage === 'en'
-        ? (expanded ? 'Hide education & experience' : 'Education & experience')
-        : (expanded ? 'Masquer la formation & expérience' : 'Formation & expérience');
+        ? (expanded ? 'Hide professional experience' : 'Professional experience')
+        : (expanded ? 'Masquer l’expérience professionnelle' : 'Expérience professionnelle');
       const symbol = expanded ? '−' : '＋';
       button.innerHTML = `${label} <span aria-hidden="true">${symbol}</span>`;
     }
@@ -3605,13 +3620,13 @@
       loadReports();
     });
 
-    function toggleFormation() {
-      const fe = document.getElementById('formation-experience');
-      const btn = document.getElementById('toggle-formation-btn');
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
-      fe.hidden = expanded;
-      btn.setAttribute('aria-expanded', String(!expanded));
-      updateFormationButton(!expanded);
+    function toggleExperience() {
+      const experience = document.getElementById('professional-experience');
+      const button = document.getElementById('toggle-experience-btn');
+      const expanded = button.getAttribute('aria-expanded') === 'true';
+      experience.hidden = expanded;
+      button.setAttribute('aria-expanded', String(!expanded));
+      updateExperienceButton(!expanded);
     }
 
     function toggleContact() {
